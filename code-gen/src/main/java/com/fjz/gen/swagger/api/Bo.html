@@ -1,0 +1,21 @@
+package com.xky.multi.tenant.api.${nameLowerCase}.bo;
+
+import java.util.List;
+
+import io.swagger.annotations.ApiModelProperty;
+
+public class Api${className}Bo {
+	<% for(colunm in table.columns){ %>
+	@ApiModelProperty(value = "${colunm.remarks}", required = true) 
+	private ${colunm.javaType} ${colunm.attrName};
+	<% } %>
+	<% for(colunm in table.columns){ %>
+	public void set${colunm.attrNameUpperCaseFirstOne}(${colunm.javaType} ${colunm.attrName}){
+		this.${colunm.attrName}=${colunm.attrName};
+	}
+	/** ${colunm.name} ${colunm.type}：${colunm.remarks} **/
+	public ${colunm.javaType} get${colunm.attrNameUpperCaseFirstOne}() {
+		return ${colunm.attrName};
+	}
+	<% } %>
+}

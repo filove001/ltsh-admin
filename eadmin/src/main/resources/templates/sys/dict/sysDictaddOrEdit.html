@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+</head>
+<body>
+<section class="dx-info-default">
+  <div class="dx-info-box type-add">
+    <form class="layui-form" action="">
+		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">编号</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(valueDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">数据值</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(valueDisabled)){%>disabled<%}%> type="text" value="${obj.value!}" name="value"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(labelDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">标签名</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(labelDisabled)){%>disabled<%}%> type="text" value="${obj.label!}" name="label"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(typeDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">类型</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(typeDisabled)){%>disabled<%}%> type="text" value="${obj.type!}" name="type"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(descriptionDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">描述</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(descriptionDisabled)){%>disabled<%}%> type="text" value="${obj.description!}" name="description"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(sortDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">排序（升序）</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(sortDisabled)){%>disabled<%}%> type="text" value="${obj.sort!}" name="sort"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(parentIdDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">父级编号</label>
+	        <div class="layui-input-block">	        
+	          <input <%if(has(parentIdDisabled)){%>disabled<%}%> type="text" value="${obj.parentId!}" name="parentId"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">创建者</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">创建时间</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!}" name="createDate"   autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">更新者</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"   autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(updateDateDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">更新时间</label>
+	        <div class="layui-input-block dx-input-required">	        
+	          <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!}" name="updateDate"    autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">备注信息</label>
+	        <div class="layui-input-block">	        
+	          <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+      <br>
+
+      <div class="layui-form-item form-btn-box">
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+</div>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+</body>
+</html>

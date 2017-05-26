@@ -1,0 +1,10 @@
+@ApiImplicitParams(
+{
+<%
+var temp="";
+for(column in table.columns){%>
+${temp}@ApiImplicitParam(name="${column.attrName}",paramType="query",value="${column.remarks}")
+<%
+temp=",";
+}%>
+})

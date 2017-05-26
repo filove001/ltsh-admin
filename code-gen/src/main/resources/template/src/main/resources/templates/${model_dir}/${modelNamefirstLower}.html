@@ -1,0 +1,82 @@
+<%
+	var size=table.columns.~size;
+	var layerOpenHeight=100+(parseInt(size/2)+size%2)*58;
+	if(layerOpenHeight>600){
+		layerOpenHeight=600;
+	}
+%>
+\<%
+	var jsContent = {
+%>
+<script>
+//	grid
+var gridColumns = [
+  <%
+   	var temp="";
+   	for(colunm in table.columns){ 
+   	%>
+   	${temp}{id:'${colunm.attrName}', title:'${colunm.remarks}', columnClass:'text-center' ${colunm.gridColumnHide}}
+   	<%if(colunmLP.first)%>
+   	,{id:'edit_form',title:'操作',
+   		resolution:function(value, record, column, grid, dataNo, columnNo){
+	   	    var content = '<button class="btn btn-xs btn-default" onclick="edit('+dataNo+');"><i class="fa fa-edit"></i>编辑</button>';
+	   	    return content;
+   		}
+	}
+	<%%>
+   	<%
+   	temp=",";
+   	}
+   %> 
+];
+//表格加载完成方法
+function gridComplete(){
+	
+}
+</script>
+\<%};%>
+
+
+\<%layout("/layout/layout-grid.html",{"title":"${table.remarks}",layerOpenHeight:'${layerOpenHeight}',jsContent:jsContent}){%>
+<div class="box-header">
+  <form id="search-form" class="search-form">
+  	<%
+	for(colunm in table.columns){ 
+	%>
+	<div><label>${colunm.remarks}:</label><input type="text" name="${colunm.attrName}"></div>
+	<%
+	}
+	%>
+	<div><input type="button" value="搜索" id="search-btn" >&nbsp;<input type="button" value="重置" id="reset-btn" ></div>
+  </form>
+</div>
+<!-- operate-form -->
+  <form id="operate-form" class="form-horizontal">
+  	<table>
+  	<%
+  	var num=0;
+	for(colunm in table.columns){ 
+	%>
+	<%if(num++%2==0){%>
+	<tr>
+	<%}%>
+		<td>
+			<div class="form-group">
+				<label class="col-sm-2 control-label text-right">${colunm.remarks}：</label>
+				<div class="col-sm-4">
+					<input type="text" name="${colunm.attrName}" class="form-control" 
+					<%if(colunm.isNullable=='true'){%> valid="r" validTitle="${colunm.remarks}" validInfoArea="${table.name}_${colunm.name}_area" <%}%> />
+				</div>
+ 				<div class="col-sm-6"><p class="help-block" id="${table.name}_${colunm.name}_area"></p></div> 
+			</div>
+		</td>
+	<%if(num%2==0||colunmLP.last){%>
+	</tr>
+	<%}%>
+	<%
+	}
+	%>
+	</table>
+  </form>
+<!-- /operate-form -->
+ \<%}%>

@@ -1,0 +1,127 @@
+package com.xky.multi.tenant.api.${nameLowerCase};
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
+import org.beetl.sql.core.engine.PageQuery;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import springfox.documentation.annotations.ApiIgnore;
+
+import com.xky.multi.tenant.api.ApiMsg;
+import com.xky.multi.tenant.api.${nameLowerCase}.bo.Api${className}Bo;
+import com.xky.multi.tenant.mvc.${table.package}.${table.modelName};
+import com.xky.multi.tenant.mvc.${table.package}.${table.modelName}Service;
+import com.xky.multi.tenant.mvc.${table.package}.${table.modelName}AutoIds;
+import com.xky.multi.tenant.util.Assert;
+import com.xky.multi.tenant.util.BeanValidators;
+import com.xky.multi.tenant.util.Beans;
+import com.xky.multi.tenant.util.Empty;
+import com.xky.multi.tenant.util.Lists;
+import com.xky.multi.tenant.util.Maps;
+import com.xky.multi.tenant.util.web.Webs;
+
+@Controller
+@RequestMapping("/api/${nameLowerCase}")
+public class ${className}Controller {
+	@Autowired
+	private ${table.modelName}Service ${table.modelNamefirstLower}Service;
+	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value = "/getInfo",method=RequestMethod.POST)
+	@ApiOperation(value = "获取${table.remarks}基本信息", notes = "获取${table.remarks}基本信息")
+	public ApiMsg<Api${className}Bo> getInfo(
+			@ApiParam(name="tokenId",value="令牌id",required=true) @RequestParam String tokenId,
+			@ApiParam(name="tenantId",value="医生租户id",required=true) @RequestParam String tenantId,
+			@ApiParam(name="pageNumber",value="当前页数")  @RequestParam(required=false) Integer pageNumber,
+			@ApiParam(name="pageSize",value="每页显示条数") @RequestParam(required=false) Integer pageSize,
+			@ApiParam(name="cardNo",value="证件号码") @RequestParam(required=false) String cardNo,
+			@ApiParam(name="cardType",value="证件类型")  @RequestParam(required=false) String cardType,
+			@ApiParam(name="name",value="患者名字") @RequestParam(required=false) String name) {
+		List<${table.modelName}> list = null;
+		int totleSize=0;
+		if(pageNumber==null||pageSize==null){
+			pageNumber=1;
+			pageSize=99999999;
+		}
+		Map<String,Object> para=Maps.newMap();
+		para.put("cardNo", cardNo);
+		para.put("cardType", cardType);
+		para.put("name", name);
+		para.put("tenantId", tenantId);
+		PageQuery query=new PageQuery(pageNumber, para);
+		query.setPageSize(pageSize);
+		${table.modelNamefirstLower}Service.page(query);
+		list=query.getList();
+		totleSize=(int)query.getTotalRow();
+		if(Empty.is(list)){
+			return new ApiMsg<Api${className}Bo>(1,"信息为空！");
+		}
+		return new ApiMsg<Api${className}Bo>(list,""+totleSize);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/add",method=RequestMethod.POST)
+	@ApiOperation(value = "添加${table.remarks}基本信息", notes = "添加${table.remarks}基本信息")
+	@ApiImplicitParams(
+	{
+	<%
+	var temp="";
+	for(column in table.columns){%>
+	${temp}@ApiImplicitParam(name="${column.attrName}",paramType="query",value="${column.remarks}",dataType="string")
+	<%
+	temp=",";
+	}%>
+	})
+	public ApiMsg<Object> add(
+			@ApiParam(name="tokenId",value="令牌id",required=true) @RequestParam(name = "tokenId") String tokenId,
+			@ApiParam(name="tenantId",value="医生租户id",required=true) 	@RequestParam(name = "tenantId") String tenantId,
+			@ApiIgnore ${table.modelName} entity) {
+		BeanValidators.validator(entity);
+		entity.setId(${table.modelName}AutoIds.getId());
+		entity.setStatus("1");
+		entity.setCreateBy(Webs.getSysUser().getUsername());
+		entity.setCreateTime(new Date());
+		${table.modelNamefirstLower}Service.insert(entity);
+		return ApiMsg.success;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/update",method=RequestMethod.POST)
+	@ApiOperation(value = "修改${table.remarks}基本信息")
+	@ApiImplicitParams(
+	{
+	<%
+	temp="";
+	for(column in table.columns){%>
+	${temp}@ApiImplicitParam(name="${column.attrName}",paramType="query",value="${column.remarks}",dataType="string")
+	<%
+	temp=",";
+	}%>
+	})
+	public ApiMsg<Object> update(
+			@ApiParam(name="tokenId",value="令牌id",required=true) @RequestParam(name = "tokenId") String tokenId,
+			@ApiParam(name="tenantId",value="医生租户id",required=true) 	@RequestParam(name = "tenantId") String tenantId,
+			@ApiIgnore ${table.modelName} entity
+			) {
+		BeanValidators.validator(entity);
+		${table.modelName} bean=${table.modelNamefirstLower}Service.unique(entity.getId());
+		Assert.notNull(bean, "${table.remarks}id不存在！");
+		Beans.copyProperties(entity, bean);
+		${table.modelNamefirstLower}Service.updateById(bean);
+		return ApiMsg.success;
+	}
+}

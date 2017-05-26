@@ -1,0 +1,14 @@
+body{
+	overflow:scroll;overflow-x:hidden;
+	margin-left:10px;
+}
+.dx-info-default .dx-input-required:after{content:'*';color:#f9656b;position:absolute;right:-15px;top:10px;font-size:24px}
+.dx-info-default{width:100%;min-height:100%;box-sizing:border-box;padding:20px 24px 115px}
+
+.dx-info-default .dx-info-box{background-color:#fff;width:100%;min-height:100%;border:solid 1px #ccc;padding-top:44px;box-sizing:border-box}
+
+.dx-info-default .layui-form-item{display:inline-block;margin-right:10px;margin-bottom:25px}
+
+
+.layui-input, .layui-select, .layui-textarea{width:220px;}
+
