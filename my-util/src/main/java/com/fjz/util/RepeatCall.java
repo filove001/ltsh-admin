@@ -1,6 +1,5 @@
 package com.fjz.util;
 
-import org.junit.Test;
 
 /**
  * 重复调用
@@ -36,15 +35,6 @@ public class RepeatCall {
 	public static final int max=3;//默认三次
 	public interface Call{
 		void go();
-	};
-	
-//	@Test
-//	public void testGoCallInt() {
-//		RepeatCall.go(new Call() {
-//			public void go() {
-//				int num=1/0;
-//				System.out.println("1111");
-//			}
-//		}, 3);
-//	}
+	}
+
 }

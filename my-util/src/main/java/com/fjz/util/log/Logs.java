@@ -1,24 +1,25 @@
 package com.fjz.util.log;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 /**
- * 对log4j日志类进行了简单封装，使用该封装类的优势在于以下两点
+ * 对slf4j日志类进行了简单封装，使用该封装类的优势在于以下两点
  * 不必在每个类中去创建对象，直接类名 + 方法即可
  * 可以很方便的打印出堆栈信息
  * @Description 日志记录类
  * @author fjz
- * @date 2016
+ * @date 2017
  */
 public class Logs {
-	static{
-		PropertyConfigurator.configure(Logs.class.getResource("/com/fjz/util/log/log4j.properties"));
-	}
-	public static Logger log = Logger.getLogger(Logs.class);
+//	static{
+//		PropertyConfigurator.configure(Logs.class.getResource("/com/fjz/util/log/log4j.properties"));
+//	}
+	public static Logger log = LoggerFactory.getLogger(Logs.class);
     
     /**
      * 打印警告
@@ -43,7 +44,6 @@ public class Logs {
                 log.warn(location + obj.toString());
             }
         }catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
@@ -71,7 +71,6 @@ public class Logs {
                 log.info(location + obj.toString());
             }
         }catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
@@ -100,7 +99,6 @@ public class Logs {
                 log.error(location + obj.toString());
             }
         }catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
     }
@@ -110,27 +108,26 @@ public class Logs {
      * @param obj
      */
     public static void dbWarn(Object obj) {
-        try{
-            String printInfo = "";
-            /*** 获取输出信息的代码的位置 ***/
-            String location = "";
-            StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
-            location = stacks[2].getClassName() + "." + stacks[2].getMethodName()
-                    + "(" + stacks[2].getLineNumber() + ")";
-            
-            /*** 是否是异常  ***/
-            if (obj instanceof Exception) {
-                Exception e = (Exception) obj;
-                printInfo = location + e.getMessage();
-                log.fatal(printInfo.substring(0, printInfo.length() > 512?512:printInfo.length()));
-            } else {
-                printInfo = location + obj.toString();
-                log.fatal(printInfo.substring(0, printInfo.length() > 512?512:printInfo.length()));
-            }
-        }catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
+//        try{
+//            String printInfo = "";
+//            /*** 获取输出信息的代码的位置 ***/
+//            String location = "";
+//            StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
+//            location = stacks[2].getClassName() + "." + stacks[2].getMethodName()
+//                    + "(" + stacks[2].getLineNumber() + ")";
+//
+//            /*** 是否是异常  ***/
+//            if (obj instanceof Exception) {
+//                Exception e = (Exception) obj;
+//                printInfo = location + e.getMessage();
+//                log.fatal(printInfo.substring(0, printInfo.length() > 512?512:printInfo.length()));
+//            } else {
+//                printInfo = location + obj.toString();
+//                log.fatal(printInfo.substring(0, printInfo.length() > 512?512:printInfo.length()));
+//            }
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
     
     /**
@@ -146,7 +143,6 @@ public class Logs {
                     + "(" + stacks[2].getLineNumber() + ")";
             return location;
         }catch (Exception e) {
-            // TODO: handle exception
             Logs.error(e);
             return "";
         }
