@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fjz.util.Dates;
+
+import java.util.Date;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SysUserDaoTest{
@@ -27,7 +30,7 @@ public class SysUserDaoTest{
 		user.setPassword("11111");
 		user.setLoginName(name);
 		user.setCreateBy(name);
-		user.setCreateDate(Dates.now());
+		user.setCreateDate(new Date());
 		user.setPhone("120XXXXXX");
 		return user;
 	}

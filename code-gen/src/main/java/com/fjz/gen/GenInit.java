@@ -6,18 +6,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.fjz.util.*;
 import org.beetl.core.BeetlKit;
 
 import com.fjz.gen.base.DbTable;
 import com.fjz.gen.base.DbTableFactory;
 import com.fjz.gen.base.MyConnection;
-import com.fjz.util.Assert;
-import com.fjz.util.Empty;
-import com.fjz.util.FileModel;
-import com.fjz.util.FileSearch;
-import com.fjz.util.Files;
-import com.fjz.util.Maps;
-import com.fjz.util.StrFn;
 import com.jfinal.kit.PropKit;
 
 /**
@@ -52,9 +46,13 @@ public class GenInit {
 		Assert.isTrue(Empty.not(basepackage), "basepackage不能为空！");
 		Assert.isTrue(Empty.not(outRoot), "outRoot不能为空！");
 		if (Empty.is(templateRoot)) {
-			templateRoot = new File(GenInit.class.getResource("/").getFile()
-					+ "eadmin").getAbsolutePath();
+//			templateRoot = MavenFiles.getMavenSrcPath()+"main/resources/eadmin";
+			//windows
+			templateRoot = (MavenFiles.getMavenSrcPath()+"main/resources/eadmin").replace("/","\\").substring(1);
+//					new File(GenInit.class.getResource("/").getFile()
+//					+ "eadmin").getAbsolutePath();
 		}
+		System.out.println(templateRoot);
 		baasepackage_dir = basepackage.replaceAll("\\.", File.separator
 				+ File.separator);
 	}
@@ -62,10 +60,10 @@ public class GenInit {
 	public static void main(String[] args) throws SQLException, IOException {
 		GenInit g = new GenInit();
 //		g.gen("SYS_APP","SYS_ROLE_APP");
-		g.gen("sys_dict");
+		g.gen("sys_user");
 		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot);
-//		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot+"\\src\\main\\resources\\templates\\sys\\user");
-//		Runtime.getRuntime().exec("cmd.exe /c start E:\\java\\spring\\xky\\multi-tenant"+"");
+////		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot+"\\src\\main\\resources\\templates\\sys\\user");
+////		Runtime.getRuntime().exec("cmd.exe /c start E:\\java\\spring\\xky\\multi-tenant"+"");
 	}
 
 	public void gen(String... tableNames) throws SQLException {
@@ -76,7 +74,6 @@ public class GenInit {
 			String writeFile = fileModel.getFile().getAbsolutePath()
 					.replace("${basepackage_dir}", baasepackage_dir);
 			writeFile = writeFile.replace(templateRoot, outRoot);
-			
 			if (fileModel.isFileNameEl()) {
 				genByDbTable(tables, fileModel, writeFile);
 			} else {

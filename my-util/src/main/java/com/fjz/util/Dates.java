@@ -114,19 +114,7 @@ public class Dates {
 		}
         return null;
     }
-	
-	public static void main(String[] args) throws ParseException {
-//		int week=getYearByWeek(new Date());
-//		System.out.println(week);
-//		System.out.println(JsonUtil.toJsonString(getWeekDayStr(new Date())));
-//		Date[] dates=getWeekDay(parseDate("2016-01-01"));
-//		for (Date date2 : dates) {
-//			System.out.println(formatDate(date2));
-//		}
-//		System.out.println(JsonUtil.toJsonString(getWeekNext(new Date(),5)));
-		
-		System.out.println(new DateTime());
-	}
+
 	static int[] weeks={-1,7,1,2,3,4,5,6};
 	static String template="第%s周%s 至  %s";
 	public static String nextWeekStr(String date,int weekNex){
@@ -285,8 +273,8 @@ public class Dates {
 	/**
 	 * 时间差值，以时间为分割单位 年月日时分秒
 	 * 
-	 * @param beforeDate开始时间
-	 * @param afterDate结束时间
+	 * @param beforeDate 开始时间
+	 * @param afterDate 结束时间
 	 * @param simpleDateFormat
 	 *            输出String类型时间格式
 	 * @param field
