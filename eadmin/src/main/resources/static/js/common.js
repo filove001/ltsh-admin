@@ -1,11 +1,19 @@
 
 /**回车点击事件**/
-function  enterClick(id,fn){
+function  enterClickById(id,fn){
 	$(id).bind('keypress',function(event){
 	if(event.keyCode == "13"){
 	   fn();
 	}
 	});
+}
+/**回车点击事件**/
+$.fn.enterClick = function (fn) {
+    $(this).on('keypress',function(event){
+        if(event.keyCode == "13"){
+            fn();
+        }
+    });
 }
 /**只能输入数字**/
 $.fn.onlyNum = function () {

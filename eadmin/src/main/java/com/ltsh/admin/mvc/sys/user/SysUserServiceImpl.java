@@ -31,7 +31,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements SysU
 		return sysUserDao.getByUsername(username);
 	}
 	@Override
-	@Cacheable(key="#query.pageNumber")
+//	@Cacheable(key="#query.pageNumber")
 	public PageQuery<SysUser> page(PageQuery<SysUser> query) {
 		sysUserDao.page(query);
 		return query;

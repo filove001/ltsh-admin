@@ -1,4 +1,7 @@
 $(function(){
+    $('#search-form input').each(function(index,element){
+        $(element).enterClick(function(){search(1);});
+	});
 	search(1);
 });
 var pageSize=20;

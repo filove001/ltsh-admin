@@ -89,7 +89,6 @@ public abstract class Assert {
 	 * <pre class="code">Assert.hasLength(name, "Name must not be empty");</pre>
 	 * @param text the String to check
 	 * @param message the exception message to use if the assertion fails
-	 * @see StringUtils#hasLength
 	 * @throws CheckException if the text is empty
 	 */
 	public static void hasLength(String text, String message) {
@@ -103,7 +102,6 @@ public abstract class Assert {
 	 * it must not be {@code null} and not the empty String.
 	 * <pre class="code">Assert.hasLength(name);</pre>
 	 * @param text the String to check
-	 * @see StringUtils#hasLength
 	 * @throws CheckException if the text is empty
 	 */
 	public static void hasLength(String text) {
@@ -117,7 +115,6 @@ public abstract class Assert {
 	 * <pre class="code">Assert.hasText(name, "'name' must not be empty");</pre>
 	 * @param text the String to check
 	 * @param message the exception message to use if the assertion fails
-	 * @see StringUtils#hasText
 	 * @throws CheckException if the text does not contain valid text content
 	 */
 	public static void hasText(String text, String message) {
@@ -131,7 +128,6 @@ public abstract class Assert {
 	 * be {@code null} and must contain at least one non-whitespace character.
 	 * <pre class="code">Assert.hasText(name, "'name' must not be empty");</pre>
 	 * @param text the String to check
-	 * @see StringUtils#hasText
 	 * @throws CheckException if the text does not contain valid text content
 	 */
 	public static void hasText(String text) {
