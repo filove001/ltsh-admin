@@ -17,6 +17,29 @@ public class SysUserDaoTest{
 		}
 		System.out.println(dao.allCount());
 	}
+	@Test
+	public void create12(){
+		String name="admin";
+		SysUser entity=new SysUser();
+		entity.setId(1);
+		entity.setLoginName(name);
+		entity.setPassword(name);
+		entity.setName(name);
+		entity.setTel(name);
+		entity.setPhone(name);
+		entity.setAddress(name);
+		entity.setEmail(name);
+		entity.setIdcard(name);
+		entity.setZip(name);
+		entity.setStatus(1);
+		entity.setSex(1);
+		entity.setBirth(new java.util.Date());
+		entity.setRemarks(name);
+		entity.setCreateBy(name);
+		entity.setCreateDate(new java.util.Date());
+		entity.setLastLoginTime(new java.util.Date());
+		dao.insert(entity);
+	}
 	public SysUser create(String name,int i){
 		SysUser entity=new SysUser();
 		entity.setId(1);

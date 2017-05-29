@@ -3,11 +3,16 @@ package com.ltsh.admin.mvc.sys.user;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fjz.util.Dates;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
 /**
  *  sys_user 用户信息 
  * @author fjz
  */
-public class SysUser{
+public class SysUser implements  UserDetails{
 	public static final String tableName="sys_user";
 	public static final String tableRemarks="用户信息";
 	private Integer id;//主键
@@ -51,10 +56,42 @@ public class SysUser{
 	public void setPassword(String password){
 		this.password=password;
 	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
 	/** password VARCHAR(32)：密码 **/
 	public String getPassword() {
 		return password;
 	}
+
+	@Override
+	public String getUsername() {
+		return this.loginName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
 	public void setName(String name){
 		this.name=name;
 	}
