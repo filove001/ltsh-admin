@@ -4,6 +4,8 @@ package com.ltsh.admin.mvc.sys.dict;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjz.util.Randoms;
+import com.fjz.util.log.Logs;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,9 @@ public class SysDictController extends BaseController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public PageQuery<SysDict> list(HttpServletRequest request,HttpServletResponse response,SysDict queryEntity,PageQuery<SysDict> query) {
+		for (int i = 0; i < 10; i++) {
+			Logs.debug(Randoms.getNumberString(10));
+		}
 		query.setParas(queryEntity);
 		query=sysDictService.page(query);
 		return query;
