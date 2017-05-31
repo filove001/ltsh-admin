@@ -25,7 +25,9 @@ public class Jsons{
 		
 		return true;
 	}
-
+	public static String toString(Object obj){
+		return JSON.toJSONStringWithDateFormat(obj, JSON.DEFFAULT_DATE_FORMAT, SerializerFeature.WriteMapNullValue,SerializerFeature.WriteNullNumberAsZero,SerializerFeature.WriteDateUseDateFormat);
+	}
 	/** 
 	 * @Author: Charles
 	 * @Description: 把对象转换为json字符串

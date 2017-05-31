@@ -34,7 +34,6 @@ public class DbConfig{
     @Bean(name = "sqlManagerFactoryBean")
     @Primary
     public SqlManagerFactoryBean getSqlManagerFactoryBean() {
-		System.out.println(dataSource.getClass());
 		SqlManagerFactoryBean factory = new SqlManagerFactoryBean();
     	BeetlSqlDataSource  source = new BeetlSqlDataSource();
     	source.setMasterSource(dataSource);;
