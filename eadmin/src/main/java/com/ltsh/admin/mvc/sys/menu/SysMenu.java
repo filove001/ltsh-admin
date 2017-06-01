@@ -11,7 +11,7 @@ public class SysMenu{
 	public static final String tableName="sys_menu";
 	public static final String tableRemarks="菜单";
 	private java.lang.Integer id;//编号 
-	private java.lang.String parentId;//父级编号 
+	private java.lang.Integer parentId;//父级编号
 	private java.lang.String parentIds;//所有父级编号 
 	private java.lang.Integer level;//菜单级别 
 	private java.lang.Integer type;//菜单类型 
@@ -38,11 +38,11 @@ public class SysMenu{
 	public java.lang.Integer getId() {
 		return id;
 	}
-	public void setParentId(java.lang.String parentId){
+	public void setParentId(java.lang.Integer parentId){
 		this.parentId=parentId;
 	}
 	/** parent_id VARCHAR(64)：父级编号 **/
-	public java.lang.String getParentId() {
+	public java.lang.Integer getParentId() {
 		return parentId;
 	}
 	public void setParentIds(java.lang.String parentIds){

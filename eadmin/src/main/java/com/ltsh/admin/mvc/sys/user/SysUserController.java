@@ -28,15 +28,14 @@ public class SysUserController extends BaseController {
 	protected final static String UPDATE_TITLE = "编辑用户信息";
 	@Autowired
 	public SysUserService sysUserService;
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request,HttpServletResponse response) {
-		return "layout/login";
-	}
-	@RequestMapping("/layout.html")
-	public String layout(HttpServletRequest request,HttpServletResponse response) {
-//		request.setAttribute("all", sysUserService.all());
-		return "layout/index";
-	}
+//	@RequestMapping("/login")
+//	public String login(HttpServletRequest request,HttpServletResponse response) {
+//		return "layout/login";
+//	}
+//	@RequestMapping("/layout.html")
+//	public String layout(HttpServletRequest request,HttpServletResponse response) {
+//		return "layout/index";
+//	}
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,HttpServletResponse response) {
 		return "sys/user/sysUser";
@@ -73,7 +72,7 @@ public class SysUserController extends BaseController {
 		sysUserService.deleteById(ids.split(","));
 		return BaseMsg.successMsg;
 	}
-	@RequestMapping("/add.html")
+	@RequestMapping("/add")
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
@@ -81,7 +80,7 @@ public class SysUserController extends BaseController {
 		request.setAttribute("obj", null);
 		return "sys/user/sysUseraddOrEdit";
 	}
-	@RequestMapping("/edit.html")
+	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,SysUser entity) {
 		SysUser dbEntity=sysUserService.unique(entity.getId());
 		request.setAttribute("obj", dbEntity);

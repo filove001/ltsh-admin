@@ -17,7 +17,7 @@ public class ${table.modelName}DaoTest{
 		}
 		System.out.println(dao.allCount());
 	}
-	public SysUser create(String name,int i){
+	public ${table.modelName} create(String name,int i){
 		${table.modelName} entity=new ${table.modelName}();
 		<%for(colunm in table.columns){%>
 			<%if(colunm.javaType=='java.util.Date'){%>

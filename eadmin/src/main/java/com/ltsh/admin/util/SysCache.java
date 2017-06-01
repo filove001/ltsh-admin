@@ -41,18 +41,27 @@ public class SysCache {
                 tmpMenuList.add(menu);
             }
         }
-        Collections.sort(tmpMenuList, new Comparator<SysMenu>(){
-            @Override
-            public int compare(SysMenu o1, SysMenu o2) {
-                int compareResult = 0;
-                if(o1.getSort() > o2.getSort()) {
-                    compareResult = 1;
-                } else if(o1.getSort() < o2.getSort()) {
-                    compareResult = -1;
-                }
-                return compareResult;
+        Collections.sort(tmpMenuList,(o1,o2)->{
+            int compareResult = 0;
+            if(o1.getSort() > o2.getSort()) {
+                compareResult = 1;
+            } else if(o1.getSort() < o2.getSort()) {
+                compareResult = -1;
             }
+            return compareResult;
         });
+//        Collections.sort(tmpMenuList, new Comparator<SysMenu>(){
+//            @Override
+//            public int compare(SysMenu o1, SysMenu o2) {
+//                int compareResult = 0;
+//                if(o1.getSort() > o2.getSort()) {
+//                    compareResult = 1;
+//                } else if(o1.getSort() < o2.getSort()) {
+//                    compareResult = -1;
+//                }
+//                return compareResult;
+//            }
+//        });
         return tmpMenuList;
     }
 }

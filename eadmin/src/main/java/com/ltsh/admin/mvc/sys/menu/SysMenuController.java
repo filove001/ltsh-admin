@@ -76,14 +76,14 @@ public class SysMenuController extends BaseController {
 		return BaseMsg.successMsg;
 	}
 	
-	@RequestMapping("/add.html")
+	@RequestMapping("/add")
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
 		request.setAttribute("nameDisabled", true);
 		return viewPath+"/sysMenuAddOrEdit";
 	}
-	@RequestMapping("/edit.html")
+	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,SysMenu sysMenu) {
 		SysMenu dbEntity=sysMenuService.unique(sysMenu.getId());
 		request.setAttribute("obj", dbEntity);

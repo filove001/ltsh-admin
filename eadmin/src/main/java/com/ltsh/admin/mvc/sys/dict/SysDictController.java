@@ -83,14 +83,14 @@ public class SysDictController extends BaseController {
 		return BaseMsg.successMsg;
 	}
 	
-	@RequestMapping("/add.html")
+	@RequestMapping("/add")
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
 		request.setAttribute("nameDisabled", true);
 		return viewPath+"/sysDictAddOrEdit";
 	}
-	@RequestMapping("/edit.html")
+	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,SysDict sysDict) {
 		SysDict dbEntity=sysDictService.unique(sysDict.getId());
 		request.setAttribute("obj", dbEntity);

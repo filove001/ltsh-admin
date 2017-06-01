@@ -55,7 +55,7 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         SecurityContext securityContext = (SecurityContext)session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
         LOGGER.info("请求地址是:{}", url);
         if(securityContext != null) {
-            String urlNotIntercept = GlobalConf.URL_NOT_INTERCEPT + ",/,/index,/logout*,/login,/sys/user/login";
+            String urlNotIntercept = GlobalConf.URL_NOT_INTERCEPT + ",/,/index,/logout*,/login";
             String[] split = urlNotIntercept.split(",");
             boolean isrn = true;
             for (String str : split) {

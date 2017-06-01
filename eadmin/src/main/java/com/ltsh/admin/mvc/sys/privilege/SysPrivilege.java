@@ -13,7 +13,7 @@ public class SysPrivilege{
 	private java.lang.Integer id;//编号 
 	private java.lang.String master;//主体 
 	private java.lang.String masterValue;//控制值 
-	private java.lang.Integer access;//领域  
+	private java.lang.String access;//领域
 	private java.lang.String accessValue;//领域值 
 	private java.lang.String operation;//权限 
 	public void setId(java.lang.Integer id){
@@ -37,11 +37,11 @@ public class SysPrivilege{
 	public java.lang.String getMasterValue() {
 		return masterValue;
 	}
-	public void setAccess(java.lang.Integer access){
+	public void setAccess(java.lang.String access){
 		this.access=access;
 	}
 	/** access INT(10)：领域  **/
-	public java.lang.Integer getAccess() {
+	public java.lang.String getAccess() {
 		return access;
 	}
 	public void setAccessValue(java.lang.String accessValue){

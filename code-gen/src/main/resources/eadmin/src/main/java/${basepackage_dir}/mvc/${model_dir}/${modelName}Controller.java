@@ -76,14 +76,14 @@ public class ${table.modelName}Controller extends BaseController {
 		return BaseMsg.successMsg;
 	}
 	
-	@RequestMapping("/add.html")
+	@RequestMapping("/add")
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
 		request.setAttribute("nameDisabled", true);
 		return viewPath+"/${table.modelNamefirstLower}AddOrEdit";
 	}
-	@RequestMapping("/edit.html")
+	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,${table.modelName} ${table.modelNamefirstLower}) {
 		${table.modelName} dbEntity=${table.modelNamefirstLower}Service.unique(${table.modelNamefirstLower}.getId());
 		request.setAttribute("obj", dbEntity);

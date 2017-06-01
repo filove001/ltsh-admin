@@ -144,6 +144,9 @@ public class Jsons{
 		}
 		return objList;
 	}
+	public static List<Map<String, Object>> parseListMap(String json){
+		return JSON.parseObject(json, new TypeReference<List<Map<String,Object>>>(){});
+	}
 	/** 
 	 * @Author: fjz
 	 * @Description: 把json字符串转list
