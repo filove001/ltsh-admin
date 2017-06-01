@@ -52,10 +52,10 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         url = url.endsWith("/") && url.length() > 1 ? url.substring(0, url.length() -1) : url;
         HttpSession session = filterInvocation.getHttpRequest().getSession();
 //        if()
-        SecurityContext securityContext = (SecurityContext)session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
         LOGGER.info("请求地址是:{}", url);
         if(securityContext != null) {
-            String urlNotIntercept = GlobalConf.URL_NOT_INTERCEPT + ",/,/index,/logout*,/login";
+            String urlNotIntercept = GlobalConf.URL_NOT_INTERCEPT + ",^/$,/index,/logout*,/login,/layui/*";
             String[] split = urlNotIntercept.split(",");
             boolean isrn = true;
             for (String str : split) {
@@ -70,11 +70,11 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
                 }
             }
             if(isrn) {
-                Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+                Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
 
                 List<SysMenu> menus = SysCache.getMenu(authorities);
                 for (SysMenu menu: menus) {
-                    if(url.equals(menu.getHref())) {
+                    if(url.contains(menu.getHref())) {
                         Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
                         for (GrantedAuthority grantedAuthority: authorities) {
                             ConfigAttribute ca = new SecurityConfig(grantedAuthority.getAuthority());
@@ -83,19 +83,19 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
                         return atts;
                     }
                 }
+//                Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+//                ConfigAttribute ca = new SecurityConfig("ERROR");
+//                atts.add(ca);
+//                return atts;
+            }else {
                 Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-                ConfigAttribute ca = new SecurityConfig("ERROR");
-                atts.add(ca);
                 return atts;
             }
         }
 
+        throw new IllegalArgumentException("权限不足");
 
 
-        Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-//        ConfigAttribute ca = new SecurityConfig("ADMIN");
-//        atts.add(ca);
-        return atts;
     }
 
     @Override

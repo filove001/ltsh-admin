@@ -48,7 +48,7 @@ public class UserRolePrivilegeMenuDaoTest {
             if(name.split("_").length==2){
 //                SysMenu menu=new SysMenu();
 //                menu.setHref(name.replace("_","/"));
-                inisertMenu(sqlManager,sysMenu.getId(),comment,name.replace("_","/"));
+                inisertMenu(sqlManager,sysMenu.getId(),comment,"/"+name.replace("_","/"));
             }
         }
         String name="管理员";
@@ -98,6 +98,7 @@ public class UserRolePrivilegeMenuDaoTest {
         sysMenu.setType(type);
         sysMenu.setLevel(level);
         sysMenu.setIcon(null);
+        sysMenu.setStatus(1);
         sysMenu.setParentId(pid);
 //        sysMenu.setPermission(table.modelName+":"+button);
 //        sysMenu.setPid(pMenu.getId());

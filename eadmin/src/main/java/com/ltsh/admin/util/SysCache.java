@@ -1,9 +1,12 @@
 package com.ltsh.admin.util;
 
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
+import com.ltsh.admin.mvc.sys.menu.SysMenuDao;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilege;
+import com.ltsh.admin.mvc.sys.privilege.SysPrivilegeDao;
 import com.ltsh.admin.mvc.sys.role.SysRole;
 
+import com.ltsh.admin.mvc.sys.role.SysRoleDao;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
@@ -13,43 +16,58 @@ import java.util.*;
  */
 public class SysCache {
 
-    public static String CACHE_MENUS_KEY = "LTSH_MENU_CACHE";
-    public static String CACHE_ROLES_KEY = "LTSH_ROLE_CACHE";
-    public static String CACHE_ROLE_MENU_KEY = "LTSH_ROLE_MENU_CACHE";
+    public final static String CACHE_MENUS_KEY = "LTSH_MENU_CACHE";
+    public final static String CACHE_ROLES_KEY = "LTSH_ROLE_CACHE";
+    public final static String CACHE_ROLE_MENU_KEY = "LTSH_ROLE_MENU_CACHE";
+
+
     public static List<SysMenu> getMenu(Collection<? extends GrantedAuthority> roleCodes) {
-        List<SysMenu> sysMenus = (List<SysMenu>)Caches.get(CACHE_MENUS_KEY);
-        List<SysPrivilege> sysPrivileges = (List<SysPrivilege>)Caches.get(CACHE_ROLE_MENU_KEY);
-        List<SysRole> sysRoles = (List<SysRole>)Caches.get(CACHE_ROLES_KEY);
+        SysMenuDao sysMenuDao = SpringContextHolder.getBean(SysMenuDao.class);
+        SysMenu searchSysMenu = new SysMenu();
+        searchSysMenu.setStatus(1);
+        List<SysMenu> sysMenus = sysMenuDao.template(searchSysMenu);
+        SysPrivilegeDao sysPrivilegeDao = SpringContextHolder.getBean(SysPrivilegeDao.class);
+        SysPrivilege searchSysPrivilege = new SysPrivilege();
+        searchSysPrivilege.setAccess(SysMenu.tableName);
+        List<SysPrivilege> sysPrivileges = sysPrivilegeDao.template(searchSysPrivilege);
+
+        SysRoleDao sysRoleDao = SpringContextHolder.getBean(SysRoleDao.class);
+        List<SysRole> sysRoles = sysRoleDao.all();
         List<SysMenu> tmpMenuList = new ArrayList<SysMenu>();
         Map<String, Object> menuIdMap = new HashMap<String, Object>();
-        for (SysPrivilege sysPrivilege :
-                sysPrivileges) {
-            for (SysRole role :
-                    sysRoles) {
-                for (GrantedAuthority grantedAuthority:
-                     roleCodes) {
-                    if(grantedAuthority.getAuthority().equals(role.getCode()) && sysPrivilege.getMasterValue().equals(role.getId())) {
-                        menuIdMap.put(sysPrivilege.getAccessValue(), sysPrivilege.getMasterValue());
+        if(sysPrivileges != null && sysRoles != null && sysMenus != null) {
+            for (SysPrivilege sysPrivilege :
+                    sysPrivileges) {
+                for (SysRole role :
+                        sysRoles) {
+                    for (GrantedAuthority grantedAuthority:
+                            roleCodes) {
+                        if(grantedAuthority.getAuthority().equals(role.getCode()) && sysPrivilege.getMasterValue().equals(String.valueOf(role.getId()))) {
+                            menuIdMap.put(sysPrivilege.getAccessValue(), sysPrivilege.getMasterValue());
+                        }
+                    }
+
+                }
+            }
+            for (SysMenu menu :
+                    sysMenus) {
+                if(menuIdMap.get(String.valueOf(menu.getId())) != null) {
+                    tmpMenuList.add(menu);
+                }
+            }
+            Collections.sort(tmpMenuList,(o1,o2)->{
+                int compareResult = 0;
+                if(o1.getSort() != null && o2.getSort() != null) {
+                    if(o1.getSort() > o2.getSort()) {
+                        compareResult = 1;
+                    } else if(o1.getSort() < o2.getSort()) {
+                        compareResult = -1;
                     }
                 }
+                return compareResult;
+            });
+        }
 
-            }
-        }
-        for (SysMenu menu :
-                sysMenus) {
-            if(menuIdMap.get(menu.getId()) != null) {
-                tmpMenuList.add(menu);
-            }
-        }
-        Collections.sort(tmpMenuList,(o1,o2)->{
-            int compareResult = 0;
-            if(o1.getSort() > o2.getSort()) {
-                compareResult = 1;
-            } else if(o1.getSort() < o2.getSort()) {
-                compareResult = -1;
-            }
-            return compareResult;
-        });
 //        Collections.sort(tmpMenuList, new Comparator<SysMenu>(){
 //            @Override
 //            public int compare(SysMenu o1, SysMenu o2) {
