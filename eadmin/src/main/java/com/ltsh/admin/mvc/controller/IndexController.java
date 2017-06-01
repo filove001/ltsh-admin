@@ -3,10 +3,12 @@ package com.ltsh.admin.mvc.controller;
 
 import com.fjz.util.BaseMsg;
 import com.fjz.util.Lists;
+import com.fjz.util.log.Logs;
 import com.ltsh.admin.mvc.base.BaseController;
 import com.ltsh.admin.mvc.sys.user.SysUserService;
 import com.ltsh.admin.util.Beans;
 import com.ltsh.admin.util.Caches;
+import com.ltsh.admin.util.SpringSecuritys;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,9 @@ public class IndexController extends BaseController {
 	}
 	@RequestMapping({"/layout","/"})
 	public String layout(HttpServletRequest request,HttpServletResponse response) {
+		Logs.info(SpringSecuritys.getCurrentUserName());
+		Logs.info(SpringSecuritys.getCurrentUser());
+		request.setAttribute("me", SpringSecuritys.getCurrentUser());
 		return "layout/index";
 	}
 }

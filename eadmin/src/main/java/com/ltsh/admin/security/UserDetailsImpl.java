@@ -19,6 +19,11 @@ public class UserDetailsImpl implements UserDetails {
     private List<GrantedAuthority> auths;
     private String password;
     private String username;
+    private SysUser sysUser;
+
+    public SysUser getSysUser() {
+        return sysUser;
+    }
 
     public UserDetailsImpl(){
 
@@ -27,6 +32,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(SysUser userInfo, List<SysRole> roles){
         this.password =userInfo.getPassword();
         this.username = userInfo.getLoginName();
+        this.sysUser=userInfo;
         auths = new ArrayList<GrantedAuthority>();
         for (SysRole role :
                 roles) {
