@@ -5,5 +5,4 @@ package com.ltsh.admin.config;
  */
 public class GlobalConf {
     public final static String NOT_INTERCEPT = "/css/**,/js/**,/layui/**,/favicon.ico,/**.js.map";
-    public final static String URL_NOT_INTERCEPT = "/css/*,/js/*,/favicon.ico";
 }

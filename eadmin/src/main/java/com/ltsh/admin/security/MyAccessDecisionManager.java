@@ -3,16 +3,24 @@ package com.ltsh.admin.security;
 /**
  * Created by Random on 2017/4/24.
  */
+import com.ltsh.admin.mvc.sys.menu.SysMenu;
+import com.ltsh.admin.util.SysCache;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by yangyibo on 17/1/19.
@@ -32,11 +40,24 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         }
         ConfigAttribute c;
         String needRole;
+        String url = null;
+        if(object instanceof FilterInvocation) {
+            FilterInvocation object1 = (FilterInvocation) object;
+            url = object1.getRequestUrl();
+        }
+        if(url.startsWith("/login")) {
+            return;
+        }
         for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
             c = iter.next();
             needRole = c.getAttribute();
-            for(GrantedAuthority ga : authentication.getAuthorities()) {//authentication 为在注释1 中循环添加到 GrantedAuthority 对象中的权限信息集合
-                if(needRole.trim().equals(ga.getAuthority())) {
+
+            SecurityContext securityContext = SecurityContextHolder.getContext();
+            Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
+
+            List<SysMenu> menus = SysCache.getMenu(authorities);
+            for (SysMenu menu: menus) {
+                if(url.contains(menu.getHref())) {
                     return;
                 }
             }

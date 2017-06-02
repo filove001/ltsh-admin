@@ -33,6 +33,6 @@ public class BaseController {
 	@ModelAttribute
 	public void init(HttpServletRequest request, HttpServletResponse response){
         request.setAttribute("ctx", request.getContextPath());
-        request.setAttribute("ui", request.getContextPath()+"/layui/");
+        request.setAttribute("ui", request.getContextPath()+"/layui");
 	}
 }
