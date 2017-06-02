@@ -1,6 +1,8 @@
 package com.ltsh.admin.util;
 
 import com.fjz.util.log.Logs;
+import com.ltsh.admin.mvc.sys.menu.SysMenu;
+import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
 import com.ltsh.admin.mvc.sys.user.SysUser;
 import com.ltsh.admin.security.UserDetailsImpl;
 import org.springframework.security.core.Authentication;
@@ -12,7 +14,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by fengjianzhong on 2017/6/1.
@@ -34,7 +38,19 @@ public class SpringSecuritys {
 //        }
         return (T) principal;
     }
-
+    /**
+     * 取得当前用户的权限菜单树
+     */
+    public static List<SysMenuBo> getSysMenuBos() {
+        Collection<? extends GrantedAuthority> authorities = SpringSecuritys.getAuthentication().getAuthorities();
+        List<SysMenu> menus = SysCache.getMenu(authorities);
+        List<SysMenuBo> nodeList = new ArrayList();
+        menus.parallelStream().forEach((e)->{
+            nodeList.add(SysMenuBo.getSysMenuBo(e));
+        });
+        List<SysMenuBo> ztree=SysMenuBo.getSysMenuBos(nodeList);
+        return ztree;
+    }
     /**
      * 取得当前用户的登录名, 如果当前用户未登录则返回空字符串.
      */
@@ -119,7 +135,7 @@ public class SpringSecuritys {
     /**
      * 取得Authentication, 如当前SecurityContext为空时返回null.
      */
-    private static Authentication getAuthentication() {
+    public static Authentication getAuthentication() {
         SecurityContext context = SecurityContextHolder.getContext();
         if (context == null) {
             return null;

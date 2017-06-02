@@ -19,7 +19,7 @@
 				</div>
 			   	<div class="layui-input-inline">
 			   	<label class="layui-form-label">标签名:</label>
-					<input type="text" value="" name="label" placeholder="标签名" class="layui-input">
+					<input type="text" value="" name="key" placeholder="标签名" class="layui-input">
 				</div>
 			   	<div class="layui-input-inline">
 			   	<label class="layui-form-label">类型:</label>
@@ -38,22 +38,6 @@
 					<input type="text" value="" name="parentId" placeholder="父级编号" class="layui-input">
 				</div>
 			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">创建者:</label>
-					<input type="text" value="" name="createBy" placeholder="创建者" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">创建时间:</label>
-					<input type="text" value="" name="createDate" placeholder="创建时间" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">更新者:</label>
-					<input type="text" value="" name="updateBy" placeholder="更新者" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">更新时间:</label>
-					<input type="text" value="" name="updateDate" placeholder="更新时间" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
 			   	<label class="layui-form-label">备注信息:</label>
 					<input type="text" value="" name="remarks" placeholder="备注信息" class="layui-input">
 				</div>
@@ -68,17 +52,13 @@
 		        <th>序号</th>
 			   	<th entity-name="id">编号</th>
 			   	<th entity-name="value">数据值</th>
-			   	<th entity-name="label">标签名</th>
+			   	<th entity-name="key">标签名</th>
 			   	<th entity-name="type">类型</th>
 			   	<th entity-name="description">描述</th>
 			   	<th entity-name="sort">排序（升序）</th>
 			   	<th entity-name="parentId">父级编号</th>
-			   	<th entity-name="createBy">创建者</th>
-			   	<th entity-name="createDate">创建时间</th>
-			   	<th entity-name="updateBy">更新者</th>
-			   	<th entity-name="updateDate">更新时间</th>
 			   	<th entity-name="remarks">备注信息</th>
-		      </tr>
+<th>操作</th>		      </tr>
 		    </thead>
 		    <tbody id="tb-td">
 		    </tbody>
@@ -91,6 +71,7 @@
 <div id="LAY_democodejs">
 <script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
 <script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
 <script src="${ctx}/js/content.js" charset="utf-8"></script>
 </div>
 </body>

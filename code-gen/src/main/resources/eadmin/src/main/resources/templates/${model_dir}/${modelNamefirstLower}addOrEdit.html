@@ -15,8 +15,13 @@
 		<div class="layui-form-item" \<%if(has(${colunm.attrName}DisplayNone)){%> style="display:none"\<%}%>>
 	        <label class="layui-form-label">${colunm.remarks}</label>
 	        <div class="layui-input-block<%if(colunm.isNullable=='false'){%> dx-input-required<%}%>">
-	        
-	          <input \<%if(has(${colunm.attrName}Disabled)){%>disabled\<%}%> type="text" value="\${obj.${colunm.attrName}!}" name="${colunm.attrName}" <%if(colunm.isNullable=='false' && colunm.attrName!='id'){%> lay-verify="required" <%}%> autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+                <% if(strutil.startWith(colunm.type,'DATETIME(')){%>
+                <input \<%if(has(${colunm.attrName}Disabled)){%>disabled\<%}%> type="text" value="\${obj.${colunm.attrName}!,'yyyy-MM-dd HH:mm:ss'}" name="${colunm.attrName}" <%if(colunm.isNullable=='false' && colunm.attrName!='id'){%> lay-verify="required" <%}%> autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+                <%}else if(strutil.startWith(colunm.type,'DATE(')){%>
+                <input \<%if(has(${colunm.attrName}Disabled)){%>disabled\<%}%> type="text" value="\${obj.${colunm.attrName}!,'yyyy-MM-dd'}" name="${colunm.attrName}" <%if(colunm.isNullable=='false' && colunm.attrName!='id'){%> lay-verify="required" <%}%> autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+                <%}else{%>
+                <input \<%if(has(${colunm.attrName}Disabled)){%>disabled\<%}%> type="text" value="\${obj.${colunm.attrName}!}" name="${colunm.attrName}" <%if(colunm.isNullable=='false' && colunm.attrName!='id'){%> lay-verify="required" <%}%> autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+                <%}%>
 	        </div>
       	</div>
 	   <%

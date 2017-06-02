@@ -102,7 +102,7 @@
 		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建时间</label>
 	        <div class="layui-input-block">	        
-	          <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!}" name="createDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	          <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(lastLoginTimeDisplayNone)){%> style="display:none"<%}%>>

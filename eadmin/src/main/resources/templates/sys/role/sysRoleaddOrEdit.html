@@ -11,56 +11,47 @@
     <form class="layui-form" action="">
 		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">编号</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(nameDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">角色名称</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(nameDisabled)){%>disabled<%}%> type="text" value="${obj.name!}" name="name"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(nameDisabled)){%>disabled<%}%> type="text" value="${obj.name!}" name="name"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(codeDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">角色编码</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(codeDisabled)){%>disabled<%}%> type="text" value="${obj.code!}" name="code"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(codeDisabled)){%>disabled<%}%> type="text" value="${obj.code!}" name="code"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">状态</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建者</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建时间</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!}" name="createDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">更新者</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(updateDateDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">更新时间</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!}" name="updateDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!,'yyyy-MM-dd HH:mm:ss'}" name="updateDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">备注信息</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
       <br>

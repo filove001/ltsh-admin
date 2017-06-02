@@ -37,6 +37,7 @@ public class IndexController extends BaseController {
 		Logs.info(SpringSecuritys.getCurrentUserName());
 		Logs.info(SpringSecuritys.getCurrentUser());
 		request.setAttribute("me", SpringSecuritys.getCurrentUser());
+		request.setAttribute("sysMenuBos", SpringSecuritys.getSysMenuBos());
 		return "layout/index";
 	}
 }

@@ -25,7 +25,7 @@ public class Caches {
 //	private static CacheManager cacheManager=(CacheManager)SpringContextHolder.getBean("cacheManager");
 	private static volatile Object locker = new Object();
 	private static final Logger log =  LoggerFactory.getLogger(Caches.class);
-	private static final String SYS_CACHE = "sysCache";
+	public static final String SYS_CACHE = "sysCache";
 	@SuppressWarnings("unchecked")
 	public static Map<String,Map<Object,Object>> getAll() {
 		Map<String,Map<Object,Object>> maps=new HashMap<>();

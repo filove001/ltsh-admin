@@ -7,6 +7,7 @@ import com.fjz.util.BaseMsg;
 import com.fjz.util.Jsons;
 import com.fjz.util.Responses;
 import com.fjz.util.log.Logs;
+import org.beetl.sql.core.BeetlSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,6 +33,16 @@ public class GlobalDefaultExceptionHandler {
 	public ModelAndView defaultErrorHandler(HttpServletRequest request,HttpServletResponse response,  CheckException e) throws Exception {
         Logs.error("CheckException"+e.getMessage());
 	    return doView(request, response, e);
+	}
+	@ExceptionHandler(value = BeetlSQLException.class)
+	public ModelAndView beetlSQLException(HttpServletRequest request,HttpServletResponse response,  RuntimeException e) throws Exception {
+		Logs.error("BeetlSQLException"+e.getMessage());
+		return doView(request, response, e);
+	}
+	@ExceptionHandler(value = IllegalArgumentException.class)
+	public ModelAndView illegalArgumentException(HttpServletRequest request,HttpServletResponse response,  RuntimeException e) throws Exception {
+		Logs.error("IllegalArgumentException"+e.getMessage());
+		return doView(request, response, e);
 	}
 	@ExceptionHandler(value = RuntimeException.class)
 	public ModelAndView defaultErrorHandler(HttpServletRequest request,HttpServletResponse response,  RuntimeException e) throws Exception {

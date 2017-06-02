@@ -51,7 +51,7 @@ public class UserRolePrivilegeMenuDaoTest {
                 inisertMenu(sqlManager,sysMenu.getId(),comment,"/"+name.replace("_","/"));
             }
         }
-        String name="管理员";
+        String name="admin";
         SysRole sysRole = insertSysRole();//增加一个管理员的角色
         SysUser sysUser=insertSysUser(name,1);//增加一个管理员用户
         SysUserRole s=new SysUserRole();

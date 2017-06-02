@@ -64,7 +64,6 @@ public class SysDictController extends BaseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public BaseMsg<Object> save(HttpServletRequest request,HttpServletResponse response,SysDict sysDict) {
-		sysDict.setId(Ids.uuid());
 		sysDictService.insert(sysDict);
 		return BaseMsg.successMsg;
 	}

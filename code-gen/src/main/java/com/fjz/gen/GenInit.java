@@ -60,7 +60,8 @@ public class GenInit {
 	public static void main(String[] args) throws SQLException, IOException {
 		GenInit g = new GenInit();
 //		g.gen("SYS_APP","SYS_ROLE_APP");
-		g.gen("sys_user_role","sys_menu","sys_privilege");
+//		g.gen("sys_menu");
+		g.gen("sys_dict","sys_role","sys_menu","sys_privilege");
 		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot);
 ////		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot+"\\src\\main\\resources\\templates\\sys\\user");
 ////		Runtime.getRuntime().exec("cmd.exe /c start E:\\java\\spring\\xky\\multi-tenant"+"");

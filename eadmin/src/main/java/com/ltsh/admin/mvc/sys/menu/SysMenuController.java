@@ -88,42 +88,42 @@ public class SysMenuController extends BaseController {
 		SysMenu dbEntity=sysMenuService.unique(sysMenu.getId());
 		request.setAttribute("obj", dbEntity);
 		request.setAttribute("title", UPDATE_TITLE);
-		//控制编辑框是否不可见
-	   	request.setAttribute("idDisplayNone", true);
-	   	request.setAttribute("parentIdDisplayNone", true);
-	   	request.setAttribute("parentIdsDisplayNone", true);
-	   	request.setAttribute("levelDisplayNone", true);
-	   	request.setAttribute("typeDisplayNone", true);
-	   	request.setAttribute("nameDisplayNone", true);
-	   	request.setAttribute("sortDisplayNone", true);
-	   	request.setAttribute("hrefDisplayNone", true);
-	   	request.setAttribute("targetDisplayNone", true);
-	   	request.setAttribute("iconDisplayNone", true);
-	   	request.setAttribute("permissionDisplayNone", true);
-	   	request.setAttribute("statusDisplayNone", true);
-	   	request.setAttribute("createByDisplayNone", true);
-	   	request.setAttribute("createDateDisplayNone", true);
-	   	request.setAttribute("updateByDisplayNone", true);
-	   	request.setAttribute("updateDateDisplayNone", true);
-	   	request.setAttribute("remarksDisplayNone", true);
-	   //控制编辑框是否不可用
-	   	request.setAttribute("idDisabled", true);
-	   	request.setAttribute("parentIdDisabled", true);
-	   	request.setAttribute("parentIdsDisabled", true);
-	   	request.setAttribute("levelDisabled", true);
-	   	request.setAttribute("typeDisabled", true);
-	   	request.setAttribute("nameDisabled", true);
-	   	request.setAttribute("sortDisabled", true);
-	   	request.setAttribute("hrefDisabled", true);
-	   	request.setAttribute("targetDisabled", true);
-	   	request.setAttribute("iconDisabled", true);
-	   	request.setAttribute("permissionDisabled", true);
-	   	request.setAttribute("statusDisabled", true);
-	   	request.setAttribute("createByDisabled", true);
-	   	request.setAttribute("createDateDisabled", true);
-	   	request.setAttribute("updateByDisabled", true);
-	   	request.setAttribute("updateDateDisabled", true);
-	   	request.setAttribute("remarksDisabled", true);
+//		//控制编辑框是否不可见
+//	   	request.setAttribute("idDisplayNone", true);
+//	   	request.setAttribute("parentIdDisplayNone", true);
+//	   	request.setAttribute("parentIdsDisplayNone", true);
+//	   	request.setAttribute("levelDisplayNone", true);
+//	   	request.setAttribute("typeDisplayNone", true);
+//	   	request.setAttribute("nameDisplayNone", true);
+//	   	request.setAttribute("sortDisplayNone", true);
+//	   	request.setAttribute("hrefDisplayNone", true);
+//	   	request.setAttribute("targetDisplayNone", true);
+//	   	request.setAttribute("iconDisplayNone", true);
+//	   	request.setAttribute("permissionDisplayNone", true);
+//	   	request.setAttribute("statusDisplayNone", true);
+//	   	request.setAttribute("createByDisplayNone", true);
+//	   	request.setAttribute("createDateDisplayNone", true);
+//	   	request.setAttribute("updateByDisplayNone", true);
+//	   	request.setAttribute("updateDateDisplayNone", true);
+//	   	request.setAttribute("remarksDisplayNone", true);
+//	   //控制编辑框是否不可用
+//	   	request.setAttribute("idDisabled", true);
+//	   	request.setAttribute("parentIdDisabled", true);
+//	   	request.setAttribute("parentIdsDisabled", true);
+//	   	request.setAttribute("levelDisabled", true);
+//	   	request.setAttribute("typeDisabled", true);
+//	   	request.setAttribute("nameDisabled", true);
+//	   	request.setAttribute("sortDisabled", true);
+//	   	request.setAttribute("hrefDisabled", true);
+//	   	request.setAttribute("targetDisabled", true);
+//	   	request.setAttribute("iconDisabled", true);
+//	   	request.setAttribute("permissionDisabled", true);
+//	   	request.setAttribute("statusDisabled", true);
+//	   	request.setAttribute("createByDisabled", true);
+//	   	request.setAttribute("createDateDisabled", true);
+//	   	request.setAttribute("updateByDisabled", true);
+//	   	request.setAttribute("updateDateDisabled", true);
+//	   	request.setAttribute("remarksDisabled", true);
 		return viewPath+"/sysMenuAddOrEdit";
 	}
 }

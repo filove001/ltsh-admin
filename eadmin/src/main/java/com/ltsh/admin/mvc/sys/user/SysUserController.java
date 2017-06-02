@@ -4,6 +4,7 @@ package com.ltsh.admin.mvc.sys.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjz.util.log.Logs;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +56,13 @@ public class SysUserController extends BaseController {
 	@ResponseBody
 	public Object clearAll(HttpServletRequest request,HttpServletResponse response,SysUser queryEntity,PageQuery<SysUser> query) {
 		return Caches.removeAll();
+	}
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public Object test(HttpServletRequest request,HttpServletResponse response,SysUser queryEntity,PageQuery<SysUser> query) {
+		Logs.info("===================test");
+		return sysUserService.all();
 	}
 	/** 
 	 * 执行搜索 
