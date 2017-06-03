@@ -1,18 +1,17 @@
 package com.ltsh.admin.config;
 
-import java.io.IOException;
-
 import org.beetl.core.resource.ClasspathResourceLoader;
-import org.beetl.core.resource.WebAppResourceLoader;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
-import org.beetl.sql.core.ClasspathLoader;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
+import org.springframework.http.HttpStatus;
+
 @Configuration
 public class ViewConfig {
 	@Bean(initMethod = "init", name = "beetlConfig")
@@ -39,6 +38,6 @@ public class ViewConfig {
         beetlSpringViewResolver.setSuffix(".html");
         return beetlSpringViewResolver;
     }
-    
+
     
 }

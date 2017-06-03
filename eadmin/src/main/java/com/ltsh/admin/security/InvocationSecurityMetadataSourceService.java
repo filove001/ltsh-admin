@@ -1,6 +1,7 @@
 package com.ltsh.admin.security;
 
 
+import com.fjz.util.log.Logs;
 import com.ltsh.admin.config.GlobalConf;
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.util.Caches;
