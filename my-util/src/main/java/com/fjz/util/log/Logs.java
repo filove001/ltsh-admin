@@ -17,9 +17,6 @@ import java.io.StringWriter;
  * @date 2017
  */
 public class Logs {
-//	static{
-//		PropertyConfigurator.configure(Logs.class.getResource("/com/fjz/util/log/log4j.properties"));
-//	}
 	public static Logger log = LoggerFactory.getLogger(Logs.class);
     public static void warn(String msg,Object... value) {
         log.warn(getCodeLocationMsg(msg),value);
