@@ -108,8 +108,8 @@ public class UserRolePrivilegeMenuDaoTest {
 	public SysUser insertSysUser(String name,int i){
 		SysUser entity=new SysUser();
 		entity.setId(1);
-		entity.setLoginName(name+i);
-		entity.setPassword(name+i);
+		entity.setLoginName(name);
+		entity.setPassword(name);
 		entity.setName(name+i);
 		entity.setTel(name+i);
 		entity.setPhone(name+i);
