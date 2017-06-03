@@ -6,7 +6,7 @@
 	[ %-5level] [%date{yyyy-MM-dd HH:mm:ss}] [%thread] %logger{96} [%line] - %msg%n
 	由于是统一日志管理，所以%logger{96} [%line]  没有用了代码里面实现-
 	%logger{96} 代表日志所对应的类，%line 对应的行数
-	->
+	-->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoder defaults to ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
