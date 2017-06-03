@@ -45,7 +45,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             FilterInvocation object1 = (FilterInvocation) object;
             url = object1.getRequestUrl();
         }
-        if(url.startsWith("/login")) {
+        if(url.startsWith("/login") || url.startsWith("/layout")) {
             return;
         }
         for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
