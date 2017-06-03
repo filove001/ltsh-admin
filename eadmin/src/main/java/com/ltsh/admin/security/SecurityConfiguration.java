@@ -46,7 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        "/resources/static/staticFile/**", "/resources/static/staticFile/bootstrap-3.3.7/**", "/staticFile/*", "/staticFile/**"
-
         http
             .authorizeRequests()
             .antMatchers(GlobalConf.NOT_INTERCEPT.split(",")).permitAll()

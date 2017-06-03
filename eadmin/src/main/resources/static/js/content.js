@@ -20,10 +20,15 @@ function search(pageNumber){
 	});
 }
 function tableUpdate(data){
+	if(data.state==-1){
+        var layer = layui.layer;
+        layer.alert(data.msg,{title:'查询为空'});
+        return;
+	}
 	var html="";
 	var ths=$('th[entity-name]');//获取table th 的位置的字段名
 	var pageNumber=data.pageNumber;
-	console.log(data);
+	log(data);
 	$('#tb-td').empty();
 	if(data.list==null){
 		parent.layer.msg('查询数据为空！');
@@ -62,7 +67,7 @@ function del(id){
 				if(data.state==1){
 					search(1);
 				}else{
-					parent.layer.msg('删除失败！');
+                    parent.layer.alert(data.msg,{title:'删除失败！'});
 				}
 				parent.layer.close(index);
 			},

@@ -35,14 +35,11 @@ public class SysCache {
         List<SysRole> sysRoles = sysRoleDao.all();
         List<SysMenu> tmpMenuList = new ArrayList<SysMenu>();
         Map<String, Object> menuIdMap = new HashMap<String, Object>();
-        if(sysPrivileges != null && sysRoles != null && sysMenus != null) {
-            for (SysPrivilege sysPrivilege :
-                    sysPrivileges) {
-                for (SysRole role :
-                        sysRoles) {
-                    for (GrantedAuthority grantedAuthority:
-                            roleCodes) {
-                        if(grantedAuthority.getAuthority().equals(role.getCode()) && sysPrivilege.getMasterValue().equals(String.valueOf(role.getId()))) {
+        if (sysPrivileges != null && sysRoles != null && sysMenus != null) {
+            for (SysPrivilege sysPrivilege : sysPrivileges) {
+                for (SysRole role : sysRoles) {
+                    for (GrantedAuthority grantedAuthority : roleCodes) {
+                        if (grantedAuthority.getAuthority().equals(role.getCode()) && sysPrivilege.getMasterValue().equals(String.valueOf(role.getId()))) {
                             menuIdMap.put(sysPrivilege.getAccessValue(), sysPrivilege.getMasterValue());
                         }
                     }
@@ -51,35 +48,22 @@ public class SysCache {
             }
             for (SysMenu menu :
                     sysMenus) {
-                if(menuIdMap.get(String.valueOf(menu.getId())) != null) {
+                if (menuIdMap.get(String.valueOf(menu.getId())) != null) {
                     tmpMenuList.add(menu);
                 }
             }
-            Collections.sort(tmpMenuList,(o1,o2)->{
+            Collections.sort(tmpMenuList, (o1, o2) -> {
                 int compareResult = 0;
-                if(o1.getSort() != null && o2.getSort() != null) {
-                    if(o1.getSort() > o2.getSort()) {
+                if (o1.getSort() != null && o2.getSort() != null) {
+                    if (o1.getSort() > o2.getSort()) {
                         compareResult = 1;
-                    } else if(o1.getSort() < o2.getSort()) {
+                    } else if (o1.getSort() < o2.getSort()) {
                         compareResult = -1;
                     }
                 }
                 return compareResult;
             });
         }
-
-//        Collections.sort(tmpMenuList, new Comparator<SysMenu>(){
-//            @Override
-//            public int compare(SysMenu o1, SysMenu o2) {
-//                int compareResult = 0;
-//                if(o1.getSort() > o2.getSort()) {
-//                    compareResult = 1;
-//                } else if(o1.getSort() < o2.getSort()) {
-//                    compareResult = -1;
-//                }
-//                return compareResult;
-//            }
-//        });
         return tmpMenuList;
     }
 }

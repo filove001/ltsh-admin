@@ -58,11 +58,12 @@ var constant={
         	return console.log(e);
 	}
 }*/
-function Log(str,obj){
+function log(str,obj){
     if(constant.debug){
         var browser=checkBrowser();
         if (browser.firefox||browser.chrome){
         	if(arguments.length==1){
+        		console.log(arguments.callee.caller.name+"  调用：");
         		return console.log(arguments[0]);
         	}
             return console.log("%s : %o",str,obj);
@@ -111,6 +112,13 @@ function getNewDate(){
 function zero(num){
 	return num<10?'0'+num:num;
 }
+function ajaxSuccess(param){
+	// if(param.success){
+	// 	if(param.data.)
+	// }else{
+     //    param.success();
+	// }
+}
 /**
  * ajax
  */
@@ -137,8 +145,8 @@ function ajax(param){
 //	}
 	if(param.error==null){
 		param.error=function (XMLHttpRequest, textStatus, errorThrown) {
-			Log("系统错误",XMLHttpRequest);
-			Log("系统错误",errorThrown);
+			log("系统错误",XMLHttpRequest);
+			log("系统错误",errorThrown);
 			alert('系统错误请检查！');
 		    // 通常 textStatus 和 errorThrown 之中
 		    // 只有一个会包含信息

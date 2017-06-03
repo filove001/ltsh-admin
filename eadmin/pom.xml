@@ -89,11 +89,6 @@
 			<artifactId>beetl</artifactId>
 			<version>2.7.12</version>
 		</dependency>
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework</groupId>-->
-			<!--<artifactId>springloaded</artifactId>-->
-		<!--</dependency>-->
 	</dependencies>
 
 	<build>

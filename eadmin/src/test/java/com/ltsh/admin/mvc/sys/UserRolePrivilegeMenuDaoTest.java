@@ -37,6 +37,7 @@ public class UserRolePrivilegeMenuDaoTest {
 	private SysMenuDao sysMenuDao;
 	@Autowired
 	SQLManager sqlManager;
+
 	@Test
 	public void testInsertT() {
 		List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
