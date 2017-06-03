@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜单</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/content.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+			<div class="layui-form-item">
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">编号:</label>
+					<input type="text" value="" name="id" placeholder="编号" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">父级编号:</label>
+					<input type="text" value="" name="parentId" placeholder="父级编号" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">所有父级编号:</label>
+					<input type="text" value="" name="parentIds" placeholder="所有父级编号" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">菜单级别:</label>
+					<input type="text" value="" name="level" placeholder="菜单级别" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">菜单类型:</label>
+					<input type="text" value="" name="type" placeholder="菜单类型" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">名称:</label>
+					<input type="text" value="" name="name" placeholder="名称" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">排序:</label>
+					<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">链接:</label>
+					<input type="text" value="" name="href" placeholder="链接" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">目标:</label>
+					<input type="text" value="" name="target" placeholder="目标" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">图标:</label>
+					<input type="text" value="" name="icon" placeholder="图标" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">权限标识:</label>
+					<input type="text" value="" name="permission" placeholder="权限标识" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">状态:</label>
+					<input type="text" value="" name="status" placeholder="状态" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">创建者:</label>
+					<input type="text" value="" name="createBy" placeholder="创建者" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">创建时间:</label>
+					<input type="text" value="" name="createDate" placeholder="创建时间" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">更新者:</label>
+					<input type="text" value="" name="updateBy" placeholder="更新者" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">更新时间:</label>
+					<input type="text" value="" name="updateDate" placeholder="更新时间" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">备注信息:</label>
+					<input type="text" value="" name="remarks" placeholder="备注信息" class="layui-input">
+				</div>
+				<a class="layui-btn" href="javascript:search(1);">查询</a>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</form>
+		<div class="layui-form">
+		  <table class="layui-table">
+		    <thead>
+		      <tr>
+		        <th>序号</th>
+			   	<th entity-name="id">编号</th>
+			   	<th entity-name="parentId">父级编号</th>
+			   	<th entity-name="parentIds">所有父级编号</th>
+			   	<th entity-name="level">菜单级别</th>
+			   	<th entity-name="type">菜单类型</th>
+			   	<th entity-name="name">名称</th>
+			   	<th entity-name="sort">排序</th>
+			   	<th entity-name="href">链接</th>
+			   	<th entity-name="target">目标</th>
+			   	<th entity-name="icon">图标</th>
+			   	<th entity-name="permission">权限标识</th>
+			   	<th entity-name="status">状态</th>
+			   	<th entity-name="createBy">创建者</th>
+			   	<th entity-name="createDate">创建时间</th>
+			   	<th entity-name="updateBy">更新者</th>
+			   	<th entity-name="updateDate">更新时间</th>
+			   	<th entity-name="remarks">备注信息</th>
+<th>操作</th>		      </tr>
+		    </thead>
+		    <tbody id="tb-td">
+		    </tbody>
+		  </table>
+		</div>
+</div>
+<div class="grid-page">
+	<div id="grid-page"></div>
+</div>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/content.js" charset="utf-8"></script>
+</div>
+</body>
+</html>

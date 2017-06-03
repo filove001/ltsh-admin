@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>权限连接</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/content.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+			<div class="layui-form-item">
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">编号:</label>
+					<input type="text" value="" name="id" placeholder="编号" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">主体:</label>
+					<input type="text" value="" name="master" placeholder="主体" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">控制值:</label>
+					<input type="text" value="" name="masterValue" placeholder="控制值" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">领域 :</label>
+					<input type="text" value="" name="access" placeholder="领域 " class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">领域值:</label>
+					<input type="text" value="" name="accessValue" placeholder="领域值" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">权限:</label>
+					<input type="text" value="" name="operation" placeholder="权限" class="layui-input">
+				</div>
+				<a class="layui-btn" href="javascript:search(1);">查询</a>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</form>
+		<div class="layui-form">
+		  <table class="layui-table">
+		    <thead>
+		      <tr>
+		        <th>序号</th>
+			   	<th entity-name="id">编号</th>
+			   	<th entity-name="master">主体</th>
+			   	<th entity-name="masterValue">控制值</th>
+			   	<th entity-name="access">领域 </th>
+			   	<th entity-name="accessValue">领域值</th>
+			   	<th entity-name="operation">权限</th>
+<th>操作</th>		      </tr>
+		    </thead>
+		    <tbody id="tb-td">
+		    </tbody>
+		  </table>
+		</div>
+</div>
+<div class="grid-page">
+	<div id="grid-page"></div>
+</div>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/content.js" charset="utf-8"></script>
+</div>
+</body>
+</html>

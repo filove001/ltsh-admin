@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+</head>
+<body>
+<section class="dx-info-default">
+  <div class="dx-info-box type-add">
+    <form class="layui-form" action="">
+		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">编号</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(masterDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">主体</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(masterDisabled)){%>disabled<%}%> type="text" value="${obj.master!}" name="master"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(masterValueDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">控制值</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(masterValueDisabled)){%>disabled<%}%> type="text" value="${obj.masterValue!}" name="masterValue"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(accessDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">领域 </label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(accessDisabled)){%>disabled<%}%> type="text" value="${obj.access!}" name="access"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(accessValueDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">领域值</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(accessValueDisabled)){%>disabled<%}%> type="text" value="${obj.accessValue!}" name="accessValue"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(operationDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">权限</label>
+	        <div class="layui-input-block">                <input <%if(has(operationDisabled)){%>disabled<%}%> type="text" value="${obj.operation!}" name="operation"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+      <br>
+
+      <div class="layui-form-item form-btn-box">
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+</div>
+</body>
+</html>
