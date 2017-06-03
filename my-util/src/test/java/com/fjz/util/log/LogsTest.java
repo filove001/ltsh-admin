@@ -30,7 +30,7 @@ public class LogsTest {
 
 	@Test
 	public void testGetCodeLocation() {
-		System.out.println(Logs.getCodeLocation());
+		System.out.println(Logs.getCodeLocation(3));
 	}
 
 }

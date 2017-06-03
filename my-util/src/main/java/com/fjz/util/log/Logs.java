@@ -1,5 +1,6 @@
 package com.fjz.util.log;
 
+import com.fjz.util.Jsons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,80 +21,52 @@ public class Logs {
 //		PropertyConfigurator.configure(Logs.class.getResource("/com/fjz/util/log/log4j.properties"));
 //	}
 	public static Logger log = LoggerFactory.getLogger(Logs.class);
-    
+    public static void warn(String msg,Object... value) {
+        log.warn(getCodeLocationMsg(msg),value);
+    }
     /**
      * 打印警告
      * 
      * @param obj
      */
     public static void warn(Object obj) {
-        try{
-            String logStr = getLocationLog(obj);
-            log.warn(logStr);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        String logStr = getLocationLog(obj);
+        log.warn(logStr);
+    }
+    public static void debug(String msg,Object... value) {
+        log.debug(getCodeLocationMsg(msg),value);
     }
     /**
-     * 打印信息
-     *
+     * 打印debug信息
      * @param obj
      */
     public static void debug(Object obj) {
-        try{
-            String logStr = getLocationLog(obj);
-            log.debug(logStr);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        String logStr = getLocationLog(obj);
+        log.debug(logStr);
     }
-
-    private static String getLocationLog(Object obj) {
-        /*** 获取输出信息的代码的位置 ***/
-        String location = "";
-        StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
-        location = stacks[2].getClassName() + "." + stacks[2].getMethodName()
-                + "(" + stacks[2].getLineNumber() + ")";
-        String logStr=null;
-        /*** 是否是异常  ***/
-        if (obj instanceof Exception) {
-            Exception e = (Exception) obj;
-            StringWriter sw = new StringWriter();
-            e.printStackTrace(new PrintWriter(sw, true));
-            String str = sw.toString();
-            logStr=location + str;
-        } else {
-            logStr=location + obj.toString();
-        }
-        return logStr;
+    public static void info(String msg,Object... value) {
+        log.info(getCodeLocationMsg(msg),value);
     }
-
     /**
      * 打印信息
      * 
      * @param obj
      */
     public static void info(Object obj) {
-        try{
-            String logStr = getLocationLog(obj);
-            log.info(logStr);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        String logStr = getLocationLog(obj);
+        log.info(logStr);
     }
-
+    public static void error(String msg,Object... value) {
+        log.error(getCodeLocationMsg(msg),value);
+    }
     /**
      * 打印错误
      * 
      * @param obj
      */
     public static void error(Object obj) {
-        try{
-            String logStr = getLocationLog(obj);
-            log.error(logStr);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        String logStr = getLocationLog(obj);
+        log.error(logStr);
     }
     
     /**
@@ -122,22 +95,36 @@ public class Logs {
 //            e.printStackTrace();
 //        }
     }
-    
+    private static String getLocationLog(Object obj) {
+        /*** 获取输出信息的代码的位置 ***/
+        String location =getCodeLocation(4)+" ";
+        String logStr=null;
+        /*** 是否是异常  ***/
+        if (obj instanceof Exception) {
+            Exception e = (Exception) obj;
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw, true));
+            String str = sw.toString();
+            logStr=location + str;
+        } else {
+            logStr=location + obj.toString();
+        }
+        return logStr;
+    }
+    public static String getCodeLocationMsg(String msg){
+        return getCodeLocation(4)+" "+msg;
+    }
     /**
      * 获取调用此函数的代码的位置
      * @return 包名.类名.方法名(行数)
      */
-    public static String getCodeLocation(){
-        try{
+    public static String getCodeLocation(int index){
             /*** 获取输出信息的代码的位置 ***/
-            String location = "";
-            StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
-            location = stacks[2].getClassName() + "." + stacks[2].getMethodName()
-                    + "(" + stacks[2].getLineNumber() + ")";
-            return location;
-        }catch (Exception e) {
-            Logs.error(e);
-            return "";
-        }
+//            由于调用多了一层所有stack[3]才对
+        String location = "";
+        StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
+        location = stacks[index].getClassName() + "." + stacks[index].getMethodName()
+                + "(" + stacks[index].getLineNumber() + ")";
+        return location;
     }
 }

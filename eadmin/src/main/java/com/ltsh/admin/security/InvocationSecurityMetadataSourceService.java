@@ -30,9 +30,6 @@ import java.util.regex.Pattern;
  */
 @Service
 public class InvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
-    private final static Logger LOGGER = LoggerFactory.getLogger(InvocationSecurityMetadataSourceService.class);
-
-
     public InvocationSecurityMetadataSourceService() {
     }
 
@@ -54,7 +51,7 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         HttpSession session = filterInvocation.getHttpRequest().getSession();
 //        if()
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        LOGGER.info("请求地址是:{}", url);
+        Logs.info("请求地址是:{}",url);
         if(securityContext != null && securityContext.getAuthentication() != null) {
 
             Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
