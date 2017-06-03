@@ -44,7 +44,7 @@ public class LoginAuthenticationManager extends DaoAuthenticationProvider {
         }
 
         String presentedPassword = authentication.getCredentials().toString();
-
+        //密码校验
         boolean validResult = !getPasswordEncoder().isPasswordValid(userDetails.getPassword(), presentedPassword, salt);
         if (validResult) {
             logger.debug("---- 用户名或密码错误！-----");
