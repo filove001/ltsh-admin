@@ -19,6 +19,9 @@ import com.ltsh.admin.util.Beans;
 import com.ltsh.admin.util.Caches;
 import com.ltsh.admin.util.SpringContextHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * c Controller
  */
@@ -43,6 +46,7 @@ public class SysUserController extends BaseController {
 	}
 	@RequestMapping("/name")
 	public String name(HttpServletRequest request,HttpServletResponse response,String name) {
+		List<String> list = new ArrayList();
 		request.setAttribute("all", Lists.as(sysUserService.getByUsername(name)));
 		return "sys/user/sysUser";
 	}

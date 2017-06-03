@@ -3,6 +3,7 @@ package com.ltsh.admin.mvc.base;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ltsh.admin.config.GlobalConf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +33,7 @@ public class BaseController {
 
 	@ModelAttribute
 	public void init(HttpServletRequest request, HttpServletResponse response){
+		request.setAttribute("debug", GlobalConf.debug);
         request.setAttribute("ctx", request.getContextPath());
         request.setAttribute("ui", request.getContextPath()+"/layui");
 	}

@@ -1,20 +1,17 @@
 package com.ltsh.admin.management.exception;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.fjz.util.BaseMsg;
 import com.fjz.util.Jsons;
 import com.fjz.util.Responses;
+import com.fjz.util.exception.CheckException;
 import com.fjz.util.log.Logs;
 import org.beetl.sql.core.BeetlSQLException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fjz.util.exception.CheckException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 统一异常管理

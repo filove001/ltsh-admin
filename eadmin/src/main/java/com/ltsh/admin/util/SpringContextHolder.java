@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.fjz.util.Assert;
 import com.fjz.util.Strs;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
@@ -35,6 +39,9 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 		return applicationContext;
 	}
 
+	public static HttpServletRequest getRequest(){
+		return  ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	}
 	/**
 	 * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
 	 */

@@ -89,6 +89,11 @@
 			<artifactId>beetl</artifactId>
 			<version>2.7.12</version>
 		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework</groupId>-->
+			<!--<artifactId>springloaded</artifactId>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
@@ -96,6 +101,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+				</configuration>
+				<!--<dependencies>-->
+					<!--&lt;!&ndash; spring热部署&ndash;&gt;-->
+					<!--<dependency>-->
+						<!--<groupId>org.springframework</groupId>-->
+						<!--<artifactId>springloaded</artifactId>-->
+						<!--<version>1.2.6.RELEASE</version>-->
+					<!--</dependency>-->
+				<!--</dependencies>-->
 			</plugin>
 			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>

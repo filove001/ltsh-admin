@@ -45,9 +45,7 @@ public class SpringSecuritys {
         Collection<? extends GrantedAuthority> authorities = SpringSecuritys.getAuthentication().getAuthorities();
         List<SysMenu> menus = SysCache.getMenu(authorities);
         List<SysMenuBo> nodeList = new ArrayList();
-        menus.parallelStream().forEach((e)->{
-            nodeList.add(SysMenuBo.getSysMenuBo(e));
-        });
+        menus.forEach((e)->{nodeList.add(SysMenuBo.getSysMenuBo(e));});
         List<SysMenuBo> ztree=SysMenuBo.getSysMenuBos(nodeList);
         return ztree;
     }

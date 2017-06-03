@@ -46,6 +46,11 @@
         if(window !=top){
             top.location.href=location.href;
         }
+        <%if(debug){%>
+        $('form input[name=username]').val('admin');
+        $('form input[name=password]').val('admin');
+        $('form button[type=submit]').click();
+        <%}%>
     });
 </script>
 </body>
