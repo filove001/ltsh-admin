@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fjz.util.log.Logs;
+import com.ltsh.admin.annotation.SameUrlData;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -102,6 +103,7 @@ public class SysUserController extends BaseController {
 //	
 	@RequestMapping("/save")
 	@ResponseBody
+	@SameUrlData
 	public BaseMsg<Object> insert(HttpServletRequest request,HttpServletResponse response,SysUser sysUser) {
 //		SysUserBo user=Webs.getSysUser();
 //		sysUser.setCreateBy(user.getUsername());
