@@ -1,5 +1,6 @@
 package com.ltsh.admin;
 
+import com.ltsh.admin.management.interceptor.LogInterceptor;
 import com.ltsh.admin.management.interceptor.SameUrlDataInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,7 @@ public class EadminApplication implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LogInterceptor());
 		registry.addInterceptor(new SameUrlDataInterceptor());
 	}
 
