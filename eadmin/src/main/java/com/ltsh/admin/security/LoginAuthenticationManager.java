@@ -1,6 +1,8 @@
 package com.ltsh.admin.security;
 
 
+import com.ltsh.admin.mvc.sys.log.SysLogService;
+import com.ltsh.admin.util.SpringContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,6 +52,7 @@ public class LoginAuthenticationManager extends DaoAuthenticationProvider {
             logger.debug("---- 用户名或密码错误！-----");
             throw new BadCredentialsException("-----用户名或密码错误！-----");
         }
+        SpringContextHolder.getBean(SysLogService.class).insert(SpringContextHolder.getRequest());
 //        UserInfo userInfo = userInfoMapper.selectByLoginName(authentication.getPrincipal().toString());
 //        List<Role> roles = roleMapper.selectByUserId(userInfo.getId());
 //        Set<Menu> menu = SysCache.getMenu(roles);

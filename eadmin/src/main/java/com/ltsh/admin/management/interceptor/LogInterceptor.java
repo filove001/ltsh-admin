@@ -53,22 +53,11 @@ public class LogInterceptor implements HandlerInterceptor {
         Logs.info("请求的所带参数 : " +Jsons.toJsonString(request.getParameterMap()));
 		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" start");
         Logs.info(request.getRequestURL().toString()+"   在请求处理之前进行调用（Controller方法调用之前）");
-		SysLog sysLog=createSysLog(request);
-		sysLogService.insert(sysLog);
+		sysLogService.insert(request);
 	  return true;
 	}
 
-	private SysLog createSysLog(HttpServletRequest request) {
-		SysLog sysLog = new SysLog();
-		sysLog.setCreateDate(new Date());
-		sysLog.setUserAgent(request.getHeader("User-Agent"));
-		sysLog.setMethod(request.getMethod());
-		sysLog.setParams(Jsons.toJsonString(request.getParameterMap()));
-//		sysLog.setPerform();
-		sysLog.setRemoteAddr(Ips.getIp(request));
-		sysLog.setRequestUri(request.getServletPath());
-		return sysLog;
-	}
+
 
 	//	@Override
 //	public void postHandle(HttpServletRequest request,
