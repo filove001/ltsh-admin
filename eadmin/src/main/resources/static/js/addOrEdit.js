@@ -14,6 +14,7 @@ $(function(){
 					layer.msg('操作成功！', {time: 2000},function(){
 						window.history.go(-1);
 					});
+                    subCallback(msg);
 				}else{
                     layer.alert(data.msg,{title:'操作失败！'});
 				}
@@ -26,3 +27,6 @@ $(function(){
 	    return false;
 	  });
 });
+function subCallback(msg){
+
+}
