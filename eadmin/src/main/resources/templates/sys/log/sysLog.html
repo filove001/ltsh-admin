@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>日志</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/content.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+			<div class="layui-form-item">
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">编号:</label>
+					<input type="text" value="" name="id" placeholder="编号" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">日志类型:</label>
+					<input type="text" value="" name="type" placeholder="日志类型" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">日志标题:</label>
+					<input type="text" value="" name="title" placeholder="日志标题" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">用户名者:</label>
+					<input type="text" value="" name="userName" placeholder="用户名者" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">用户id:</label>
+					<input type="text" value="" name="userId" placeholder="用户id" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">创建时间:</label>
+					<input type="text" value="" name="createDate" placeholder="创建时间" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">操作IP地址:</label>
+					<input type="text" value="" name="remoteAddr" placeholder="操作IP地址" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">用户代理:</label>
+					<input type="text" value="" name="userAgent" placeholder="用户代理" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">请求URI:</label>
+					<input type="text" value="" name="requestUri" placeholder="请求URI" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">操作方式:</label>
+					<input type="text" value="" name="method" placeholder="操作方式" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">提交数据:</label>
+					<input type="text" value="" name="params" placeholder="提交数据" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">工作性能:</label>
+					<input type="text" value="" name="perform" placeholder="工作性能" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">请求耗时:</label>
+					<input type="text" value="" name="longTime" placeholder="请求耗时" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">详细信息:</label>
+					<input type="text" value="" name="desc" placeholder="详细信息" class="layui-input">
+				</div>
+				<a class="layui-btn" href="javascript:search(1);">查询</a>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</form>
+		<div class="layui-form">
+		  <table class="layui-table">
+		    <thead>
+		      <tr>
+		        <th>序号</th>
+			   	<th entity-name="id">编号</th>
+			   	<th entity-name="type">日志类型</th>
+			   	<th entity-name="title">日志标题</th>
+			   	<th entity-name="userName">用户名者</th>
+			   	<th entity-name="userId">用户id</th>
+			   	<th entity-name="createDate">创建时间</th>
+			   	<th entity-name="remoteAddr">操作IP地址</th>
+			   	<th entity-name="userAgent">用户代理</th>
+			   	<th entity-name="requestUri">请求URI</th>
+			   	<th entity-name="method">操作方式</th>
+			   	<th entity-name="params">提交数据</th>
+			   	<th entity-name="perform">工作性能</th>
+			   	<th entity-name="longTime">请求耗时</th>
+			   	<th entity-name="desc">详细信息</th>
+<th>操作</th>		      </tr>
+		    </thead>
+		    <tbody id="tb-td">
+		    </tbody>
+		  </table>
+		</div>
+</div>
+<div class="grid-page">
+	<div id="grid-page"></div>
+</div>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/content.js" charset="utf-8"></script>
+</div>
+</body>
+</html>
