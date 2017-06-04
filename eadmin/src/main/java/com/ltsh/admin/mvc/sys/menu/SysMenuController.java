@@ -4,6 +4,9 @@ package com.ltsh.admin.mvc.sys.menu;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.druid.support.json.JSONUtils;
+import com.fjz.util.Jsons;
+import com.ltsh.admin.util.SysCache;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,10 @@ import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.util.Beans;
 import com.ltsh.admin.mvc.base.BaseController;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * 菜单 Controller
  */
@@ -34,7 +41,12 @@ public class SysMenuController extends BaseController {
 
     @RequestMapping("/index")
     public String index(HttpServletRequest request, HttpServletResponse response) {
-        return "sys/menu/sysMenu";
+        List<SysMenu> menus = sysMenuService.all();
+        List<SysMenuBo> nodeList = new ArrayList();
+        menus.forEach((e)->{nodeList.add(SysMenuBo.getSysMenuBo(e));});
+        List<SysMenuBo> ztree = SysMenuBo.getSysMenuBos(nodeList);
+        request.setAttribute("ztree", Jsons.toJsonString(ztree));
+        return "sys/menu/sysMenuZtree";
     }
 
     /**
@@ -51,8 +63,10 @@ public class SysMenuController extends BaseController {
     @RequestMapping("/save")
     @ResponseBody
     public BaseMsg<Object> save(HttpServletRequest request, HttpServletResponse response, SysMenu sysMenu) {
-        sysMenuService.insert(sysMenu);
-        return BaseMsg.successMsg;
+        sysMenu.setCreateDate(new Date());
+        sysMenuService.insert(sysMenu, true);
+
+        return BaseMsg.successMsg.setData(sysMenu.getId());
     }
 
     @RequestMapping("/update")
@@ -122,6 +136,8 @@ public class SysMenuController extends BaseController {
 //	   	request.setAttribute("remarksDisabled", true);
         return viewPath + "/sysMenuAddOrEdit";
     }
+
+
 }
 
 
