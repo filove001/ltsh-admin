@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.beans.binding.StringBinding;
 import org.joda.time.DateTime;
 
 /**
@@ -22,6 +23,7 @@ public class Dates {
 	public static final String YYYY_MM_DD_HH_MM_SS="yyyy-MM-dd HH:mm:ss";
 	public static final String YYYY_MM_DD="yyyy-MM-dd";
 	public static final String HH_MM_SS="HH:mm:ss";
+	public static final String hh_mm_ss_SSS="hh:mm:ss.SSS";
 	public static final String HH_MM="HH:mm";
 	public static final String HHMMSS="HHmmss";
 	public static final String YYYYMMDDHHMISS="yyyyMMddHHmmss";
@@ -121,6 +123,30 @@ public class Dates {
 		DateTime dateTime=new DateTime(toDate(date));
 		dateTime=dateTime.plusWeeks(weekNex);
 		return dateTime.toString(YYYY_MM_DD);
+	}
+
+	/**
+	 * hh:mm:ss.SSS
+	 * long计算时分秒
+	 * @param longTime
+	 * @return
+	 */
+	public static String getTakeTime(long longTime){
+		StringBuilder sb = new StringBuilder();
+		long h=longTime/(1000*3600);
+		long m=longTime/(1000*60)%60;
+		long s=longTime/1000%60;
+		long ss=longTime%1000;
+		return sb.append(add0(h)).append(":").append(add0(m)).append(":").append(add0(s)).append(".").append(add0(ss)).toString();
+	}
+
+	/**
+	 * 少于10前加零
+	 * @param time
+	 * @return
+	 */
+	private static String add0(long time){
+		return time<=9?"0"+time:time+"";
 	}
 	/**
 	 * 取得这周和下几周的日期
