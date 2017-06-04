@@ -22,8 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    }
     @Autowired
     private LoginAuthenticationManager loginAuthenticationManager;
-    @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+//    @Autowired
+//    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(customUserService);
@@ -57,8 +57,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .logout()
             .permitAll();
-        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
-                .csrf().disable().headers().frameOptions().sameOrigin();
+//        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        http.csrf().disable().headers().frameOptions().sameOrigin();
 //        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 

@@ -47,11 +47,10 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         FilterInvocation filterInvocation = (FilterInvocation) object;
         // object 是一个URL，被用户请求的url。
         String url = filterInvocation.getRequestUrl();
-        url = url.endsWith("/") && url.length() > 1 ? url.substring(0, url.length() -1) : url;
-        HttpSession session = filterInvocation.getHttpRequest().getSession();
+        Logs.info("请求地址是:{}",url);
 //        if()
         SecurityContext securityContext = SecurityContextHolder.getContext();
-        Logs.info("请求地址是:{}",url);
+
         if(securityContext != null && securityContext.getAuthentication() != null) {
 
             Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
@@ -62,14 +61,9 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
                 atts.add(ca);
             }
             return atts;
-
-//                Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-//                ConfigAttribute ca = new SecurityConfig("ERROR");
-//                atts.add(ca);
-//                return atts;
         }
-        Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-        return atts;
+
+        return null;
 
     }
 

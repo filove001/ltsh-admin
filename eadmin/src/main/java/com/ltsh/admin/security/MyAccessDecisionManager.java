@@ -48,20 +48,17 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         if(url.startsWith("/login") || url.startsWith("/layout") || url.equals("/")) {
             return;
         }
-        for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
-            c = iter.next();
-            needRole = c.getAttribute();
 
-            SecurityContext securityContext = SecurityContextHolder.getContext();
-            Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
 
-            List<SysMenu> menus = SysCache.getMenu(authorities);
-            for (SysMenu menu: menus) {
-                if(url.contains(menu.getHref())) {
-                    return;
-                }
+        List<SysMenu> menus = SysCache.getMenu(authorities);
+        for (SysMenu menu: menus) {
+            if(url.contains(menu.getHref())) {
+                return;
             }
         }
+
         throw new AccessDeniedException("Insufficient permissions");
     }
 
