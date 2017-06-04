@@ -23,14 +23,13 @@ import java.util.*;
  *
  */
 public class LogInterceptor implements HandlerInterceptor {
-	private static final ThreadLocal<Long> startTimeThreadLocal =
-			new NamedThreadLocal<Long>("ThreadLocal StartTime");
+	private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal<Long>("ThreadLocal StartTime");
 	private static final List<String> logUrl = new ArrayList<String>(){
 		{
 			add("delete");
 			add("save");
 			add("update");
-			add("login");
+//			add("login");
 //			put("save","");
 //			put("update","");
 		}
@@ -44,16 +43,16 @@ public class LogInterceptor implements HandlerInterceptor {
 	      HttpServletResponse response, Object handler) throws Exception {
 		long beginTime = System.currentTimeMillis();//1、开始时间
 		startTimeThreadLocal.set(beginTime);		//线程绑定变量（该数据只有当前请求的线程可见）
-//		if(!checkLog(request.getServletPath())||"GET".equals(request.getMethod())){
-//			return true;
-//		}
+		if(!checkLog(request.getServletPath())){
+			return true;
+		}
 		Logs.info("http请求类型 : {}  -URL : {}",request.getMethod(),request.getRequestURL().toString());
         Logs.info("IP : " + Ips.getIp(request));
         Logs.info("执行的类和方法 : " + handler.toString());
         Logs.info("请求的所带参数 : " +Jsons.toJsonString(request.getParameterMap()));
 		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" start");
         Logs.info(request.getRequestURL().toString()+"   在请求处理之前进行调用（Controller方法调用之前）");
-		sysLogService.insert(request);
+
 	  return true;
 	}
 
@@ -77,6 +76,7 @@ public class LogInterceptor implements HandlerInterceptor {
 				request.getRequestURI(),Runtime.getRuntime().maxMemory() /1024/1024, Runtime.getRuntime().totalMemory()/1024/1024, Runtime.getRuntime().freeMemory()/1024/1024,
 				(Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
 		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）");
+		sysLogService.insert(request);
 	}
 
 }  
