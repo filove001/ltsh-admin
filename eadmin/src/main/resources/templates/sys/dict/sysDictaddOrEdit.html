@@ -14,14 +14,14 @@
 	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
-		<div class="layui-form-item" <%if(has(valueDisplayNone)){%> style="display:none"<%}%>>
+		<div class="layui-form-item" <%if(has(dictValueDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">数据值</label>
-	        <div class="layui-input-block dx-input-required">                <input <%if(has(valueDisabled)){%>disabled<%}%> type="text" value="${obj.value!}" name="value"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(dictValueDisabled)){%>disabled<%}%> type="text" value="${obj.dictValue!}" name="dictValue"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
-		<div class="layui-form-item" <%if(has(keyDisplayNone)){%> style="display:none"<%}%>>
+		<div class="layui-form-item" <%if(has(dictKeyDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">标签名</label>
-	        <div class="layui-input-block dx-input-required">                <input <%if(has(keyDisabled)){%>disabled<%}%> type="text" value="${obj.key!}" name="key"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(dictKeyDisabled)){%>disabled<%}%> type="text" value="${obj.dictKey!}" name="dictKey"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(typeDisplayNone)){%> style="display:none"<%}%>>

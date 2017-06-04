@@ -1,6 +1,8 @@
 /*
+Navicat MySQL Data Transfer
+
 Source Database       : ltsh
-Date: 2017-06-02 14:56:17
+Date: 2017-06-04 14:51:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -11,17 +13,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `value` varchar(100) NOT NULL COMMENT '数据值',
-  `key` varchar(100) NOT NULL COMMENT '标签名',
-  `type` varchar(100) NOT NULL COMMENT '类型',
+  `dict_value` varchar(100) NOT NULL COMMENT '数据值',
+  `dict_key` varchar(100) NOT NULL COMMENT '标签名',
+  `type` int(11) NOT NULL COMMENT '类型',
   `description` varchar(100) NOT NULL COMMENT '描述',
   `sort` int(11) NOT NULL COMMENT '排序（升序）',
   `parent_id` int(11) DEFAULT '0' COMMENT '父级编号',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`id`),
-  KEY `sys_dict_value` (`value`),
-  KEY `sys_dict_key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典表';
+  KEY `sys_dict_value` (`dict_value`),
+  KEY `sys_dict_key` (`dict_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -47,7 +49,7 @@ CREATE TABLE `sys_menu` (
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`id`),
   KEY `sys_menu_parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=346 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=418 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Table structure for sys_privilege
@@ -61,7 +63,7 @@ CREATE TABLE `sys_privilege` (
   `access_value` varchar(255) NOT NULL COMMENT '领域值',
   `operation` varchar(255) DEFAULT NULL COMMENT '权限',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=180 DEFAULT CHARSET=utf8 COMMENT='权限连接表';
+) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8 COMMENT='权限连接表';
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -78,7 +80,7 @@ CREATE TABLE `sys_role` (
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -105,7 +107,7 @@ CREATE TABLE `sys_user` (
   `login_count` tinyint(4) DEFAULT '0' COMMENT '登录次数',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_login_name` (`login_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=729 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=735 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Table structure for sys_user_role

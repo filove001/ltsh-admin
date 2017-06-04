@@ -12,13 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fjz.util.Ips;
 import com.fjz.util.Jsons;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * 日志拦截器
@@ -28,39 +22,42 @@ import java.util.TimeZone;
 public class LogInterceptor implements HandlerInterceptor {
 	private static final ThreadLocal<Long> startTimeThreadLocal =
 			new NamedThreadLocal<Long>("ThreadLocal StartTime");
-
+	private static final List<String> logUrl = new ArrayList<String>(){
+		{
+			add("delete");
+			add("save");
+			add("update");
+			add("login");
+//			put("save","");
+//			put("update","");
+		}
+	};
+	public boolean checkLog(String url){
+		return logUrl.contains(url.substring(url.lastIndexOf("/")+1));
+	}
 	@Override
 	public boolean preHandle(HttpServletRequest request,  
 	      HttpServletResponse response, Object handler) throws Exception {
+		long beginTime = System.currentTimeMillis();//1、开始时间
+		startTimeThreadLocal.set(beginTime);		//线程绑定变量（该数据只有当前请求的线程可见）
+		if(!checkLog(request.getServletPath())){
+			return true;
+		}
 		Logs.info("http请求类型 : {}  -URL : {}",request.getMethod(),request.getRequestURL().toString());
         Logs.info("IP : " + Ips.getIp(request));
         Logs.info("执行的类和方法 : " + handler.toString());
-//        HandlerMethod handlerMethod=(HandlerMethod)handler;
-//        handlerMethod.getMethodAnnotation(annotationType);
-		long beginTime = System.currentTimeMillis();//1、开始时间
-		startTimeThreadLocal.set(beginTime);		//线程绑定变量（该数据只有当前请求的线程可见）
         Logs.info("请求的所带参数 : " +Jsons.toJsonString(request.getParameterMap()));
+		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" start");
         Logs.info(request.getRequestURL().toString()+"   在请求处理之前进行调用（Controller方法调用之前）");
-//        request.setAttribute("ctx", request.getContextPath());
-//        request.setAttribute("uipath", request.getContextPath()+"/AdminLTE2/");
-//        Logs.info("uipath", request.getContextPath()+"/AdminLTE2/");
-        //判断是否登录了
-//		SysUser sysUser=UserUtils.getSysUser();
-//		if(sysUser==null){
-//			response.sendRedirect("login");  
-//		}
-//		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" start");
-	//	MethodNameResolver methodNameResolver = new InternalPathMethodNameResolver();
-	//	System.out.println("methodName="+methodNameResolver.getHandlerMethodName(request));
 	  return true;  
 	}
 	
-	@Override  
-	public void postHandle(HttpServletRequest request,  
-	      HttpServletResponse response, Object handler,  
-	      ModelAndView modelAndView) throws Exception { 
-		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）");
-	}  
+//	@Override
+//	public void postHandle(HttpServletRequest request,
+//	      HttpServletResponse response, Object handler,
+//	      ModelAndView modelAndView) throws Exception {
+//		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）");
+//	}
 	@Override
 	public void afterCompletion(HttpServletRequest request,  
 	      HttpServletResponse response, Object handler, Exception ex)  

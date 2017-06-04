@@ -6,18 +6,18 @@ select @pageTag(){
 	from sys_dict where #use("like")#
 cols
 ===
-	id,value,key,type,description,sort,parent_id,remarks
+	id,dict_value,dict_key,type,description,sort,parent_id,remarks
 condition
 ===
 	1 = 1 
 	@if(!isEmpty(id)){
 	 and id=#id#
 	@}
-	@if(!isEmpty(value)){
-	 and value=#value#
+	@if(!isEmpty(dictValue)){
+	 and dict_value=#dictValue#
 	@}
-	@if(!isEmpty(key)){
-	 and key=#key#
+	@if(!isEmpty(dictKey)){
+	 and dict_key=#dictKey#
 	@}
 	@if(!isEmpty(type)){
 	 and type=#type#
@@ -41,14 +41,14 @@ like
 	@if(!isEmpty(id)){
 	 and id=#id#
 	@}
-	@if(!isEmpty(value)){
-	 and value like #'%'+value+'%'#
+	@if(!isEmpty(dictValue)){
+	 and dict_value like #'%'+dictValue+'%'#
 	@}
-	@if(!isEmpty(key)){
-	 and key like #'%'+key+'%'#
+	@if(!isEmpty(dictKey)){
+	 and dict_key like #'%'+dictKey+'%'#
 	@}
 	@if(!isEmpty(type)){
-	 and type like #'%'+type+'%'#
+	 and type=#type#
 	@}
 	@if(!isEmpty(description)){
 	 and description like #'%'+description+'%'#
