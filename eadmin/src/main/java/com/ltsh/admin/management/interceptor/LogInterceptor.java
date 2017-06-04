@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fjz.util.Dates;
 import com.fjz.util.log.Logs;
+import com.ltsh.admin.mvc.sys.log.SysLog;
+import com.ltsh.admin.mvc.sys.log.SysLogService;
+import com.ltsh.admin.util.SpringContextHolder;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,6 +35,7 @@ public class LogInterceptor implements HandlerInterceptor {
 //			put("update","");
 		}
 	};
+	private SysLogService sysLogService= SpringContextHolder.getBean(SysLogService.class);
 	public boolean checkLog(String url){
 		return logUrl.contains(url.substring(url.lastIndexOf("/")+1));
 	}
@@ -40,19 +44,33 @@ public class LogInterceptor implements HandlerInterceptor {
 	      HttpServletResponse response, Object handler) throws Exception {
 		long beginTime = System.currentTimeMillis();//1、开始时间
 		startTimeThreadLocal.set(beginTime);		//线程绑定变量（该数据只有当前请求的线程可见）
-		if(!checkLog(request.getServletPath())){
-			return true;
-		}
+//		if(!checkLog(request.getServletPath())||"GET".equals(request.getMethod())){
+//			return true;
+//		}
 		Logs.info("http请求类型 : {}  -URL : {}",request.getMethod(),request.getRequestURL().toString());
         Logs.info("IP : " + Ips.getIp(request));
         Logs.info("执行的类和方法 : " + handler.toString());
         Logs.info("请求的所带参数 : " +Jsons.toJsonString(request.getParameterMap()));
 		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" start");
         Logs.info(request.getRequestURL().toString()+"   在请求处理之前进行调用（Controller方法调用之前）");
-	  return true;  
+		SysLog sysLog=createSysLog(request);
+		sysLogService.insert(sysLog);
+	  return true;
 	}
-	
-//	@Override
+
+	private SysLog createSysLog(HttpServletRequest request) {
+		SysLog sysLog = new SysLog();
+		sysLog.setCreateDate(new Date());
+		sysLog.setUserAgent(request.getHeader("User-Agent"));
+		sysLog.setMethod(request.getMethod());
+		sysLog.setParams(Jsons.toJsonString(request.getParameterMap()));
+//		sysLog.setPerform();
+		sysLog.setRemoteAddr(Ips.getIp(request));
+		sysLog.setRequestUri(request.getServletPath());
+		return sysLog;
+	}
+
+	//	@Override
 //	public void postHandle(HttpServletRequest request,
 //	      HttpServletResponse response, Object handler,
 //	      ModelAndView modelAndView) throws Exception {

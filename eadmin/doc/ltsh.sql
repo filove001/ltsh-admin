@@ -1,8 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
+Source Server         : 127.0.0.1
+Source Server Version : 50524
+Source Host           : 127.0.0.1:3306
 Source Database       : ltsh
-Date: 2017-06-04 14:51:39
+
+Target Server Type    : MYSQL
+Target Server Version : 50524
+File Encoding         : 65001
+
+Date: 2017-06-04 20:57:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,6 +32,32 @@ CREATE TABLE `sys_dict` (
   KEY `sys_dict_value` (`dict_value`),
   KEY `sys_dict_key` (`dict_key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='字典表';
+
+-- ----------------------------
+-- Table structure for sys_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_log`;
+CREATE TABLE `sys_log` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `type` char(1) DEFAULT '1' COMMENT '日志类型',
+  `title` varchar(255) DEFAULT '' COMMENT '日志标题',
+  `user_name` varchar(64) DEFAULT NULL COMMENT '用户名者',
+  `user_id` varchar(64) DEFAULT NULL COMMENT '用户id',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `remote_addr` varchar(255) DEFAULT NULL COMMENT '操作IP地址',
+  `user_agent` varchar(255) DEFAULT NULL COMMENT '用户代理',
+  `request_uri` varchar(255) DEFAULT NULL COMMENT '请求URI',
+  `method` varchar(5) DEFAULT NULL COMMENT '操作方式',
+  `params` varchar(1000) DEFAULT NULL COMMENT '提交数据',
+  `perform` varchar(255) DEFAULT NULL COMMENT '工作性能',
+  `long_time` char(12) DEFAULT NULL COMMENT '请求耗时',
+  `desc` text COMMENT '详细信息',
+  PRIMARY KEY (`id`),
+  KEY `sys_log_user_name` (`user_name`),
+  KEY `sys_log_request_uri` (`request_uri`),
+  KEY `sys_log_type` (`type`),
+  KEY `sys_log_create_date` (`create_date`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Table structure for sys_menu
