@@ -10,22 +10,22 @@ import com.fjz.util.Dates;
 public class SysLog{
 	public static final String tableName="sys_log";
 	public static final String tableRemarks="日志";
-	private java.lang.Long id;//编号
-	private java.lang.String type;//日志类型
-	private java.lang.String title;//日志标题
-	private java.lang.String userName;//用户名者
-	private java.lang.String userId;//用户id
+	private java.lang.Long id;//编号 
+	private java.lang.String type;//日志类型 
+	private java.lang.String title;//日志标题 
+	private java.lang.String userName;//用户名者 
+	private java.lang.String userId;//用户id 
 	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
-	private java.util.Date createDate;//创建时间
-	private java.lang.String remoteAddr;//操作IP地址
-	private java.lang.String userAgent;//用户代理
-	private java.lang.String requestUri;//请求URI
-	private java.lang.String method;//操作方式
-	private java.lang.String params;//提交数据
-	private java.lang.String perform;//工作性能
-	private java.lang.String longTime;//请求耗时
-	private java.lang.String desc;//详细信息
+	private java.util.Date createDate;//创建时间 
+	private java.lang.String remoteAddr;//操作IP地址 
+	private java.lang.String userAgent;//用户代理 
+	private java.lang.String requestUri;//请求URI 
+	private java.lang.String method;//操作方式 
+	private java.lang.String params;//提交数据 
+	private java.lang.String perform;//工作性能 
+	private java.lang.String longTime;//请求耗时 
+	private java.lang.String remarks;//详细信息 
 	public void setId(java.lang.Long id){
 		this.id=id;
 	}
@@ -117,12 +117,12 @@ public class SysLog{
 	public java.lang.String getLongTime() {
 		return longTime;
 	}
-	public void setDesc(java.lang.String desc){
-		this.desc=desc;
+	public void setRemarks(java.lang.String remarks){
+		this.remarks=remarks;
 	}
-	/** desc TEXT(65535)：详细信息 **/
-	public java.lang.String getDesc() {
-		return desc;
+	/** remarks VARCHAR(2000)：详细信息 **/
+	public java.lang.String getRemarks() {
+		return remarks;
 	}
 
 }

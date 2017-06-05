@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class GlobalConf {
     /**是否是测试模式*/
-    public final static boolean debug=false;
+    public final static boolean debug=true;
     public final static String NOT_INTERCEPT = "/ztree/**,/css/**,/js/**,/layui/**,/favicon.ico,/**.js.map";
     public final static Map<String,String> msg=new HashMap<String,String>(){
         {

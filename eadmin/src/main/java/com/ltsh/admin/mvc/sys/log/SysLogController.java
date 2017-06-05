@@ -102,7 +102,7 @@ public class SysLogController extends BaseController {
 	   	request.setAttribute("paramsDisplayNone", true);
 	   	request.setAttribute("performDisplayNone", true);
 	   	request.setAttribute("longTimeDisplayNone", true);
-	   	request.setAttribute("descDisplayNone", true);
+	   	request.setAttribute("remarksDisplayNone", true);
 	   //控制编辑框是否不可用
 	   	request.setAttribute("idDisabled", true);
 	   	request.setAttribute("typeDisabled", true);
@@ -117,7 +117,7 @@ public class SysLogController extends BaseController {
 	   	request.setAttribute("paramsDisabled", true);
 	   	request.setAttribute("performDisabled", true);
 	   	request.setAttribute("longTimeDisabled", true);
-	   	request.setAttribute("descDisabled", true);
+	   	request.setAttribute("remarksDisabled", true);
 		return viewPath+"/sysLogAddOrEdit";
 	}
 }

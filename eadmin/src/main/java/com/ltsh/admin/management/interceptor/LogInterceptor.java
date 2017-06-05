@@ -76,7 +76,9 @@ public class LogInterceptor implements HandlerInterceptor {
 				request.getRequestURI(),Runtime.getRuntime().maxMemory() /1024/1024, Runtime.getRuntime().totalMemory()/1024/1024, Runtime.getRuntime().freeMemory()/1024/1024,
 				(Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
 		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）");
-		sysLogService.insert(request);
+		if(checkLog(request.getServletPath())){
+			sysLogService.insert(request);
+		}
 	}
 
 }  

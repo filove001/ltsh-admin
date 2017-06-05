@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class UserRolePrivilegeMenuDaoTest {
 
 	@Test
 	public void testInsertT() {
-		List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
+        List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
         SysMenu sysMenu= createMenu(0,"系统管理","#",1,1);
         sqlManager.insert(sysMenu,true);
         for (Map m: mapList) {//为所有的表添加一个对应的菜单和增删改菜单

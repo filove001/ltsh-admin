@@ -19,7 +19,6 @@ public class SysLogDaoTest{
 	}
 	public SysLog create(String name,int i){
 		SysLog entity=new SysLog();
-		entity.setId(new Long(i));
 		entity.setType(name+i);
 		entity.setTitle(name+i);
 		entity.setUserName(name+i);
@@ -32,7 +31,7 @@ public class SysLogDaoTest{
 		entity.setParams(name+i);
 		entity.setPerform(name+i);
 		entity.setLongTime(name+i);
-		entity.setDesc(name+i);
+		entity.setRemarks(name+i);
 		return entity;
 		}
 }

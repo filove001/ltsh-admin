@@ -6,7 +6,7 @@ select @pageTag(){
 	from sys_log where #use("like")#
 cols
 ===
-	id,type,title,user_name,user_id,create_date,remote_addr,user_agent,request_uri,method,params,perform,long_time,desc
+	id,type,title,user_name,user_id,create_date,remote_addr,user_agent,request_uri,method,params,perform,long_time,remarks
 condition
 ===
 	1 = 1 
@@ -49,15 +49,15 @@ condition
 	@if(!isEmpty(longTime)){
 	 and long_time=#longTime#
 	@}
-	@if(!isEmpty(desc)){
-	 and desc=#desc#
+	@if(!isEmpty(remarks)){
+	 and remarks=#remarks#
 	@}
 
 like
 ===
 	1=1
 	@if(!isEmpty(id)){
-	 and id like #'%'+id+'%'#
+	 and id=#id#
 	@}
 	@if(!isEmpty(type)){
 	 and type like #'%'+type+'%'#
@@ -95,6 +95,6 @@ like
 	@if(!isEmpty(longTime)){
 	 and long_time like #'%'+longTime+'%'#
 	@}
-	@if(!isEmpty(desc)){
-	 and desc like #'%'+desc+'%'#
+	@if(!isEmpty(remarks)){
+	 and remarks like #'%'+remarks+'%'#
 	@}
