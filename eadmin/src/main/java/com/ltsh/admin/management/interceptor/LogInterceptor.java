@@ -68,14 +68,14 @@ public class LogInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request,  
 	      HttpServletResponse response, Object handler, Exception ex)  
 	      throws Exception {
-		long beginTime = startTimeThreadLocal.get();//得到线程绑定的局部变量（开始时间）
-		long endTime = System.currentTimeMillis(); 	//2、结束时间
-		long diffTime =endTime-beginTime;
-		Logs.info("耗时：{}  合计：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
-				diffTime, Dates.getTakeTime(diffTime),
-				request.getRequestURI(),Runtime.getRuntime().maxMemory() /1024/1024, Runtime.getRuntime().totalMemory()/1024/1024, Runtime.getRuntime().freeMemory()/1024/1024,
-				(Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
-		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）");
+//		long beginTime = startTimeThreadLocal.get();//得到线程绑定的局部变量（开始时间）
+//		long endTime = System.currentTimeMillis(); 	//2、结束时间
+//		long diffTime =endTime-beginTime;
+//		Logs.info("耗时：{}  合计：{}  URI: {}  最大内存: {}m  已分配内存: {}m  已分配内存中的剩余空间: {}m  最大可用内存: {}m",
+//				diffTime, Dates.getTakeTime(diffTime),
+//				request.getRequestURI(),Runtime.getRuntime().maxMemory() /1024/1024, Runtime.getRuntime().totalMemory()/1024/1024, Runtime.getRuntime().freeMemory()/1024/1024,
+//				(Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()+Runtime.getRuntime().freeMemory())/1024/1024);
+//		Logs.info(request.getMethod()+":url:"+request.getServletPath()+" "+handler.toString()+" 在整个请求结束之后被调用，也就是在DispatcherServlet 渲染了对应的视图之后执行（主要是用于进行资源清理工作）");
 		if(checkLog(request.getServletPath())){
 			sysLogService.insert(request);
 		}

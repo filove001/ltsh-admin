@@ -20,18 +20,16 @@ public class SysCache {
     public final static String CACHE_ROLES_KEY = "LTSH_ROLE_CACHE";
     public final static String CACHE_ROLE_MENU_KEY = "LTSH_ROLE_MENU_CACHE";
 
-
+    static SysMenuDao sysMenuDao = SpringContextHolder.getBean(SysMenuDao.class);
+    static SysPrivilegeDao sysPrivilegeDao = SpringContextHolder.getBean(SysPrivilegeDao.class);
+    static SysRoleDao sysRoleDao = SpringContextHolder.getBean(SysRoleDao.class);
     public static List<SysMenu> getMenu(Collection<? extends GrantedAuthority> roleCodes) {
-        SysMenuDao sysMenuDao = SpringContextHolder.getBean(SysMenuDao.class);
         SysMenu searchSysMenu = new SysMenu();
         searchSysMenu.setStatus(1);
         List<SysMenu> sysMenus = sysMenuDao.template(searchSysMenu);
-        SysPrivilegeDao sysPrivilegeDao = SpringContextHolder.getBean(SysPrivilegeDao.class);
         SysPrivilege searchSysPrivilege = new SysPrivilege();
         searchSysPrivilege.setAccess(SysMenu.tableName);
         List<SysPrivilege> sysPrivileges = sysPrivilegeDao.template(searchSysPrivilege);
-
-        SysRoleDao sysRoleDao = SpringContextHolder.getBean(SysRoleDao.class);
         List<SysRole> sysRoles = sysRoleDao.all();
         List<SysMenu> tmpMenuList = new ArrayList<SysMenu>();
         Map<String, Object> menuIdMap = new HashMap<String, Object>();

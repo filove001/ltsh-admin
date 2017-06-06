@@ -42,9 +42,7 @@ public class SysMenuController extends BaseController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request, HttpServletResponse response) {
         List<SysMenu> menus = sysMenuService.all();
-        List<SysMenuBo> nodeList = new ArrayList();
-        menus.forEach((e)->{nodeList.add(SysMenuBo.getSysMenuBo(e));});
-        List<SysMenuBo> ztree = SysMenuBo.getSysMenuBos(nodeList);
+        List<SysMenuBo> ztree = sysMenuService.getSysMenuBoTree(menus);
         request.setAttribute("ztree", Jsons.toJsonString(ztree));
         return "sys/menu/sysMenuZtree";
     }

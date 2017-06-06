@@ -48,7 +48,8 @@ public class GlobalDefaultExceptionHandler {
 	private ModelAndView doView(HttpServletRequest request,HttpServletResponse response,
 			Exception e) {
 		Logs.info(" 是来自方法 "+Logs.getCodeLocation(3)+" 请求");
-		e.printStackTrace();
+//		e.printStackTrace();
+		Logs.info(e);
 //		if(request.getRequestURL().indexOf("/api/")!=-1){
 //            Logs.error("api============================");
 //            Responses.writeStringToResponse(response, Jsons.toString(BaseMsg.me().setMsg(e.getMessage())));

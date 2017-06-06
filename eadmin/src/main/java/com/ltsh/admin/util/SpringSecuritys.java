@@ -3,6 +3,8 @@ package com.ltsh.admin.util;
 import com.fjz.util.log.Logs;
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
+import com.ltsh.admin.mvc.sys.menu.SysMenuDao;
+import com.ltsh.admin.mvc.sys.menu.SysMenuService;
 import com.ltsh.admin.mvc.sys.user.SysUser;
 import com.ltsh.admin.security.UserDetailsImpl;
 import org.springframework.security.core.Authentication;
@@ -38,16 +40,14 @@ public class SpringSecuritys {
 //        }
         return (T) principal;
     }
+    private static SysMenuService sysMenuService=SpringContextHolder.getBean(SysMenuService.class);
     /**
      * 取得当前用户的权限菜单树
      */
     public static List<SysMenuBo> getSysMenuBos() {
         Collection<? extends GrantedAuthority> authorities = SpringSecuritys.getAuthentication().getAuthorities();
         List<SysMenu> menus = SysCache.getMenu(authorities);
-        List<SysMenuBo> nodeList = new ArrayList();
-        menus.forEach((e)->{nodeList.add(SysMenuBo.getSysMenuBo(e));});
-        List<SysMenuBo> ztree=SysMenuBo.getSysMenuBos(nodeList);
-        return ztree;
+        return sysMenuService.getSysMenuBoTree(menus);
     }
     /**
      * 取得当前用户的登录名, 如果当前用户未登录则返回空字符串.
