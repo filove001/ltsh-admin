@@ -44,6 +44,7 @@ public class UserRolePrivilegeMenuDaoTest {
         List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
         SysMenu sysMenu= createMenu(0,"系统管理","#",1,1);
         sqlManager.insert(sysMenu,true);
+        inisertCache(sysMenu.getId());
         for (Map m: mapList) {//为所有的表添加一个对应的菜单和增删改菜单
             String name = m.get("name").toString();
             String comment = m.get("comment").toString().replace("表","");
@@ -71,7 +72,16 @@ public class UserRolePrivilegeMenuDaoTest {
         }
 
     }
-
+    public void inisertCache(int pid){
+	    String href="/cache";
+        SysMenu sysMenu= createMenu(0,"缓存",href+"/index",1,2);
+        sqlManager.insert(sysMenu,true);
+        System.out.println(sysMenu.getId());
+        Map<String,Object> map= Maps.newMap(new String[]{"all","key","clear","dbKey","dbAll","dbClear"}, new Object[]{"all","key","clear","dbKey","dbAll","dbClear"});
+        for (Map.Entry<String,Object> e: map.entrySet()) {
+            sqlManager.insert(createMenu(sysMenu.getId(),e.getValue().toString(),href+"/"+e.getKey(),2,3));
+        }
+    }
     private SysRole insertSysRole() {
         SysRole sysRole=new SysRole();
         sysRole.setName("全部");

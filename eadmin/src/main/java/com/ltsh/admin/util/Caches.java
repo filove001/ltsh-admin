@@ -101,7 +101,6 @@ public class Caches {
 	}
 	/**
 	 * 移除缓存里面所有的值
-	 * @param cacheName
 	 */
 	public static boolean removeAll() {
 		for(final String name:cacheManager.getCacheNames()){

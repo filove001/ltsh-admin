@@ -39,6 +39,16 @@ public class DbConfig{
     	conf.setSqlManagerFactoryBeanName("sqlManagerFactoryBean");
     	return conf;
     }
+
+	static final List<String> lcs = new ArrayList<String>(){{
+		add(SysMenu.class.getSimpleName().toLowerCase());
+		add(SysPrivilege.class.getSimpleName().toLowerCase());
+		add(SysRole.class.getSimpleName().toLowerCase());
+	}};
+	//缓存  同DebugInterceptor构造方式一样， SimpleCacheInterceptor能缓存指定的sql查询结果
+	//指定所有namespace为 SysMenu,SysPrivilege,SysRole等查询都讲被缓存，如果此namepace有更新操作，则缓存清除，输出如下
+    public static final SimpleCacheInterceptor cache=new SimpleCacheInterceptor(lcs);
+
     @Bean(name = "sqlManagerFactoryBean")
     @Primary
     public SqlManagerFactoryBean getSqlManagerFactoryBean() {
@@ -47,15 +57,15 @@ public class DbConfig{
     	source.setMasterSource(dataSource);;
     	factory.setCs(source);
     	factory.setDbStyle(new MySqlStyle());
-    	//缓存  同DebugInterceptor构造方式一样， SimpleCacheInterceptor能缓存指定的sql查询结果
-		//指定所有namespace为 SysMenu,SysPrivilege,SysRole等查询都讲被缓存，如果此namepace有更新操作，则缓存清除，输出如下
-		List<String> lcs = new ArrayList<String>();
-		lcs.add(SysMenu.class.getSimpleName().toLowerCase());
-		lcs.add(SysPrivilege.class.getSimpleName().toLowerCase());
-		lcs.add(SysRole.class.getSimpleName().toLowerCase());
-		SimpleCacheInterceptor cache =new SimpleCacheInterceptor(lcs);
 
-    	factory.setInterceptors(new Interceptor[]{new DebugInterceptor(),cache});
+
+//		lcs.add(SysMenu.class.getSimpleName().toLowerCase());
+//		lcs.add(SysPrivilege.class.getSimpleName().toLowerCase());
+//		lcs.add(SysRole.class.getSimpleName().toLowerCase());
+
+    	factory.setInterceptors(new Interceptor[]{
+    			new DebugInterceptor(),
+				cache});
     	factory.setNc(new UnderlinedNameConversion());
     	factory.setSqlLoader(new ClasspathLoader("/sql"));
     	return factory;

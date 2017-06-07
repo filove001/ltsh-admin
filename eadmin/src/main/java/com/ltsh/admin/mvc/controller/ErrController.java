@@ -32,6 +32,7 @@ public class ErrController extends BaseController implements ErrorController {
 		HttpStatus status = getStatus(request);
 		request.setAttribute("status",status.toString());
 		request.setAttribute("msg", GlobalConf.msg.get(status.toString()));
+		Logs.warn("错误，错误编码：{} status：{}",GlobalConf.errCodeHtml,status.toString());
 		return "err/err";
 	}
 	/**
