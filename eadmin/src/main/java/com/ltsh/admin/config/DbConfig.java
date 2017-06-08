@@ -57,12 +57,6 @@ public class DbConfig{
     	source.setMasterSource(dataSource);;
     	factory.setCs(source);
     	factory.setDbStyle(new MySqlStyle());
-
-
-//		lcs.add(SysMenu.class.getSimpleName().toLowerCase());
-//		lcs.add(SysPrivilege.class.getSimpleName().toLowerCase());
-//		lcs.add(SysRole.class.getSimpleName().toLowerCase());
-
     	factory.setInterceptors(new Interceptor[]{
     			new DebugInterceptor(),
 				cache});

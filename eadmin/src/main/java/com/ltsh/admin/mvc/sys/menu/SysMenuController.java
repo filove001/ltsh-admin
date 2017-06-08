@@ -1,12 +1,10 @@
 package com.ltsh.admin.mvc.sys.menu;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.alibaba.druid.support.json.JSONUtils;
+import com.fjz.util.BaseMsg;
 import com.fjz.util.Jsons;
-import com.ltsh.admin.util.SysCache;
+import com.ltsh.admin.mvc.base.BaseController;
+import com.ltsh.admin.util.Beans;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.fjz.util.BaseMsg;
-import com.ltsh.admin.mvc.sys.user.SysUser;
-import com.ltsh.admin.util.Beans;
-
-import com.ltsh.admin.mvc.sys.menu.SysMenu;
-import com.ltsh.admin.util.Beans;
-import com.ltsh.admin.mvc.base.BaseController;
-
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 

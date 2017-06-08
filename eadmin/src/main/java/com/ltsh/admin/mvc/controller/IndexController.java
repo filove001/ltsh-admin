@@ -34,8 +34,6 @@ public class IndexController extends BaseController {
 	}
 	@RequestMapping({"/layout","/"})
 	public String layout(HttpServletRequest request,HttpServletResponse response) {
-		Logs.info(SpringSecuritys.getCurrentUserName());
-		Logs.info(SpringSecuritys.getCurrentUser());
 		request.setAttribute("me", SpringSecuritys.getCurrentUser());
 		request.setAttribute("sysMenuBos", SpringSecuritys.getSysMenuBos());
 		return "layout/index";

@@ -4,6 +4,8 @@ package com.ltsh.admin.mvc.sys.role;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjz.util.Jsons;
+import com.ltsh.admin.util.SpringSecuritys;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -86,28 +88,30 @@ public class SysRoleController extends BaseController {
 	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,SysRole sysRole) {
 		SysRole dbEntity=sysRoleService.unique(sysRole.getId());
+		request.setAttribute("ztree", Jsons.toJsonString(SpringSecuritys.getSysMenuBos()));
+
 		request.setAttribute("obj", dbEntity);
 		request.setAttribute("title", UPDATE_TITLE);
 		//控制编辑框是否不可见
 	   	request.setAttribute("idDisplayNone", true);
-	   	request.setAttribute("nameDisplayNone", true);
-	   	request.setAttribute("codeDisplayNone", true);
-	   	request.setAttribute("statusDisplayNone", true);
+//	   	request.setAttribute("nameDisplayNone", true);
+//	   	request.setAttribute("codeDisplayNone", true);
+//	   	request.setAttribute("statusDisplayNone", true);
 	   	request.setAttribute("createByDisplayNone", true);
 	   	request.setAttribute("createDateDisplayNone", true);
 	   	request.setAttribute("updateByDisplayNone", true);
 	   	request.setAttribute("updateDateDisplayNone", true);
-	   	request.setAttribute("remarksDisplayNone", true);
+//	   	request.setAttribute("remarksDisplayNone", true);
 	   //控制编辑框是否不可用
 	   	request.setAttribute("idDisabled", true);
-	   	request.setAttribute("nameDisabled", true);
-	   	request.setAttribute("codeDisabled", true);
-	   	request.setAttribute("statusDisabled", true);
+//	   	request.setAttribute("nameDisabled", true);
+//	   	request.setAttribute("codeDisabled", true);
+//	   	request.setAttribute("statusDisabled", true);
 	   	request.setAttribute("createByDisabled", true);
 	   	request.setAttribute("createDateDisabled", true);
 	   	request.setAttribute("updateByDisabled", true);
 	   	request.setAttribute("updateDateDisabled", true);
-	   	request.setAttribute("remarksDisabled", true);
+//	   	request.setAttribute("remarksDisabled", true);
 		return viewPath+"/sysRoleAddOrEdit";
 	}
 }

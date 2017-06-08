@@ -2,6 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>${title}</title>
+<link rel="stylesheet" href="${ctx}/ztree/css/zTreeStyle/zTreeStyle.css">
 <link rel="stylesheet" href="${ui}/css/layui.css">
 <link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 </head>
@@ -54,6 +55,16 @@
 	        <div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
+		<div class="layui-form-item" >
+			<div class="zTreeDemoBackground">
+				<ul class="list">
+					<label class="layui-form-label">菜单权限</label>
+						<div class="layui-input-block">
+							<input id="sysRoleMenu" type="text" value="" name="sysRoleMenu"  autocomplete="off" placeholder="" class="layui-input layui-form-danger"  onclick="showMenu();">
+						</div>
+				</ul>
+			</div>
+		</div>
       <br>
 
       <div class="layui-form-item form-btn-box">
@@ -65,12 +76,80 @@
       </div>
     </form>
   </div>
+	<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+		<ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+	</div>
 </section>
 <div id="LAY_democodejs">
-<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
-<script src="${ctx}/js/common.js" charset="utf-8"></script>
-<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+	<script src="${ctx}/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<SCRIPT type="text/javascript">
+        <!--
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: {"Y":"", "N":""}
+            },
+            view: {
+                dblClickExpand: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeClick: beforeClick,
+                onCheck: onCheck
+            }
+        };
+
+        var zNodes =${ztree};
+
+        function beforeClick(treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.checkNode(treeNode, !treeNode.checked, null, true);
+            return false;
+        }
+
+        function onCheck(e, treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getCheckedNodes(true),
+                v = "";
+            for (var i=0, l=nodes.length; i<l; i++) {
+                v += nodes[i].name + ",";
+            }
+            if (v.length > 0 ) v = v.substring(0, v.length-1);
+            var cityObj = $("#sysRoleMenu");
+            cityObj.attr("value", v);
+        }
+
+        function showMenu() {
+            var cityObj = $("#sysRoleMenu");
+            var cityOffset = $("#sysRoleMenu").offset();
+            $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+            $("body").bind("mousedown", onBodyDown);
+        }
+        function hideMenu() {
+            $("#menuContent").fadeOut("fast");
+            $("body").unbind("mousedown", onBodyDown);
+        }
+        function onBodyDown(event) {
+            if (!(event.target.id == "menuBtn" || event.target.id == "sysRoleMenu" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+                hideMenu();
+            }
+        }
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+        //-->
+	</SCRIPT>
 </div>
 </body>
 </html>
