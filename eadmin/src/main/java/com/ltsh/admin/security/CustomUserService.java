@@ -4,12 +4,10 @@ import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.role.SysRoleDao;
 import com.ltsh.admin.mvc.sys.user.SysUser;
 import com.ltsh.admin.mvc.sys.user.SysUserDao;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

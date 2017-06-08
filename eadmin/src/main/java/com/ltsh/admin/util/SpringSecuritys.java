@@ -46,7 +46,7 @@ public class SpringSecuritys {
      */
     public static List<SysMenuBo> getSysMenuBos() {
         Collection<? extends GrantedAuthority> authorities = SpringSecuritys.getAuthentication().getAuthorities();
-        List<SysMenu> menus = SysCache.getMenu(authorities);
+        List<SysMenu> menus = sysMenuService.getMenu(authorities);
         return sysMenuService.getSysMenuBoTree(menus);
     }
     /**

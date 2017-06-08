@@ -8,13 +8,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Random on 2017/4/20.
@@ -51,7 +47,7 @@ public class LoginAuthenticationManager extends DaoAuthenticationProvider {
         if (validResult) {
             logger.debug("---- 用户名或密码错误！-----");
             throw new BadCredentialsException("-----用户名或密码错误！-----");
-        }
+    }
         SpringContextHolder.getBean(SysLogService.class).insert(SpringContextHolder.getRequest());
 //        UserInfo userInfo = userInfoMapper.selectByLoginName(authentication.getPrincipal().toString());
 //        List<Role> roles = roleMapper.selectByUserId(userInfo.getId());
