@@ -16,7 +16,7 @@ $(function(){
 					});
                     subCallback(msg);
 				}else{
-                    layer.alert(data.msg,{title:'操作失败！'});
+                    layer.alert(msg.msg,{title:'操作失败！'});
 				}
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {}

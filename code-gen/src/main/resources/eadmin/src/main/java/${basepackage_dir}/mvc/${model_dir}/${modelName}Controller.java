@@ -80,7 +80,6 @@ public class ${table.modelName}Controller extends BaseController {
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
-		request.setAttribute("nameDisabled", true);
 		return viewPath+"/${table.modelNamefirstLower}AddOrEdit";
 	}
 	@RequestMapping("/edit")

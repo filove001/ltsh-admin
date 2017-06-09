@@ -32,12 +32,12 @@
       	</div>
 		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建者</label>
-	        <div class="layui-input-block dx-input-required">                <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建时间</label>
-	        <div class="layui-input-block dx-input-required">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"   autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>

@@ -37,6 +37,7 @@ import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.util.Beans;
 import com.ltsh.admin.mvc.base.BaseController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,6 +70,8 @@ public class SysRoleController extends BaseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public BaseMsg<Object> save(HttpServletRequest request,HttpServletResponse response,SysRole sysRole) {
+		sysRole.setCreateDate(new Date());
+		sysRole.setCreateBy(SpringSecuritys.getCurrentName());
 		sysRoleService.insert(sysRole);
 		return BaseMsg.successMsg;
 	}
@@ -92,7 +95,20 @@ public class SysRoleController extends BaseController {
 	public String add(HttpServletRequest request,HttpServletResponse response) {
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
-		request.setAttribute("nameDisabled", true);
+		request.setAttribute("createByDisplayNone", true);
+		request.setAttribute("createDateDisplayNone", true);
+		request.setAttribute("updateByDisplayNone", true);
+		request.setAttribute("updateDateDisplayNone", true);
+		request.setAttribute("createByDisabled", true);
+		request.setAttribute("createDateDisabled", true);
+		request.setAttribute("updateByDisabled", true);
+		request.setAttribute("updateDateDisabled", true);
+
+		List<SysMenuBo> bos=SpringSecuritys.getSysMenuBos();
+//		SysMenuBo.foreach(bos,(bo)->bo.setChecked(true));
+		request.setAttribute("ztree", Jsons.toJsonString(bos));
+
+//		request.setAttribute("nameDisabled", true);
 		return viewPath+"/sysRoleAddOrEdit";
 	}
 	@RequestMapping("/edit")
