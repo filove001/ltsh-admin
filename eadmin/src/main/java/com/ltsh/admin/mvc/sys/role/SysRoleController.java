@@ -5,6 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fjz.util.Jsons;
+import com.fjz.util.Lists;
+import com.ltsh.admin.mvc.sys.menu.SysMenu;
+import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
+import com.ltsh.admin.mvc.sys.menu.SysMenuService;
+import com.ltsh.admin.security.UserDetailsImpl;
 import com.ltsh.admin.util.SpringSecuritys;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +37,8 @@ import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.util.Beans;
 import com.ltsh.admin.mvc.base.BaseController;
 
+import java.util.List;
+
 /**
  * 角色 Controller
  */
@@ -43,6 +50,8 @@ public class SysRoleController extends BaseController {
 	public final static String viewPath = "sys/role";
 	@Autowired
 	private SysRoleService sysRoleService;
+	@Autowired
+	private SysMenuService sysMenuService;
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,HttpServletResponse response) {
 		return "sys/role/sysRole";
@@ -65,10 +74,11 @@ public class SysRoleController extends BaseController {
 	}
 	@RequestMapping("/update")
 	@ResponseBody
-	public BaseMsg<Object> update(HttpServletRequest request,HttpServletResponse response,SysRole sysRole) {
+	public BaseMsg<Object> update(HttpServletRequest request,HttpServletResponse response,SysRole sysRole,String sysRoleMenu) {
 		SysRole dbEntity =sysRoleService.unique(sysRole.getId());
 		Beans.copyProperties(sysRole, dbEntity);
-		sysRoleService.updateById(dbEntity);
+//		sysRoleService.updateById(dbEntity);
+		sysRoleService.updateRoleAndPrivilege(dbEntity,sysRoleMenu);
 		return BaseMsg.successMsg;
 	}
 	@RequestMapping("/delete")
@@ -88,8 +98,10 @@ public class SysRoleController extends BaseController {
 	@RequestMapping("/edit")
 	public String edit(HttpServletRequest request,HttpServletResponse response,SysRole sysRole) {
 		SysRole dbEntity=sysRoleService.unique(sysRole.getId());
-		request.setAttribute("ztree", Jsons.toJsonString(SpringSecuritys.getSysMenuBos()));
-
+		List<SysMenu> sysMenus= sysMenuService.getMenu(SpringSecuritys.getGrantedAuthoritys(Lists.as(dbEntity)));
+		List<SysMenuBo> bos=sysMenuService.getSysMenuBoTree(sysMenus);
+		SysMenuBo.foreach(bos,(bo)->bo.setChecked(true));
+		request.setAttribute("ztree", Jsons.toJsonString(bos));
 		request.setAttribute("obj", dbEntity);
 		request.setAttribute("title", UPDATE_TITLE);
 		//控制编辑框是否不可见

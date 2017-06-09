@@ -1,7 +1,9 @@
 package com.ltsh.admin.security;
 
+import com.fjz.util.Empty;
 import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.user.SysUser;
+import com.ltsh.admin.util.SpringSecuritys;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,12 +34,9 @@ public class UserDetailsImpl implements UserDetails {
         this.password =userInfo.getPassword();
         this.username = userInfo.getLoginName();
         this.sysUser=userInfo;
-        auths = new ArrayList<GrantedAuthority>();
-        for (SysRole role :
-                roles) {
-            auths.add(new SimpleGrantedAuthority(role.getCode()));
-        }
+        auths = SpringSecuritys.getGrantedAuthoritys(roles);
     }
+
 
 
     @Override

@@ -1,14 +1,17 @@
 package com.ltsh.admin.util;
 
+import com.fjz.util.Empty;
 import com.fjz.util.log.Logs;
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
 import com.ltsh.admin.mvc.sys.menu.SysMenuDao;
 import com.ltsh.admin.mvc.sys.menu.SysMenuService;
+import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.user.SysUser;
 import com.ltsh.admin.security.UserDetailsImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -139,5 +142,20 @@ public class SpringSecuritys {
             return null;
         }
         return context.getAuthentication();
+    }
+
+    /**
+     * 通过角色组装对应的权限列表
+     * @param roles
+     * @return
+     */
+    public static List<GrantedAuthority> getGrantedAuthoritys(List<SysRole> roles){
+        List<GrantedAuthority> as=new ArrayList<GrantedAuthority>();
+        if(Empty.not(roles)){
+            for (SysRole role : roles) {
+                as.add(new SimpleGrantedAuthority(role.getCode()));
+            }
+        }
+        return as;
     }
 }
