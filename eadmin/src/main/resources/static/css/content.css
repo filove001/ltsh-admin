@@ -33,4 +33,6 @@ body{
 .layui-table{
 	width:99%;
 	margin-bottom:40px;
+	/*table表格宽度固定，同时td内容过长也不会被撑开*/
+	table-layout:fixed;word-break:break-all;
 }

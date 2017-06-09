@@ -29,6 +29,7 @@ function tableUpdate(data){
 	var ths=$('th[entity-name]');//获取table th 的位置的字段名
 	var pageNumber=data.pageNumber;
 	log(data);
+	log(ths);
 	$('#tb-td').empty();
 	if(data.list==null){
 		parent.layer.msg('查询数据为空！');
@@ -38,14 +39,21 @@ function tableUpdate(data){
 		html+="<tr>";
 //		<input type='checkbox' name='' lay-skin='primary'>
 		html+="<td>"+((pageNumber-1)*pageSize+index+1)+"</td>";//序号
+
+		var tdHtml="";
+        ths.each(function(index,element){
+            // if(id==$(element).attr('entity-name')){
+            //     console.log(id +"  "+$(element).attr('entity-name')+"  "+value[id]);
+            tdHtml+="<td>${"+$(element).attr('entity-name')+"}</td>";
+                // return false;
+            // }
+        });
+		//保证是在列表字段匹配添加
+
 		for(var id in value){
-			ths.each(function(index,element){
-				if(id==$(element).attr('entity-name')){//保证是在列表字段匹配添加
-					html+="<td>"+value[id]+"";
-					return false;
-				}
-			});
+            tdHtml=tdHtml.replace("${"+id+"}",value[id]);
 		}
+		html+=tdHtml.replace(/\${[^}]+}/g,'');//替换${}格式的所有字符串
 		html+='<td><a class="layui-btn layui-btn-mini" href="edit.html?id='+value['id']+'"><i class="fa fa-th-list"></i>修改</a><button onclick="del(\''+value['id']+'\')" class="layui-btn layui-btn-mini"><i class="fa fa-th-list"></i>删除</button></td>';
 		html+="</tr>";
 	});

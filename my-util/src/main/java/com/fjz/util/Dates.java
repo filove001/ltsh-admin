@@ -1,16 +1,10 @@
 package com.fjz.util;
 
+import org.joda.time.DateTime;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javafx.beans.binding.StringBinding;
-import org.joda.time.DateTime;
+import java.util.*;
 
 /**
  * 时间工具类
@@ -200,30 +194,6 @@ public class Dates {
 	public static int getYearByWeek(Date date){//计算当前时间是第几周
 		DateTime dateTime=new DateTime(date);
 		return dateTime.getWeekOfWeekyear();
-		
-//		//一年中的第几周，按星期一是第一天开始算
-//		//把一年有多少个周算出来
-//        Calendar calendar = new GregorianCalendar();
-//        calendar.setTime(parse(format(date,"yyyy"),"yyyy"));
-//        Calendar calendarNow = new GregorianCalendar();//现在的时间
-//        calendarNow.setTime(date);
-//        int count=0;
-//        Calendar next= new GregorianCalendar();//下一年
-//        next.add(Calendar.YEAR, 1);
-//        next.setTime(date);
-//        int seven=7;
-//        int weekday=0;
-//        while (calendar.compareTo(next)==-1) {
-//        	weekday= weeks[calendar.get(Calendar.DAY_OF_WEEK)];//星期天为第一天转星期天为最后一天
-//        	//如果不是从一月一日算第一周 算法
-//        	calendar.add(Calendar.DATE, -(weekday-1));//周的第一天
-//        	if(calendarNow.compareTo(calendar)==-1){
-//        		return count;
-//        	}
-//    		calendar.add(Calendar.DATE, seven);// 下一周
-//    		++count;
-//		}
-//        return count;
 	}
 	/**
 	 * 获取某年第一天日期
@@ -239,8 +209,7 @@ public class Dates {
 	}
 	 /** 
      * 获取当年的第一天 
-     * @param year 
-     * @return 
+     * @return
      */  
     public static Date getCurrYearFirst(){  
         Calendar currCal=Calendar.getInstance();    

@@ -1,18 +1,13 @@
 package com.ltsh.admin.mvc.sys.user;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fjz.util.Dates;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-
 /**
  *  sys_user 用户信息 
  * @author fjz
  */
-public class SysUser implements  UserDetails{
+public class SysUser{
 	public static final String tableName="sys_user";
 	public static final String tableRemarks="用户信息";
 	private Integer id;//主键
@@ -27,15 +22,15 @@ public class SysUser implements  UserDetails{
 	private String zip;//邮政编码
 	private Integer status;//状态
 	private Integer sex;//性别
-	@JsonFormat(pattern = Dates.YYYY_MM_DD)
+	@JSONField(format=  Dates.YYYY_MM_DD)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD)
 	private java.util.Date birth;//出生日期 
 	private String remarks;//备注
 	private String createBy;//创建者
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date createDate;//创建时间 
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date lastLoginTime;//最后登录时间 
 	private Byte loginCount;//登录次数
@@ -56,42 +51,10 @@ public class SysUser implements  UserDetails{
 	public void setPassword(String password){
 		this.password=password;
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
 	/** password VARCHAR(32)：密码 **/
 	public String getPassword() {
 		return password;
 	}
-
-	@Override
-	public String getUsername() {
-		return this.loginName;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
 	public void setName(String name){
 		this.name=name;
 	}
