@@ -9,7 +9,7 @@ import java.util.Map;
 public class GlobalConf {
     /**是否是测试模式*/
     public final static boolean debug=true;
-    public final static String NOT_INTERCEPT = "/ztree/**,/css/**,/js/**,/layui/**,/favicon.ico,/**.js.map";
+    public final static String NOT_INTERCEPT = "/ztree/**,/css/**,/js/**,/layui/**,/favicon.ico,/**.js.map,/count/**";
 
     public final static String errCodeBase="01";
     public final static String errCodeHtml=errCodeBase+"001";

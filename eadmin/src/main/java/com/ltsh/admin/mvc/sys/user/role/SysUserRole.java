@@ -1,8 +1,5 @@
 package com.ltsh.admin.mvc.sys.user.role;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fjz.util.Dates;
 /**
  *  sys_user_role 用户角色 
  * @author fjz

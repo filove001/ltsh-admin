@@ -37,7 +37,6 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         // object 是一个URL，被用户请求的url。
         String url = filterInvocation.getRequestUrl();
         Logs.info("请求地址是:{}",url);
-//        if()
         SecurityContext securityContext = SecurityContextHolder.getContext();
 
         if(securityContext != null && securityContext.getAuthentication() != null) {
