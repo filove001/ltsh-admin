@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>栏目</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/content.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+			<div class="layui-form-item">
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">id:</label>
+					<input type="text" value="" name="id" placeholder="id" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">父ID:</label>
+					<input type="text" value="" name="parentId" placeholder="父ID" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">中文名:</label>
+					<input type="text" value="" name="name" placeholder="中文名" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">模板路径:</label>
+					<input type="text" value="" name="path" placeholder="模板路径" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">描述:</label>
+					<input type="text" value="" name="content" placeholder="描述" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">排序:</label>
+					<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">状态//radio/0,隐藏,1,显示:</label>
+					<input type="text" value="" name="status" placeholder="状态//radio/0,隐藏,1,显示" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息:</label>
+					<input type="text" value="" name="type" placeholder="类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">跳转地址:</label>
+					<input type="text" value="" name="href" placeholder="跳转地址" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">素材类型:</label>
+					<input type="text" value="" name="materialType" placeholder="素材类型" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">站点ID:</label>
+					<input type="text" value="" name="siteId" placeholder="站点ID" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">SEO title:</label>
+					<input type="text" value="" name="seoTitle" placeholder="SEO title" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">SEO keywords:</label>
+					<input type="text" value="" name="seoKeywords" placeholder="SEO keywords" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">SEO description:</label>
+					<input type="text" value="" name="seoDescription" placeholder="SEO description" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">更新时间:</label>
+					<input type="text" value="" name="updateTime" placeholder="更新时间" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">更新人:</label>
+					<input type="text" value="" name="updateBy" placeholder="更新人" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">创建时间:</label>
+					<input type="text" value="" name="createTime" placeholder="创建时间" class="layui-input">
+				</div>
+			   	<div class="layui-input-inline">
+			   	<label class="layui-form-label">创建者:</label>
+					<input type="text" value="" name="createBy" placeholder="创建者" class="layui-input">
+				</div>
+				<a class="layui-btn" href="javascript:search(1);">查询</a>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</form>
+		<div class="layui-form">
+		  <table class="layui-table">
+		    <thead>
+		      <tr>
+		        <th>序号</th>
+			   	<th entity-name="id">id</th>
+			   	<th entity-name="parentId">父ID</th>
+			   	<th entity-name="name">中文名</th>
+			   	<th entity-name="path">模板路径</th>
+			   	<th entity-name="content">描述</th>
+			   	<th entity-name="sort">排序</th>
+			   	<th entity-name="status">状态//radio/0,隐藏,1,显示</th>
+			   	<th entity-name="type">类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息</th>
+			   	<th entity-name="href">跳转地址</th>
+			   	<th entity-name="materialType">素材类型</th>
+			   	<th entity-name="siteId">站点ID</th>
+			   	<th entity-name="seoTitle">SEO title</th>
+			   	<th entity-name="seoKeywords">SEO keywords</th>
+			   	<th entity-name="seoDescription">SEO description</th>
+			   	<th entity-name="updateTime">更新时间</th>
+			   	<th entity-name="updateBy">更新人</th>
+			   	<th entity-name="createTime">创建时间</th>
+			   	<th entity-name="createBy">创建者</th>
+				  <th>操作</th>
+		      </tr>
+		    </thead>
+		    <tbody id="tb-td">
+		    </tbody>
+		  </table>
+		</div>
+</div>
+<div class="grid-page">
+	<div id="grid-page"></div>
+</div>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/content.js" charset="utf-8"></script>
+</div>
+</body>
+</html>

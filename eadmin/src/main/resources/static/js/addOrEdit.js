@@ -1,4 +1,5 @@
 $(function(){
+    addEditInit();//初始化
 	 //监听提交
 	  layui.form().on('submit(info)', function(data){
 		var obj=data.field;
@@ -27,6 +28,9 @@ $(function(){
 	    return false;
 	  });
 });
+function  addEditInit(){
+
+}
 function subCallback(msg){
 
 }

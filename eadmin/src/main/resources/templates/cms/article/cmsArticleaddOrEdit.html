@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+</head>
+<body>
+<section class="dx-info-default">
+  <div class="dx-info-box type-add">
+    <form class="layui-form" action="">
+		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">id</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(categoryIdDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">目录id</label>
+	        <div class="layui-input-block">                <input <%if(has(categoryIdDisabled)){%>disabled<%}%> type="text" value="${obj.categoryId!}" name="categoryId"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(titleDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">文章名称</label>
+	        <div class="layui-input-block">                <input <%if(has(titleDisabled)){%>disabled<%}%> type="text" value="${obj.title!}" name="title"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+
+		<div class="layui-form-item" <%if(has(countViewDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">浏览数</label>
+	        <div class="layui-input-block">                <input <%if(has(countViewDisabled)){%>disabled<%}%> type="text" value="${obj.countView!}" name="countView"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(countCommentDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">评论数</label>
+	        <div class="layui-input-block">                <input <%if(has(countCommentDisabled)){%>disabled<%}%> type="text" value="${obj.countComment!}" name="countComment"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">状态//radio/-1隐藏,1,显示</label>
+	        <div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(isCommentDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">是否评论</label>
+	        <div class="layui-input-block">                <input <%if(has(isCommentDisabled)){%>disabled<%}%> type="text" value="${obj.isComment!}" name="isComment"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(isRecommendDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">是否推荐</label>
+	        <div class="layui-input-block">                <input <%if(has(isRecommendDisabled)){%>disabled<%}%> type="text" value="${obj.isRecommend!}" name="isRecommend"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(sortDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">排序</label>
+	        <div class="layui-input-block">                <input <%if(has(sortDisabled)){%>disabled<%}%> type="number" value="${obj.sort!}" name="sort"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(hrefDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">跳转地址</label>
+	        <div class="layui-input-block">                <input <%if(has(hrefDisabled)){%>disabled<%}%> type="text" value="${obj.href!}" name="href"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(imageUrlDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">图片路径</label>
+	        <div class="layui-input-block">                <input <%if(has(imageUrlDisabled)){%>disabled<%}%> type="text" value="${obj.imageUrl!}" name="imageUrl"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(fileUrlDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">文件路径</label>
+	        <div class="layui-input-block">                <input <%if(has(fileUrlDisabled)){%>disabled<%}%> type="text" value="${obj.fileUrl!}" name="fileUrl"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(fileNameDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">文件名</label>
+	        <div class="layui-input-block">                <input <%if(has(fileNameDisabled)){%>disabled<%}%> type="text" value="${obj.fileName!}" name="fileName"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(approveStatusDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">审核状态</label>
+	        <div class="layui-input-block">                <input <%if(has(approveStatusDisabled)){%>disabled<%}%> type="text" value="${obj.approveStatus!}" name="approveStatus"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">备注信息</label>
+	        <div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(contentDisplayNone)){%> style="display:none"<%}%>>
+		<label class="layui-form-label">文件内容</label>
+		<div class="layui-input-block">
+					<textarea class="layui-textarea" id="content" name="content" style="display: none">
+					  把编辑器的初始内容放在这textarea即可
+					</textarea>
+		</div>
+		</div>
+      <br>
+
+      <div class="layui-form-item form-btn-box">
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+<script>
+function addEditInit(){
+    var layedit = layui.layedit;
+    layedit.set({
+        uploadImage: {
+            url: '/file/upload' //接口url
+        }
+    });
+    //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
+    //构建一个默认的编辑器
+    var index = layedit.build('content');
+    //编辑器外部操作
+    var active = {
+        content: function(){
+            alert(layedit.getContent(index)); //获取编辑器内容
+        }
+        ,text: function(){
+            alert(layedit.getText(index)); //获取编辑器纯文本内容
+        }
+        ,selection: function(){
+            alert(layedit.getSelection(index));
+        }
+    };
+}
+</script>
+</div>
+</body>
+</html>
