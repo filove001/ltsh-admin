@@ -1,23 +1,40 @@
 package com.ltsh.admin.mvc.controller;
+
+import com.fjz.util.Dates;
+import com.fjz.util.Requests;
+import com.fjz.util.Responses;
+import com.fjz.util.Systems;
 import com.fjz.util.log.Logs;
+import com.ltsh.admin.util.SpringContextHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "file")
 public class FileController {
+    public static final String ROOT;
+    static {
+        ROOT=Systems.isWin?"E:/var/upload/":"/var/upload/";
+    }
+    private final ResourceLoader resourceLoader;
+
+    @Autowired
+    public FileController(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
     @RequestMapping("/greeting")
     public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
@@ -37,18 +54,18 @@ public class FileController {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         Logs.info("上传的后缀名为：" + suffixName);
         // 文件上传后的路径
-        String filePath = "E://test//";
+        String filePath =ROOT+Dates.nowDate()+"/";
         // 解决中文问题，liunx下中文路径，图片显示问题
-        // fileName = UUID.randomUUID() + suffixName;
-        File dest = new File(filePath + fileName);
-        Logs.info("上传本地地址：",dest.getAbsoluteFile());
+         fileName = UUID.randomUUID() + suffixName;
+        File dest = new File(filePath +fileName);
         // 检测是否存在目录
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
         try {
             file.transferTo(dest);
-            return success("http://127.0.0.1:8080/layui/images/face/0.gif", fileName);
+            Logs.info("上传本地地址：{}",dest.getAbsoluteFile());
+            return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -57,6 +74,28 @@ public class FileController {
         return err.setMsg("上传失败");
     }
 
+
+    //显示图片的方法关键 匹配路径像 localhost:8080/b7c76eb3-5a67-4d41-ae5c-1642af3f8746.png
+    @RequestMapping(method = RequestMethod.GET, value = "/{date}/{filename:.+}")
+//    @ResponseBody
+    public void getFile(@PathVariable String date,@PathVariable String filename,HttpServletResponse response) {
+//        try {
+//            return ResponseEntity.ok( resourceLoader.getResource("file:" +ROOT+date+"/"+filename));
+//        } catch (Exception e) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        response.setContentType("image/gif");
+        File file = new File(ROOT+date+"/"+filename);
+        try ( FileInputStream fis = new FileInputStream(file)){
+            OutputStream out = response.getOutputStream();
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            out.write(b);
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     //文件下载相关代码
     @RequestMapping("/download")
     public String downloadFile(org.apache.catalina.servlet4preview.http.HttpServletRequest request, HttpServletResponse response) {

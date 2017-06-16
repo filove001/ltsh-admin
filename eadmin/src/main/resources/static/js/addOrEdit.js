@@ -5,6 +5,7 @@ $(function(){
 		var obj=data.field;
 		var url=(obj.id==null||obj.id=='')?"save":"update";
 		deleteEmptyString(obj,true);//删除空白的属性
+          beforeSubmit(obj);
 		$.ajax({
 			url: url,
 			data: obj,
@@ -28,6 +29,11 @@ $(function(){
 	    return false;
 	  });
 });
+//提交之前
+function beforeSubmit(data){
+
+}
+//初始化
 function  addEditInit(){
 
 }

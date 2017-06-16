@@ -6,6 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 public class Requests {
+
+
+	public static String getBasePath (HttpServletRequest request){
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		return basePath;
+	}
 	/** 
 	 * @Author: fjz
 	 * @Description: 获取参数

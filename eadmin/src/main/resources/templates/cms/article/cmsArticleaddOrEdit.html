@@ -88,9 +88,8 @@
 		<div class="layui-form-item" <%if(has(contentDisplayNone)){%> style="display:none"<%}%>>
 		<label class="layui-form-label">文件内容</label>
 		<div class="layui-input-block">
-					<textarea class="layui-textarea" id="content" name="content" style="display: none">
-					  把编辑器的初始内容放在这textarea即可
-					</textarea>
+			<textarea class="layui-textarea" id="content" name="content" style="display: none">
+			</textarea>
 		</div>
 		</div>
       <br>
@@ -111,6 +110,7 @@
 <script src="${ctx}/js/common.js" charset="utf-8"></script>
 <script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
 <script>
+var layeditIndex;
 function addEditInit(){
     var layedit = layui.layedit;
     layedit.set({
@@ -120,19 +120,15 @@ function addEditInit(){
     });
     //注意：layedit.set 一定要放在 build 前面，否则配置全局接口将无效。
     //构建一个默认的编辑器
-    var index = layedit.build('content');
-    //编辑器外部操作
-    var active = {
-        content: function(){
-            alert(layedit.getContent(index)); //获取编辑器内容
-        }
-        ,text: function(){
-            alert(layedit.getText(index)); //获取编辑器纯文本内容
-        }
-        ,selection: function(){
-            alert(layedit.getSelection(index));
-        }
-    };
+    layeditIndex = layedit.build('content',{
+        width:1111,
+        height: 500 //设置编辑器高度
+	});
+    $('.layui-layedit').width($('.layui-form').width()-192);//编辑框大小
+}
+function beforeSubmit(data){
+    layui.layedit.sync(layeditIndex);
+    data.content=layui.layedit.getContent(layeditIndex);
 }
 </script>
 </div>
