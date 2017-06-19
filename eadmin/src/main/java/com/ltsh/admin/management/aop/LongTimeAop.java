@@ -30,8 +30,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * 5、*(..):最后这个星号表示方法名，*号表示所有的方法，后面括弧里面表示方法的参数，两个句点表示任何参数。
  * Created by Administrator on 2017/6/10.
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class LongTimeAop {
     //匹配com.ltsh.admin.mvc包及其子包下的所有类的所有方法
 //    @Pointcut("execution(* com.ltsh.admin.mvc..*.*(..))")

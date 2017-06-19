@@ -4,6 +4,8 @@ package com.ltsh.admin.mvc.cms.article;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjz.util.Jsons;
+import com.ltsh.admin.mvc.cms.category.CmsCategoryService;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,8 @@ public class CmsArticleController extends BaseController {
 	public final static String viewPath = "cms/article";
 	@Autowired
 	private CmsArticleService cmsArticleService;
+	@Autowired
+	private CmsCategoryService cmsCategoryService;
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,HttpServletResponse response) {
 		return "cms/article/cmsArticle";
@@ -78,6 +82,7 @@ public class CmsArticleController extends BaseController {
 	
 	@RequestMapping("/add")
 	public String add(HttpServletRequest request,HttpServletResponse response) {
+		request.setAttribute("ztree", Jsons.toJsonString(cmsCategoryService.all()));
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
 		request.setAttribute("imageUrlDisplayNone", true);
@@ -90,6 +95,7 @@ public class CmsArticleController extends BaseController {
 	public String edit(HttpServletRequest request,HttpServletResponse response,CmsArticle cmsArticle) {
 		CmsArticle dbEntity=cmsArticleService.unique(cmsArticle.getId());
 		request.setAttribute("obj", dbEntity);
+		request.setAttribute("ztree", Jsons.toJsonString(cmsCategoryService.all()));
 		request.setAttribute("title", UPDATE_TITLE);
 		//控制编辑框是否不可见
 	   	request.setAttribute("idDisplayNone", true);
