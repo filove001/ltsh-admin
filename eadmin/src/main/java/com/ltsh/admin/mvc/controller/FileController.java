@@ -44,6 +44,16 @@ public class FileController {
     @RequestMapping(value = "upload")
     @ResponseBody
     public LayMsg upload(MultipartFile file) throws IOException {
+        return uploadLayMsg(file);
+//        return err.setMsg("上传失败");
+    }
+    @RequestMapping(value = "uploadImage")
+    @ResponseBody
+    public LayMsg uploadImage(MultipartFile imageUrl) throws IOException {
+        return uploadLayMsg(imageUrl);
+//        return err.setMsg("上传失败");
+    }
+    private LayMsg uploadLayMsg(MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             return err.setMsg("文件为空");
         }
@@ -54,9 +64,9 @@ public class FileController {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         Logs.info("上传的后缀名为：" + suffixName);
         // 文件上传后的路径
-        String filePath =ROOT+Dates.nowDate()+"/";
+        String filePath =ROOT+ Dates.nowDate()+"/";
         // 解决中文问题，liunx下中文路径，图片显示问题
-         fileName = UUID.randomUUID() + suffixName;
+        fileName = UUID.randomUUID() + suffixName;
         File dest = new File(filePath +fileName);
         // 检测是否存在目录
         if (!dest.getParentFile().exists()) {
@@ -65,7 +75,6 @@ public class FileController {
         file.transferTo(dest);
         Logs.info("上传本地地址：{}",dest.getAbsoluteFile());
         return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);
-//        return err.setMsg("上传失败");
     }
 
 

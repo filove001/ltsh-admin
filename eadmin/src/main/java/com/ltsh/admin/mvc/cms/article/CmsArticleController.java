@@ -85,7 +85,7 @@ public class CmsArticleController extends BaseController {
 		request.setAttribute("ztree", Jsons.toJsonString(cmsCategoryService.all()));
 		request.setAttribute("title", ADD_TITLE);
 		request.setAttribute("idDisplayNone", true);
-		request.setAttribute("imageUrlDisplayNone", true);
+//		request.setAttribute("imageUrlDisplayNone", true);
 		request.setAttribute("fileUrlDisplayNone", true);
 		request.setAttribute("fileNameDisplayNone", true);
 		request.setAttribute("remarksDisplayNone", true);

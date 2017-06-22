@@ -54,7 +54,11 @@
       	</div>
 		<div class="layui-form-item" <%if(has(imageUrlDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">图片路径</label>
-	        <div class="layui-input-block">                <input <%if(has(imageUrlDisabled)){%>disabled<%}%> type="text" value="${obj.imageUrl!}" name="imageUrl"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+
+	        <div class="layui-input-block">
+				<img id="upload-img" src="${obj.imageUrl!}" style="width:105px;height:80px;">
+				<input style="display:none" type="text" value="${obj.imageUrl!}" name="imageUrl" id="imageUrl" class="layui-input layui-form-danger">
+				<input <%if(has(imageUrlDisabled)){%>disabled<%}%> type="file"  name="file"  class="layui-upload-file">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(approveStatusDisplayNone)){%> style="display:none"<%}%>>
@@ -103,6 +107,16 @@
 var layeditIndex;
 function addEditInit(){
     var layedit = layui.layedit;
+    layui.upload({
+		url: '/file/upload' //接口url
+		,unwrap: false //其实就是不向你的input包裹upload组件的ui元素
+		,success: function(res, input){
+		    var src=res.data.src;
+			$('#upload-img').attr('src',src);
+//			input.value=res.data.src;
+			$('#imageUrl').val(src);
+		}
+	});
     layedit.set({
         uploadImage: {
             url: '/file/upload' //接口url
