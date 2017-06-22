@@ -10,7 +10,8 @@ public class Requests {
 
 	public static String getBasePath (HttpServletRequest request){
 		String path = request.getContextPath();
-		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+//		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		String basePath = request.getScheme()+"://"+Ips.getLocalIP()+":"+request.getServerPort()+path+"/";
 		return basePath;
 	}
 	/** 

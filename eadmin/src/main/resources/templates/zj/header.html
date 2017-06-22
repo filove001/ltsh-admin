@@ -1,0 +1,22 @@
+<div class="auto header">
+  <a href="/" title="设计帝国" class="logo">设计帝国</a>
+  <div class="header_c">
+    <script type="text/javascript" src="/plus/w1x8i0v6t.php?aid=9"></script>
+  </div>
+  <div class="header_r">
+    <div class="top_nav"><a href="/data/sitemap.html" target="_blank">网站地图</a><em class="v_line">|</em><a href="/data/rssmap.html" target="_blank">RSS地图</a><em class="v_line">|</em><a href="/tags.php" target="_blank">Tag标签</a></div>
+    <div class="bdsearch"><script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=10829753225025716633' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script></div>
+  </div>
+</div>
+
+<div class="nav">
+  <ul class="auto nav_bd">
+    <%
+    for(obj in categorys){
+    %>
+    <li><a href="${obj.href}" <%if(obj.href==href){%> class="hover"<%}%>>${obj.name}</a></li>
+    <%
+    }
+    %>
+  </ul>
+</div>

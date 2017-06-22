@@ -43,7 +43,7 @@ public class FileController {
     //文件上传相关代码
     @RequestMapping(value = "upload")
     @ResponseBody
-    public LayMsg upload(MultipartFile file) {
+    public LayMsg upload(MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             return err.setMsg("文件为空");
         }
@@ -62,16 +62,10 @@ public class FileController {
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
-        try {
-            file.transferTo(dest);
-            Logs.info("上传本地地址：{}",dest.getAbsoluteFile());
-            return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return err.setMsg("上传失败");
+        file.transferTo(dest);
+        Logs.info("上传本地地址：{}",dest.getAbsoluteFile());
+        return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);
+//        return err.setMsg("上传失败");
     }
 
 

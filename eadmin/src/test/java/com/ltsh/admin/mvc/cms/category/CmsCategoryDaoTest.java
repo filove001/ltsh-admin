@@ -13,11 +13,10 @@ import java.util.Map;
 public class CmsCategoryDaoTest{
 	@Autowired
 	private CmsCategoryDao dao;
+
 	@Test
 	public void testInsertT() {
-		String[] names={"湛江历史","湛江人文","湛江旅游","湛江房产","湛江海产"};
-
-		Map<String,Object> map= Maps.newMap(new String[]{"zj/lishi","zj/renwen","zj/lvyou","zj/fangchan","zj/haichan"}, new Object[]{"湛江历史","湛江人文","湛江旅游","湛江房产","湛江海产"});
+		Map<String,Object> map= Maps.newMap(new String[]{"index","yinshi","renwen","lvyou","fangchan","haichan"}, new Object[]{"湛江历史","湛江饮食","湛江人文","湛江旅游","湛江房产","湛江海产"});
 		for (Map.Entry<String,Object> e: map.entrySet()) {
 			CmsCategory entity=create(e.getValue().toString(),e.getKey());
 			dao.insert(entity);
@@ -31,7 +30,10 @@ public class CmsCategoryDaoTest{
 		entity.setName(name);
 		entity.setPath(name);
 		entity.setContent(name);
-		entity.setSort(1);
+		entity.setSort(10);
+		if("湛江历史".equals(name)){
+			entity.setSort(0);
+		}
 		entity.setStatus(1);
 		entity.setType(1);
 		entity.setHref(href);
