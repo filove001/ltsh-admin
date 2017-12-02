@@ -38,6 +38,8 @@ public class GenInit {
 	public String model_dir;
 	public GenInit() {
 		BeetlKit.gt.registerFunction("string", new StrFn());
+		System.out.println(GenInit.class.getResource("gen.properties")
+				.getFile());
 		PropKit.use(new File(GenInit.class.getResource("gen.properties")
 				.getFile()));
 		basepackage = PropKit.get("basepackage");
@@ -60,7 +62,7 @@ public class GenInit {
 	public static void main(String[] args) throws SQLException, IOException {
 		GenInit g = new GenInit();
 //		g.gen("SYS_APP","SYS_ROLE_APP");
-		g.gen("cms_category");
+		g.gen("book","book_book_type","book_type","book_shelf","book_source","search","book_content");
 //		g.gen("sys_dict","sys_role","sys_menu","sys_privilege");
 		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot);
 ////		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot+"\\src\\main\\resources\\templates\\sys\\user");

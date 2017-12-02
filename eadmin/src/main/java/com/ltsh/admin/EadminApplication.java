@@ -59,5 +59,4 @@ public class EadminApplication implements WebMvcConfigurer {
 	public static void main(String[] args) {
 		SpringApplication.run(EadminApplication.class, args);
 	}
-	
 }

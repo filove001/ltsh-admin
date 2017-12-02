@@ -4,7 +4,6 @@ import com.ltsh.admin.mvc.sys.privilege.SysPrivilege;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilegeDao;
 import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.role.SysRoleDao;
-import com.ltsh.admin.util.SpringContextHolder;
 import org.beetl.sql.core.engine.PageQuery;
 import org.beetl.sql.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.*;
  * 菜单 service
  */
 @Service
-public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysMenuService{
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysMenuService {
 	@Autowired
 	private SysMenuDao sysMenuDao;
 	@Autowired
@@ -48,6 +47,11 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysM
 	static {
 		searchSysMenu.setStatus(1);
 		searchSysPrivilege.setAccess(SysMenu.tableName);
+	}
+
+	@Override
+	public List<SysMenu> getMenuAll() {
+		return sysMenuDao.all();
 	}
 	@Override
 	public List<SysMenu> getMenu(Collection<? extends GrantedAuthority> roleCodes) {

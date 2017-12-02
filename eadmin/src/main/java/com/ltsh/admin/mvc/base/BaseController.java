@@ -36,5 +36,6 @@ public class BaseController {
 		request.setAttribute("debug", GlobalConf.debug);
         request.setAttribute("ctx", request.getContextPath());
         request.setAttribute("ui", request.getContextPath()+"/layui");
+		request.setAttribute("ui2", request.getContextPath()+"/layui2");
 	}
 }

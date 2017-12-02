@@ -37,7 +37,7 @@ function Tab(mainId) {
 	
 	var This = this;
 	layui.use('element', function(){
-		var element =layui.element();
+		var element = layui.element;
 		element.on('tab('+mainId+')', function(data) {
 			
 			if(This.tabShowCallBack) {
@@ -108,7 +108,7 @@ Tab.prototype.isExist = function(id) {
 };
 
 Tab.prototype.closeAll = function() {
-	var element = layui.element();
+	var element = layui.element;
 	for(var i=0;i<this.tabsId.length;i++) {
 		element.tabDelete(this.mainId, this.tabsId[i]);
 	}
@@ -116,7 +116,7 @@ Tab.prototype.closeAll = function() {
 };
 
 Tab.prototype.closeOther = function(id) {
-	var element = layui.element();
+	var element = layui.element;
 	for(var i=0;i<this.tabsId.length;i++) {
 		if(id != this.tabsId[i]) {
 			element.tabDelete(this.mainId, this.tabsId[i]);
@@ -135,7 +135,7 @@ Tab.prototype.add = function(id,icon,title,url,bodyCss) {
 	if(!bodyCss) {
 		bodyCss = "layui-body layui-tab-content site-demo site-demo-body";
 	}
-	var element = layui.element();
+	var element = layui.element;
 	//如果已经存在 切换显示
 	if($("#title_"+id)[0]) {
 		element.tabChange(this.mainId,id);

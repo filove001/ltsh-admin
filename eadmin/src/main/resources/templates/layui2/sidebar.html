@@ -1,0 +1,53 @@
+<div class="layui-side layui-bg-black">
+	<div class="layui-side-scroll">
+		<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+		<ul class="layui-nav layui-nav-tree"  lay-filter="test">
+			<%for(bo in sysMenuBos){%>
+			<li class="layui-nav-item layui-nav-itemed">
+				<a class="javascript:;" href="javascript:;">${bo.name}</a>
+				<dl class="layui-nav-child">
+					<%
+					for(c in bo.children){
+					%>
+					<dd>
+						<a href="javascript:;" onclick="tab.add('${c.id}','${c.icon}','${c.name}','${c.href}')" >${c.name}</a>
+					</dd>
+					<%
+					}
+					%>
+				</dl>
+			</li>
+			<%
+			}
+			%>
+			<li class="layui-nav-item"><a href="">云市场</a></li>
+			<li class="layui-nav-item"><a href="">发布商品</a></li>
+		</ul>
+	</div>
+</div>
+
+
+
+<div class="layui-side layui-bg-black" id="sidebar">
+   <div class="layui-side-scroll">
+	<ul class="layui-nav layui-nav-tree site-demo-nav">
+		<%for(bo in sysMenuBos){%>
+		<li class="layui-nav-item layui-nav-itemed">
+			<a class="javascript:;" href="javascript:;">${bo.name}</a>
+			<dl class="layui-nav-child">
+			<%
+				for(c in bo.children){
+			%>
+				<dd>
+					<a href="javascript:;" onclick="tab.add('${c.id}','${c.icon}','${c.name}','${c.href}')" >${c.name}</a>
+				</dd>
+			<%
+				}
+			%>
+			</dl>
+		</li>
+		<%
+			}
+		%>
+   </div>
+ </div>

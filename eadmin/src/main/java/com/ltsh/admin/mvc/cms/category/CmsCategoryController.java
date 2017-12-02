@@ -4,6 +4,7 @@ package com.ltsh.admin.mvc.cms.category;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fjz.util.Empty;
 import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,7 @@ public class CmsCategoryController extends BaseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public BaseMsg<Object> save(HttpServletRequest request,HttpServletResponse response,CmsCategory cmsCategory) {
+		cmsCategory.setSort(Empty.is(cmsCategory.getSort())?0:cmsCategory.getSort());
 		cmsCategoryService.insert(cmsCategory);
 		return BaseMsg.successMsg;
 	}

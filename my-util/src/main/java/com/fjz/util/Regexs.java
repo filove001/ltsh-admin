@@ -11,6 +11,12 @@ public class Regexs {
 		Matcher m = wp.matcher(content);
 		return m.find();
 	}
+	public static String findGroupByOne(String regex,String content){
+		List<String> list = findGroup(regex, content);
+		if(Empty.is(list))
+			throw new RuntimeException("findGroupByOne没有搜索到对应名字");
+		return list.get(0);
+	}
 	public static List<String> findGroup(String regex,String content){
 		Pattern wp = Pattern.compile(regex); 
 		Matcher m = wp.matcher(content);
@@ -19,6 +25,12 @@ public class Regexs {
 			list.add(m.group());
 		}
 		return list;
+	}
+	public static String findGroupIndexByOne(String regex,String content){
+		List<String> list = findGroup(regex, content,1);
+		if(Empty.is(list))
+			throw new RuntimeException("findGroupByOne没有搜索到对应名字");
+		return list.get(0);
 	}
 	public static List<String> findGroup(String regex,String content,int groupIndex){
 		Pattern wp = Pattern.compile(regex); 

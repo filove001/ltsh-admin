@@ -1,0 +1,23 @@
+<%layout("bookIndex.html",{searchClass:'class="current"'}){ %>
+<div class="container page_search">
+	<section class="search_form">
+		<form action="/search.htm" method="get" onsubmit="return doFormSubmit();">
+			<input type="search" id="keyword" placeholder="请输入书名或作者" value="" autocomplete="off" autocorrect="off" maxlength="64" name="keyword" class="inp">
+			<input type="button" class="btn" value="搜索" onclick="doFormSubmit();" />
+		</form>
+		<div class="suggest_wrap" style="display:none;">
+			<div class="suggest_in">
+				<ul id="suggest_list"></ul>
+				<div class="tit"><div class="clear_history">清除历史记录</div><div class="close">关闭</div></div>
+			</div>
+		</div>
+	</section>
+	<section class="search_meta">
+		<div class="hd"><h3>热搜词：</h3></div>
+		<div class="bd">
+			<ul class="meta_list">
+			</ul>
+		</div>
+	</section>
+</div>
+<% } %>

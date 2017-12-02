@@ -23,6 +23,8 @@ public interface SysMenuService extends BaseService<SysMenu>{
 	 */
 	List<SysMenuBo> getSysMenuBoTree(List<SysMenu> list);
 
+	List<SysMenu> getMenuAll();
+
 	/**
 	 * 通过权限获取对应的菜单权限
 	 * @param roleCodes
