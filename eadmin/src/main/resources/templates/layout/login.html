@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>登录</title>
-    <link rel="stylesheet" href="${ui}/css/layui.css">
+    <%include("/base/css.html"){} %>
     <link rel="stylesheet" href="${ctx}/css/login.css">
     <!--<link rel="icon" href="../frame/static/image/code.png">-->
 </head>
@@ -37,7 +37,7 @@
 </div>
 
 
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<%include("/base/js.html"){} %>
 <script type="text/javascript">
     layui.use(['form'], function () {
         // 操作对象

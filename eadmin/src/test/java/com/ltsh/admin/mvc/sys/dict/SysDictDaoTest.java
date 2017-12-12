@@ -1,14 +1,8 @@
 package com.ltsh.admin.mvc.sys.dict;
 import org.junit.Test;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SysDictDaoTest{
-	@Autowired
-	private SysDictDao dao;
+import com.ltsh.admin.BaseDaoTest;
+public class SysDictDaoTest extends BaseDaoTest{
+	private SysDictDao dao=sqlManager.getMapper(SysDictDao.class);
 	@Test
 	public void testInsertT() {
 		for (int i = 0; i < 100; i++) {

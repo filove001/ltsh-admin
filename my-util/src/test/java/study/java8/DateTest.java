@@ -124,7 +124,7 @@ public class DateTest {
         Calendar cal = Calendar.getInstance();
         cal.setTime(Dates.toDateYYYYMMDD("2017-06-11"));
         System.out.println(cal.get(Calendar.WEEK_OF_YEAR));
-        System.out.println(Dates.getYearByWeek(Dates.toDateYYYYMMDD("2017-06-11")));
+//        System.out.println(Dates.getYearByWeek(Dates.toDateYYYYMMDD("2017-06-11")));
         LocalDate today = LocalDate.now();
         DayOfWeek dow = today.getDayOfWeek();
         System.out.println( today.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));

@@ -1,14 +1,8 @@
 package ${basepackage}.mvc.${modelpackage};
 import org.junit.Test;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class ${table.modelName}DaoTest{
-	@Autowired
-	private ${table.modelName}Dao dao;
+import com.ltsh.admin.BaseDaoTest;
+public class ${table.modelName}DaoTest extends BaseDaoTest{
+	private ${table.modelName}Dao dao=sqlManager.getMapper(${table.modelName}Dao.class);
 	@Test
 	public void testInsertT() {
 		for (int i = 0; i < 100; i++) {

@@ -1,16 +1,13 @@
 package com.ltsh.admin.mvc.sys.user;
 
-import java.util.List;
-
+import com.fjz.util.Assert;
+import com.ltsh.admin.mvc.base.BaseDaoMapper;
+import com.ltsh.admin.mvc.base.BaseServiceImpl;
 import org.beetl.sql.core.engine.PageQuery;
-import org.beetl.sql.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import com.fjz.util.Assert;
-import com.ltsh.admin.mvc.base.BaseServiceImpl;
 /**
  * 用户信息 service
  */
@@ -21,20 +18,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser> implements SysU
 	@Autowired
 	private SysUserDao sysUserDao;
 	@Override
-	public BaseMapper<SysUser> getDao(){
-		return sysUserDao;
-	}
-	@Override
 	@Cacheable
 	public SysUser getByUsername(String username) {
 		System.out.println("username="+username);
 		return sysUserDao.getByUsername(username);
-	}
-	@Override
-//	@Cacheable(key="#query.pageNumber")
-	public PageQuery<SysUser> page(PageQuery<SysUser> query) {
-		sysUserDao.page(query);
-		return query;
 	}
 	@Override
 	public SysUser checkLogin(String username, String password) {

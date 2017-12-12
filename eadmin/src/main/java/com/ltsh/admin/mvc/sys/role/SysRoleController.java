@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fjz.util.Jsons;
 import com.fjz.util.Lists;
+import com.ltsh.admin.mvc.base.BaseService;
+import com.ltsh.admin.mvc.base.CrudController;
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
 import com.ltsh.admin.mvc.sys.menu.SysMenuService;
@@ -45,7 +47,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/sys/role")
-public class SysRoleController extends BaseController {
+public class SysRoleController extends CrudController<SysRole> {
 	public final static String ADD_TITLE = "添加"+SysRole.tableRemarks;
 	public final static String UPDATE_TITLE = "编辑"+SysRole.tableRemarks;
 	public final static String viewPath = "sys/role";
@@ -57,16 +59,7 @@ public class SysRoleController extends BaseController {
 	public String index(HttpServletRequest request,HttpServletResponse response) {
 		return "sys/role/sysRole";
 	}
-	/** 
-	 * 执行搜索 
-	 **/
-	@RequestMapping("/list")
-	@ResponseBody
-	public PageQuery<SysRole> list(HttpServletRequest request,HttpServletResponse response,SysRole queryEntity,PageQuery<SysRole> query) {
-		query.setParas(queryEntity);
-		query=sysRoleService.page(query);
-		return query;
-	}
+
 	@RequestMapping("/save")
 	@ResponseBody
 	public BaseMsg<Object> save(HttpServletRequest request,HttpServletResponse response,SysRole sysRole) {
@@ -77,17 +70,11 @@ public class SysRoleController extends BaseController {
 	}
 	@RequestMapping("/update")
 	@ResponseBody
-	public BaseMsg<Object> update(HttpServletRequest request,HttpServletResponse response,SysRole sysRole,String sysRoleMenu) {
+	public BaseMsg<Object> update(HttpServletRequest request,HttpServletResponse response,String sysRoleMenu,SysRole sysRole) {
 		SysRole dbEntity =sysRoleService.unique(sysRole.getId());
 		Beans.copyProperties(sysRole, dbEntity);
 //		sysRoleService.updateById(dbEntity);
 		sysRoleService.updateRoleAndPrivilege(dbEntity,sysRoleMenu);
-		return BaseMsg.successMsg;
-	}
-	@RequestMapping("/delete")
-	@ResponseBody
-	public BaseMsg<Object> delete(HttpServletRequest request,HttpServletResponse response,@RequestParam String ids) {
-		sysRoleService.deleteById(ids.split(","));
 		return BaseMsg.successMsg;
 	}
 	

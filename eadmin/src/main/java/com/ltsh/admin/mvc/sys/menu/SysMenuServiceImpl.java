@@ -1,16 +1,15 @@
 package com.ltsh.admin.mvc.sys.menu;
 
+import com.ltsh.admin.mvc.base.BaseDaoMapper;
+import com.ltsh.admin.mvc.base.BaseServiceImpl;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilege;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilegeDao;
 import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.role.SysRoleDao;
 import org.beetl.sql.core.engine.PageQuery;
-import org.beetl.sql.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-
-import com.ltsh.admin.mvc.base.BaseServiceImpl;
 
 import java.util.*;
 
@@ -25,16 +24,6 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenu> implements SysM
 	SysPrivilegeDao sysPrivilegeDao;
 	@Autowired
 	SysRoleDao sysRoleDao;
-	@Override
-	public BaseMapper<SysMenu> getDao(){
-		return sysMenuDao;
-	}
-	@Override
-	public PageQuery<SysMenu> page(PageQuery<SysMenu> query) {
-		sysMenuDao.page(query);
-		return query;
-	}
-
 	@Override
 	public List<SysMenuBo> getSysMenuBoTree(List<SysMenu> list) {
 		List<SysMenuBo> nodeList = new ArrayList();

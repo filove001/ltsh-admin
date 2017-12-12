@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>layout 后台大布局 - Layui</title>
-  <link rel="stylesheet" href="${ui2}/css/layui.css">
+  <%include("/base/css.html"){} %>
   <link rel="stylesheet" href="${ctx}/css/demo.css">
 </head>
 <body class="layui-layout-body">
@@ -15,7 +15,7 @@
   <%include("footer.html"){} %>
 </div>
 <script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+<%include("/base/js.html"){} %>
 <script src="${ctx}/js/tab2.js" charset="utf-8"></script>
 <script>
     //JavaScript代码区域

@@ -6,7 +6,7 @@ select @pageTag(){
 	from sys_user where #use("like")#
 cols
 ===
-	id,login_name,password,name,tel,phone,address,email,idcard,zip,status,sex,birth,remarks,create_by,create_date,last_login_time,login_count
+	id,login_name,password,salt,name,tel,phone,address,email,qq,weixin,weibo,idcard,zip,status,sex,birth,remarks,create_by,create_date,last_login_time,login_count,session_key
 condition
 ===
 	1 = 1 
@@ -18,6 +18,9 @@ condition
 	@}
 	@if(!isEmpty(password)){
 	 and password=#password#
+	@}
+	@if(!isEmpty(salt)){
+	 and salt=#salt#
 	@}
 	@if(!isEmpty(name)){
 	 and name=#name#
@@ -33,6 +36,15 @@ condition
 	@}
 	@if(!isEmpty(email)){
 	 and email=#email#
+	@}
+	@if(!isEmpty(qq)){
+	 and qq=#qq#
+	@}
+	@if(!isEmpty(weixin)){
+	 and weixin=#weixin#
+	@}
+	@if(!isEmpty(weibo)){
+	 and weibo=#weibo#
 	@}
 	@if(!isEmpty(idcard)){
 	 and idcard=#idcard#
@@ -64,6 +76,9 @@ condition
 	@if(!isEmpty(loginCount)){
 	 and login_count=#loginCount#
 	@}
+	@if(!isEmpty(sessionKey)){
+	 and session_key=#sessionKey#
+	@}
 
 like
 ===
@@ -76,6 +91,9 @@ like
 	@}
 	@if(!isEmpty(password)){
 	 and password like #'%'+password+'%'#
+	@}
+	@if(!isEmpty(salt)){
+	 and salt like #'%'+salt+'%'#
 	@}
 	@if(!isEmpty(name)){
 	 and name like #'%'+name+'%'#
@@ -91,6 +109,15 @@ like
 	@}
 	@if(!isEmpty(email)){
 	 and email like #'%'+email+'%'#
+	@}
+	@if(!isEmpty(qq)){
+	 and qq like #'%'+qq+'%'#
+	@}
+	@if(!isEmpty(weixin)){
+	 and weixin like #'%'+weixin+'%'#
+	@}
+	@if(!isEmpty(weibo)){
+	 and weibo like #'%'+weibo+'%'#
 	@}
 	@if(!isEmpty(idcard)){
 	 and idcard like #'%'+idcard+'%'#
@@ -121,4 +148,7 @@ like
 	@}
 	@if(!isEmpty(loginCount)){
 	 and login_count=#loginCount#
+	@}
+	@if(!isEmpty(sessionKey)){
+	 and session_key like #'%'+sessionKey+'%'#
 	@}

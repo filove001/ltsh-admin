@@ -1,12 +1,11 @@
 package com.ltsh.admin.mvc.cms.article.data;
-import com.fjz.util.Dates;
-import org.beetl.sql.core.annotatoin.AssignID;
 
+import com.ltsh.admin.mvc.base.BaseBean;
 /**
  *  cms_article_data 文章详 
  * @author fjz
  */
-public class CmsArticleData{
+public class CmsArticleData extends BaseBean{
 	public static final String tableName="cms_article_data";
 	public static final String tableRemarks="文章详";
 	private java.lang.Integer id;//id=cms_article.id 
@@ -17,7 +16,6 @@ public class CmsArticleData{
 		this.id=id;
 	}
 	/** id INT(10)：id=cms_article.id **/
-	@AssignID
 	public java.lang.Integer getId() {
 		return id;
 	}

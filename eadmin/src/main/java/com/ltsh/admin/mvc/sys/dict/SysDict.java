@@ -1,10 +1,11 @@
 package com.ltsh.admin.mvc.sys.dict;
 
+import com.ltsh.admin.mvc.base.BaseBean;
 /**
  *  sys_dict 字典 
  * @author fjz
  */
-public class SysDict{
+public class SysDict extends BaseBean{
 	public static final String tableName="sys_dict";
 	public static final String tableRemarks="字典";
 	private java.lang.Integer id;//编号 

@@ -1,12 +1,12 @@
 package com.ltsh.admin.mvc.sys.user.role;
-
+import com.fjz.util.Dates;
 /**
- *  sys_user_role 用户角色 
+ *  sys_user_role  
  * @author fjz
  */
 public class SysUserRole{
 	public static final String tableName="sys_user_role";
-	public static final String tableRemarks="用户角色";
+	public static final String tableRemarks="";
 	private java.lang.Integer userId;// 
 	private java.lang.Integer roleId;// 
 	public void setUserId(java.lang.Integer userId){

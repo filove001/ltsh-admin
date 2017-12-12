@@ -2,11 +2,13 @@ package com.ltsh.admin.mvc.cms.category;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fjz.util.Dates;
+
+import com.ltsh.admin.mvc.base.BaseBean;
 /**
  *  cms_category 栏目 
  * @author fjz
  */
-public class CmsCategory{
+public class CmsCategory extends BaseBean{
 	public static final String tableName="cms_category";
 	public static final String tableRemarks="栏目";
 	private java.lang.Integer id;//id 

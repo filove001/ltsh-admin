@@ -2,6 +2,7 @@ package com.fjz.util.log;
 
 import static org.junit.Assert.*;
 
+import com.fjz.util.Systems;
 import org.junit.Test;
 
 public class LogsTest {
@@ -30,7 +31,7 @@ public class LogsTest {
 
 	@Test
 	public void testGetCodeLocation() {
-		System.out.println(Logs.getCodeLocation(3));
+		System.out.println(Systems.getCodeLocation(3));
 	}
 
 }

@@ -1,149 +1,165 @@
 <html>
 <head>
-<meta charset="utf-8">
-<title>文章</title>
-<link rel="stylesheet" href="${ui}/css/layui.css">
-<link rel="stylesheet" href="${ctx}/css/content.css">
+	<meta charset="utf-8">
+	<title>文章</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<%include("/base/css.html"){} %>
+	<link rel="stylesheet" href="${ctx}/css/content2.css">
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
 	<form class="layui-form layui-form-pane" id="search-form">
-			<div class="layui-form-item">
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">id:</label>-->
-					<!--<input type="text" value="" name="id" placeholder="id" class="layui-input">-->
-				<!--</div>-->
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">目录id:</label>
-					<input type="text" value="" name="categoryId" placeholder="目录id" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">文章名称:</label>
-					<input type="text" value="" name="title" placeholder="文章名称" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">文件内容:</label>
-					<input type="text" value="" name="content" placeholder="文件内容" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">浏览数:</label>
-					<input type="text" value="" name="countView" placeholder="浏览数" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">评论数:</label>
-					<input type="text" value="" name="countComment" placeholder="评论数" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">状态//radio/-1隐藏,1,显示:</label>
-					<input type="text" value="" name="status" placeholder="状态//radio/-1隐藏,1,显示" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">是否评论：-1否 1 是:</label>
-					<input type="text" value="" name="isComment" placeholder="是否评论：-1否 1 是" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">是否推荐：-1否 1 是:</label>
-					<input type="text" value="" name="isRecommend" placeholder="是否推荐：-1否 1 是" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">排序:</label>
-					<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">跳转地址:</label>
-					<input type="text" value="" name="href" placeholder="跳转地址" class="layui-input">
-				</div>
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">图片路径:</label>-->
-					<!--<input type="text" value="" name="imageUrl" placeholder="图片路径" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">文件路径:</label>-->
-					<!--<input type="text" value="" name="fileUrl" placeholder="文件路径" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">文件名:</label>-->
-					<!--<input type="text" value="" name="fileName" placeholder="文件名" class="layui-input">-->
-				<!--</div>-->
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">审核状态:</label>
-					<input type="text" value="" name="approveStatus" placeholder="审核状态" class="layui-input">
-				</div>
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">更新时间:</label>-->
-					<!--<input type="text" value="" name="startTime" placeholder="更新时间" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">结束时间:</label>-->
-					<!--<input type="text" value="" name="endTime" placeholder="结束时间" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">更新者:</label>-->
-					<!--<input type="text" value="" name="updateBy" placeholder="更新者" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">更新时间:</label>-->
-					<!--<input type="text" value="" name="updateTime" placeholder="更新时间" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">创建时间:</label>-->
-					<!--<input type="text" value="" name="createTime" placeholder="创建时间" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">创建者:</label>-->
-					<!--<input type="text" value="" name="createBy" placeholder="创建者" class="layui-input">-->
-				<!--</div>-->
-			   	<!--<div class="layui-input-inline">-->
-			   	<!--<label class="layui-form-label">备注信息:</label>-->
-					<!--<input type="text" value="" name="remarks" placeholder="备注信息" class="layui-input">-->
-				<!--</div>-->
-				<a class="layui-btn" href="javascript:search(1);">查询</a>
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<label class="layui-form-label">id:</label>
+				<input type="text" value="" name="id" placeholder="id" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">目录id:</label>
+				<input type="text" value="" name="categoryId" placeholder="目录id" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文章名称:</label>
+				<input type="text" value="" name="title" placeholder="文章名称" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文件内容:</label>
+				<input type="text" value="" name="content" placeholder="文件内容" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">浏览数:</label>
+				<input type="text" value="" name="countView" placeholder="浏览数" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">评论数:</label>
+				<input type="text" value="" name="countComment" placeholder="评论数" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">状态//radio/-1隐藏,1,显示:</label>
+				<input type="text" value="" name="status" placeholder="状态//radio/-1隐藏,1,显示" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">是否评论：-1否 1 是:</label>
+				<input type="text" value="" name="isComment" placeholder="是否评论：-1否 1 是" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">是否推荐：-1否 1 是:</label>
+				<input type="text" value="" name="isRecommend" placeholder="是否推荐：-1否 1 是" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">排序:</label>
+				<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">跳转地址:</label>
+				<input type="text" value="" name="href" placeholder="跳转地址" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">图片路径:</label>
+				<input type="text" value="" name="imageUrl" placeholder="图片路径" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文件路径:</label>
+				<input type="text" value="" name="fileUrl" placeholder="文件路径" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文件名:</label>
+				<input type="text" value="" name="fileName" placeholder="文件名" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">审核状态:</label>
+				<input type="text" value="" name="approveStatus" placeholder="审核状态" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">更新时间:</label>
+				<input type="text" value="" name="startTime" placeholder="更新时间" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">结束时间:</label>
+				<input type="text" value="" name="endTime" placeholder="结束时间" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">更新者:</label>
+				<input type="text" value="" name="updateBy" placeholder="更新者" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">更新时间:</label>
+				<input type="text" value="" name="updateTime" placeholder="更新时间" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">创建时间:</label>
+				<input type="text" value="" name="createTime" placeholder="创建时间" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">创建者:</label>
+				<input type="text" value="" name="createBy" placeholder="创建者" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">备注信息:</label>
+				<input type="text" value="" name="remarks" placeholder="备注信息" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<a class="layui-btn" href="javascript:search();">查询</a><span></span>
 				<a class="layui-btn" href="add.html">新增</a>
 			</div>
-		</form>
-		<div class="layui-form">
-		  <table class="layui-table">
-		    <thead>
-		      <tr>
-		        <th>序号</th>
-			   	<!--<th entity-name="id">id</th>-->
-			   	<th entity-name="categoryId">目录id</th>
-			   	<th entity-name="title">文章名称</th>
-			   	<!--<th entity-name="content">文件内容</th>-->
-			   	<th entity-name="countView">浏览数</th>
-			   	<th entity-name="countComment">评论数</th>
-			   	<th entity-name="status">状态//radio/-1隐藏,1,显示</th>
-			   	<th entity-name="isComment">是否评论：-1否 1 是</th>
-			   	<th entity-name="isRecommend">是否推荐：-1否 1 是</th>
-			   	<th entity-name="sort">排序</th>
-			   	<th entity-name="href">跳转地址</th>
-			   	<!--<th entity-name="imageUrl">图片路径</th>-->
-			   	<!--<th entity-name="fileUrl">文件路径</th>-->
-			   	<!--<th entity-name="fileName">文件名</th>-->
-			   	<th entity-name="approveStatus">审核状态</th>
-			   	<!--<th entity-name="startTime">更新时间</th>-->
-			   	<!--<th entity-name="endTime">结束时间</th>-->
-			   	<!--<th entity-name="updateBy">更新者</th>-->
-			   	<!--<th entity-name="updateTime">更新时间</th>-->
-			   	<!--<th entity-name="createTime">创建时间</th>-->
-			   	<!--<th entity-name="createBy">创建者</th>-->
-			   	<!--<th entity-name="remarks">备注信息</th>-->
-				  <th>操作</th>
-		      </tr>
-		    </thead>
-		    <tbody id="tb-td">
-		    </tbody>
-		  </table>
 		</div>
-</div>
-<div class="grid-page">
-	<div id="grid-page"></div>
+	</form>
+	<div class="layui-form">
+		<table id="layui-table" lay-filter="grid"></table>
+	</div>
 </div>
 <div id="LAY_democodejs">
-<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
-<script src="${ctx}/js/common.js" charset="utf-8"></script>
-<script src="${ctx}/js/content.js" charset="utf-8"></script>
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
+	<script type="text/html" id="gridBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+        var tableIns=null;
+        layui.use('table', function(){
+            var table = layui.table;
+            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            //第一个实例
+            tableIns=table.render({
+                elem: '#layui-table'
+                ,height: 'full-'+height
+                ,url: '/cms/article/list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {field: 'id', title: 'id' ,width:80},
+                {field: 'categoryId', title: '目录id' ,width:80},
+                {field: 'title', title: '文章名称' ,width:80},
+                {field: 'content', title: '文件内容' ,width:80},
+                {field: 'countView', title: '浏览数' ,width:80},
+                {field: 'countComment', title: '评论数' ,width:80},
+                {field: 'status', title: '状态//radio/-1隐藏,1,显示' ,width:80},
+                {field: 'isComment', title: '是否评论：-1否 1 是' ,width:80},
+                {field: 'isRecommend', title: '是否推荐：-1否 1 是' ,width:80},
+                {field: 'sort', title: '排序' ,width:80},
+                {field: 'href', title: '跳转地址' ,width:80},
+                {field: 'imageUrl', title: '图片路径' ,width:80},
+                {field: 'fileUrl', title: '文件路径' ,width:80},
+                {field: 'fileName', title: '文件名' ,width:80},
+                {field: 'approveStatus', title: '审核状态' ,width:80},
+                {field: 'startTime', title: '更新时间' ,width:80},
+                {field: 'endTime', title: '结束时间' ,width:80},
+                {field: 'updateBy', title: '更新者' ,width:80},
+                {field: 'updateTime', title: '更新时间' ,width:80},
+                {field: 'createTime', title: '创建时间' ,width:80},
+                {field: 'createBy', title: '创建者' ,width:80},
+                {field: 'remarks', title: '备注信息',minWidth:60},
+                 {fixed: 'right', width:100, align:'center', toolbar: '#gridBar'} //这里的toolbar值是模板元素的选择器
+                ]]
+            	,request: tableRequest
+				,response: tableResponse
+            });
+        });
+	</script>
 </div>
 </body>
 </html>

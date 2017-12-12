@@ -2,11 +2,9 @@ package com.ltsh.admin.mvc.sys.log;
 
 import com.fjz.util.Ips;
 import com.fjz.util.Jsons;
-import org.beetl.sql.core.engine.PageQuery;
-import org.beetl.sql.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.ltsh.admin.mvc.base.BaseDaoMapper;
 import com.ltsh.admin.mvc.base.BaseServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,18 +15,6 @@ import java.util.Date;
  */
 @Service
 public class SysLogServiceImpl extends BaseServiceImpl<SysLog> implements SysLogService{
-	@Autowired
-	private SysLogDao sysLogDao;
-	@Override
-	public BaseMapper<SysLog> getDao(){
-		return sysLogDao;
-	}
-	@Override
-	public PageQuery<SysLog> page(PageQuery<SysLog> query) {
-		sysLogDao.page(query);
-		return query;
-	}
-
 	@Override
 	public SysLog insert(HttpServletRequest request) {
 		SysLog sysLog=createSysLog(request);

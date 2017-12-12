@@ -7,16 +7,14 @@ import com.ltsh.admin.management.interceptor.LogInterceptor;
 import com.ltsh.admin.management.interceptor.SameUrlDataInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
 
 @SpringBootApplication
-@EnableCaching//启动缓存
+//@EnableCaching//启动缓存
 public class EadminApplication implements WebMvcConfigurer {
 
 	/**

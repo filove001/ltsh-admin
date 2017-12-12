@@ -3,17 +3,19 @@ package ${basepackage}.mvc.${modelpackage};
 	<% if(strutil.startWith(colunm.type,'DATE')){%>
 import org.springframework.format.annotation.DateTimeFormat;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fjz.util.Dates;
 	<%
 		break;
 		}
 	%>
 <%}%>
-import com.fjz.util.Dates;
+
+import ${basepackage}.mvc.base.BaseBean;
 /**
  *  ${table.name} ${table.remarks} 
  * @author fjz
  */
-public class ${table.modelName}{
+public class ${table.modelName} extends BaseBean{
 	public static final String tableName="${table.name}";
 	public static final String tableRemarks="${table.remarks}";
 	<% for(colunm in table.columns){ %>

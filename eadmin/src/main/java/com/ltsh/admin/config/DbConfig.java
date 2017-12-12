@@ -60,7 +60,7 @@ public class DbConfig{
     	factory.setInterceptors(new Interceptor[]{
     			new DebugInterceptor(),
 				cache});
-    	factory.setNc(new UnderlinedNameConversion());
+    	factory.setNc(new UnderlinedNameConversion());//开启驼峰
     	factory.setSqlLoader(new ClasspathLoader("/sql"));
     	return factory;
     }

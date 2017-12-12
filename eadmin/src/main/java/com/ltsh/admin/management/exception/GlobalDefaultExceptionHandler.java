@@ -3,6 +3,7 @@ package com.ltsh.admin.management.exception;
 import com.fjz.util.BaseMsg;
 import com.fjz.util.Jsons;
 import com.fjz.util.Responses;
+import com.fjz.util.Systems;
 import com.fjz.util.exception.CheckException;
 import com.fjz.util.log.Logs;
 import org.beetl.sql.core.BeetlSQLException;
@@ -47,7 +48,7 @@ public class GlobalDefaultExceptionHandler {
 //	}
 	private ModelAndView doView(HttpServletRequest request,HttpServletResponse response,
 			Exception e) {
-		Logs.info(" 是来自方法 "+Logs.getCodeLocation(3)+" 请求");
+		Logs.info(" 是来自方法 "+ Systems.getCodeLocation(3)+" 请求");
 //		e.printStackTrace();
 		Logs.info(e);
 //		if(request.getRequestURL().indexOf("/api/")!=-1){

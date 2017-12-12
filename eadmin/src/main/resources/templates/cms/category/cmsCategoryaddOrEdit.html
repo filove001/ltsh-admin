@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>${title}</title>
-<link rel="stylesheet" href="${ui}/css/layui.css">
+<link rel="stylesheet" href="${ui2}/css/layui.css">
 <link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 </head>
 <body>
@@ -81,7 +81,7 @@
       	</div>
 		<div class="layui-form-item" <%if(has(updateTimeDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">更新时间</label>
-	        <div class="layui-input-block">                <input <%if(has(updateTimeDisabled)){%>disabled<%}%> type="text" value="${obj.updateTime!,'yyyy-MM-dd HH:mm:ss'}" name="updateTime"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(updateTimeDisabled)){%>disabled<%}%> type="text" value="${obj.updateTime!,'yyyy-MM-dd HH:mm:ss'}" name="updateTime"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
@@ -91,7 +91,7 @@
       	</div>
 		<div class="layui-form-item" <%if(has(createTimeDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建时间</label>
-	        <div class="layui-input-block">                <input <%if(has(createTimeDisabled)){%>disabled<%}%> type="text" value="${obj.createTime!,'yyyy-MM-dd HH:mm:ss'}" name="createTime"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(createTimeDisabled)){%>disabled<%}%> type="text" value="${obj.createTime!,'yyyy-MM-dd HH:mm:ss'}" name="createTime"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
@@ -113,7 +113,7 @@
 </section>
 <div id="LAY_democodejs">
 <script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<script src="${ui2}/layui.all.js" charset="utf-8"></script>
 <script src="${ctx}/js/common.js" charset="utf-8"></script>
 <script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
 </div>

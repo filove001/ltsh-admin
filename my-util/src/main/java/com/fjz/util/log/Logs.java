@@ -1,6 +1,6 @@
 package com.fjz.util.log;
 
-import com.fjz.util.Jsons;
+import com.fjz.util.Systems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,7 +94,7 @@ public class Logs {
     }
     private static String getLocationLog(Object obj) {
         /*** 获取输出信息的代码的位置 ***/
-        String location =getCodeLocation(4)+" ";
+        String location =Systems.getCodeLocation(4)+" ";
         String logStr=null;
         /*** 是否是异常  ***/
         if (obj instanceof Exception) {
@@ -109,19 +109,7 @@ public class Logs {
         return logStr;
     }
     public static String getCodeLocationMsg(String msg){
-        return getCodeLocation(4)+" "+msg;
+        return Systems.getCodeLocation(4)+" "+msg;
     }
-    /**
-     * 获取调用此函数的代码的位置
-     * @return 包名.类名.方法名(行数)
-     */
-    public static String getCodeLocation(int index){
-            /*** 获取输出信息的代码的位置 ***/
-//            由于调用多了一层所有stack[3]才对
-        String location = "";
-        StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
-        location = stacks[index].getClassName() + "." + stacks[index].getMethodName()
-                + "(" + stacks[index].getLineNumber() + ")";
-        return location;
-    }
+
 }

@@ -1,14 +1,8 @@
 package com.ltsh.admin.mvc.cms.article;
 import org.junit.Test;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class CmsArticleDaoTest{
-	@Autowired
-	private CmsArticleDao dao;
+import com.ltsh.admin.BaseDaoTest;
+public class CmsArticleDaoTest extends BaseDaoTest{
+	private CmsArticleDao dao=sqlManager.getMapper(CmsArticleDao.class);
 	@Test
 	public void testInsertT() {
 		for (int i = 0; i < 100; i++) {
@@ -26,8 +20,6 @@ public class CmsArticleDaoTest{
 		entity.setCountView(1);
 		entity.setCountComment(1);
 		entity.setStatus(name+i);
-		entity.setIsComment(1);
-		entity.setIsRecommend(1);
 		entity.setSort(1);
 		entity.setHref(name+i);
 		entity.setImageUrl(name+i);

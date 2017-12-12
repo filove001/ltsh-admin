@@ -38,9 +38,9 @@ public class SpringSecuritys {
             return null;
         }
         Object principal = authentication.getPrincipal();
-//        if (!(principal instanceof UserDetailsImpl)) {
-//            return null;
-//        }
+        if (!(principal instanceof UserDetailsImpl)) {//如果没有登录使用这个方法，并且没有进入SpringSecurity拦截，返回不是这个类型
+            return null;
+        }
         return (T) principal;
     }
     private static SysMenuService sysMenuService=SpringContextHolder.getBean(SysMenuService.class);

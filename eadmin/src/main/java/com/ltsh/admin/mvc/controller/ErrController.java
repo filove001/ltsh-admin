@@ -1,6 +1,7 @@
 package com.ltsh.admin.mvc.controller;
 
 
+import com.fjz.util.Requests;
 import com.fjz.util.log.Logs;
 import com.ltsh.admin.config.GlobalConf;
 import com.ltsh.admin.mvc.base.BaseController;
@@ -8,7 +9,9 @@ import com.ltsh.admin.mvc.sys.user.SysUserService;
 import com.ltsh.admin.util.SpringContextHolder;
 import com.ltsh.admin.util.SpringSecuritys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +35,7 @@ public class ErrController extends BaseController implements ErrorController {
 		HttpStatus status = getStatus(request);
 		request.setAttribute("status",status.toString());
 		request.setAttribute("msg", GlobalConf.msg.get(status.toString()));
+		Logs.warn("错误url:"+ Requests.getBasePath(request));
 		Logs.warn("错误，错误编码：{} status：{}",GlobalConf.errCodeHtml,status.toString());
 		return "err/err";
 	}

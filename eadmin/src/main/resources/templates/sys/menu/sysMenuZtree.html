@@ -4,7 +4,7 @@
 <title>菜单</title>
 	<link rel="stylesheet" href="${ctx}/css/content.css">
 	<link rel="stylesheet" href="${ctx}/ztree/css/zTreeStyle/zTreeStyle.css">
-	<link rel="stylesheet" href="${ui}/css/layui.css">
+	<link rel="stylesheet" href="${ui2}/css/layui.css">
 	<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 	<style>
 		.ztreeLeft {
@@ -14,7 +14,9 @@
 		}
 		.ztreeRight {
 			width:85%;
-			float: right;
+			position:fixed;
+			left: 180px;
+			top:20px;
 		}
 		.layui-input{
 			width:auto;
@@ -23,6 +25,7 @@
 	</style>
 </head>
 <body>
+	<button id="expandAllBtn" style="position:fixed;left: 208px;" class="layui-btn">展开</button><button id="collapseAllBtn" style="position:fixed;left: 270px;" class="layui-btn">折叠</button>
 	<div class="ztreeLeft">
 		<ul id="treeDemo" class="ztree"></ul>
 	</div>
@@ -76,11 +79,12 @@
 	</div>
 <div id="LAY_democodejs">
 	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-	<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
 	<script src="${ctx}/js/common.js" charset="utf-8"></script>
 	<script src="${ctx}/ztree/js/jquery.ztree.all.min.js"></script>
 	<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
 	<SCRIPT type="text/javascript">
+		/**提交按钮后的操作**/
 		<!--
 		var setting = {
             view: {
@@ -210,6 +214,7 @@
                 };
                 var id = null;
                 $.post('${ctx}/sys/menu/save',postParams, function(_data){
+                    _data = eval('(' + _data + ')');
                     zTree.addNodes(treeNode, {id:_data.data, pId:treeNode.id, name:postParams.name});
                     var newNode = treeNode.children[treeNode.children.length - 1];
                     zTree.selectNode(newNode);
@@ -233,6 +238,10 @@
 		$(document).ready(function(){
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 			expandNode({data:{type:"expandAll"}});
+//            $("#toggleBtn").bind("click", {type:"toggle"}, expandNode);
+            $("#expandAllBtn").bind("click", {type:"expandAll"}, expandNode);
+            $("#collapseAllBtn").bind("click", {type:"collapseAll"}, expandNode);
+
 		})
         /**
 		 * 展开折叠
@@ -268,13 +277,15 @@
                 }
             }
         }
-
         function subCallback(msg){
             var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
             var node = treeObj.getNodeByTId($("*[name='tId']").val());
             node["name"] = $("*[name='name']").val();
             treeObj.updateNode(node);
+            layer.msg('操作成功!', {time:1000});
+//            layer.alert('提交成功',{title:'操作成功！'});
         }
+
 		//-->
 	</SCRIPT>
 </div>

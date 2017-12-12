@@ -1,6 +1,7 @@
 package com.ltsh.admin.security;
 
 import com.ltsh.admin.config.GlobalConf;
+import com.ltsh.admin.mvc.controller.IndexController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -50,8 +51,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/login")
-            .permitAll()
+            .loginPage(IndexController.loginUrl)
+            .permitAll().defaultSuccessUrl(IndexController.indexUrl,true)//登录成功跳转地址
             .and()
             .logout()
             .permitAll();

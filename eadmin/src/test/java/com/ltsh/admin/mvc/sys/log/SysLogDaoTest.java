@@ -1,14 +1,8 @@
 package com.ltsh.admin.mvc.sys.log;
 import org.junit.Test;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SysLogDaoTest{
-	@Autowired
-	private SysLogDao dao;
+import com.ltsh.admin.BaseDaoTest;
+public class SysLogDaoTest extends BaseDaoTest{
+	private SysLogDao dao=sqlManager.getMapper(SysLogDao.class);;
 	@Test
 	public void testInsertT() {
 		for (int i = 0; i < 100; i++) {

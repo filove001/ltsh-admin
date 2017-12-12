@@ -3,52 +3,59 @@ package com.ltsh.admin.mvc.base;
 import java.util.List;
 
 import org.beetl.sql.core.db.KeyHolder;
+import org.beetl.sql.core.engine.PageQuery;
 import org.beetl.sql.core.mapper.BaseMapper;
 
 import com.fjz.util.Assert;
 import com.fjz.util.Empty;
+import org.springframework.beans.factory.annotation.Autowired;
 
-
+// BaseServiceImpl<K extends BaseDaoMapper<T>,T>
 public abstract class BaseServiceImpl<T> implements BaseService<T>{
-	public abstract BaseMapper<T> getDao();
+	@Autowired
+	public BaseDaoMapper<T> dao;
+	public PageQuery<T> page(PageQuery<T> query){
+		dao.page(query);
+		return query;
+	}
 	  /* insert */
 	public void insert(T entity){
-		getDao().insert(entity);
+		dao.insert(entity);
 	}
 	public void insert(T entity,boolean assignKey){
-		getDao().insert(entity,assignKey);
+		dao.insert(entity,assignKey);
 	}
 	public KeyHolder insertReturnKey(T entity){
-		return getDao().insertReturnKey(entity);
+		return dao.insertReturnKey(entity);
 	}
 	
 	/*update*/
 	public int updateById(T entity){
-		return getDao().updateById(entity);
+		return dao.updateById(entity);
 	}
 	public int updateTemplateById(T entity){
-		return getDao().updateTemplateById(entity);
+		return dao.updateTemplateById(entity);
 	}
 	
 	/*delete*/
 	public int deleteById(Object... key){
 		Assert.notEmpty(key,"id不能 为空");
 		for (Object object : key) {
-			getDao().deleteById(object);
+			dao.deleteById(object);
 		}
 		return 1;
 	}
 	public int deleteById(String... key) {
 		Assert.notEmpty(key,"id不能 为空");
 		for (Object object : key) {
-			getDao().deleteById(object);
+			dao.deleteById(object);
 		}
 		return 1;
 	}
 	/*select */
 	
 	public T unique(Object key){
-		return getDao().unique(key);
+		return dao.unique(key);
 	}
 	public T getOne(T entity){
 		List<T> ls=template(entity);
@@ -57,38 +64,38 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 			return ls.get(0);
 		}
 		return  null;
-//		getDao().unique(key);
+//		dao.unique(key);
 	}
 	public List<T> all(){
-		return getDao().all();
+		return dao.all();
 	}
 	public List<T> all(int start,int size){
-		return getDao().all(start, size);
+		return dao.all(start, size);
 	}
 	public long allCount(){
-		return getDao().allCount();
+		return dao.allCount();
 	}
 	
 	
 	public List<T> template(T entity){
-		return getDao().template(entity);
+		return dao.template(entity);
 	}
 	public List<T> template(T entity,int start,int size){
-		return getDao().template(entity, start, size);
+		return dao.template(entity, start, size);
 	}
 	public long templateCount(T entity){
-		return getDao().templateCount(entity);
+		return dao.templateCount(entity);
 	}
 	
 	
 	/*sql ready*/
 	
 	public List<T> execute(String sql,Object... args){
-		return getDao().execute(sql, args);
+		return dao.execute(sql, args);
 	}
 	
 	public int executeUpdate(String sql,Object... args ){
-		return getDao().executeUpdate(sql, args);
+		return dao.executeUpdate(sql, args);
 	}
 		
 }

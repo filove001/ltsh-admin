@@ -69,6 +69,9 @@ public class TypeMapping {
         case Types.CLOB:
             className = java.lang.String.class.getName();
             break;
+         default://默认给String类型
+             className = java.lang.String.class.getName();
+             break;
         }
 
         return className;

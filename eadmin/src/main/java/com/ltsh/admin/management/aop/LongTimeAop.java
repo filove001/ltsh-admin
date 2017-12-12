@@ -73,7 +73,7 @@ public class LongTimeAop {
                 allParams.add(arg);
             }
         }
-        Logs.info("环绕通知的目标类和方法名：{}.{}({}) 类 {}  参数：{}",signature.getDeclaringTypeName() ,signature.getName(),cs.toString(),Arrays.toString(signature.getDeclaringType().getInterfaces()), Jsons.toJsonString(allParams));
+        Logs.info("环绕通知的目标类和方法名：{}.{}({}) 类 {}  参数：{}",signature.getDeclaringTypeName() ,signature.getName(),Arrays.toString(signature.getParameterTypes()),Arrays.toString(signature.getDeclaringType().getInterfaces()), Jsons.toJsonString(allParams));
 
         try {//obj之前可以写目标方法执行前的逻辑
             Object obj = proceedingJoinPoint.proceed();//调用执行目标方法

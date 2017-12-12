@@ -16,11 +16,11 @@
 		<artifactId>fastjson</artifactId>
 		<version>1.2.11</version>
 	</dependency>
-	<dependency>
-	    <groupId>joda-time</groupId>
-	    <artifactId>joda-time</artifactId>
-	    <version>2.9.9</version>
-	</dependency>
+	<!--<dependency>-->
+	    <!--<groupId>joda-time</groupId>-->
+	    <!--<artifactId>joda-time</artifactId>-->
+	    <!--<version>2.9.9</version>-->
+	<!--</dependency>-->
 	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>

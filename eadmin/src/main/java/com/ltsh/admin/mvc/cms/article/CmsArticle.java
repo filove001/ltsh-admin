@@ -2,11 +2,13 @@ package com.ltsh.admin.mvc.cms.article;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fjz.util.Dates;
+
+import com.ltsh.admin.mvc.base.BaseBean;
 /**
  *  cms_article 文章 
  * @author fjz
  */
-public class CmsArticle{
+public class CmsArticle extends BaseBean{
 	public static final String tableName="cms_article";
 	public static final String tableRemarks="文章";
 	private java.lang.Integer id;//id 
@@ -16,8 +18,8 @@ public class CmsArticle{
 	private java.lang.Integer countView;//浏览数 
 	private java.lang.Integer countComment;//评论数 
 	private java.lang.String status;//状态//radio/-1隐藏,1,显示 
-	private java.lang.Integer isComment;//是否评论：-1否 1 是 
-	private java.lang.Integer isRecommend;//是否推荐：-1否 1 是 
+	private String isComment;//是否评论：-1否 1 是
+	private String isRecommend;//是否推荐：-1否 1 是
 	private java.lang.Integer sort;//排序 
 	private java.lang.String href;//跳转地址 
 	private java.lang.String imageUrl;//图片路径 
@@ -88,20 +90,23 @@ public class CmsArticle{
 	public java.lang.String getStatus() {
 		return status;
 	}
-	public void setIsComment(java.lang.Integer isComment){
-		this.isComment=isComment;
-	}
-	/** is_comment INT(10)：是否评论：-1否 1 是 **/
-	public java.lang.Integer getIsComment() {
+
+	public String getIsComment() {
 		return isComment;
 	}
-	public void setIsRecommend(java.lang.Integer isRecommend){
-		this.isRecommend=isRecommend;
+
+	public void setIsComment(String isComment) {
+		this.isComment = isComment;
 	}
-	/** is_recommend INT(10)：是否推荐：-1否 1 是 **/
-	public java.lang.Integer getIsRecommend() {
+
+	public String getIsRecommend() {
 		return isRecommend;
 	}
+
+	public void setIsRecommend(String isRecommend) {
+		this.isRecommend = isRecommend;
+	}
+
 	public void setSort(java.lang.Integer sort){
 		this.sort=sort;
 	}

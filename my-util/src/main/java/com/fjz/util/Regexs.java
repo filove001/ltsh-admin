@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 正则工具，find加上安全保护
+ */
 public class Regexs {
 	public static boolean find(String regex,String content){
-		Pattern wp = Pattern.compile(regex); 
-		Matcher m = wp.matcher(content);
+		if(regex==null||content==null){ return false;}
+		Matcher m = Pattern.compile(regex).matcher(content);
 		return m.find();
 	}
 	public static String findGroupByOne(String regex,String content){
@@ -18,8 +21,8 @@ public class Regexs {
 		return list.get(0);
 	}
 	public static List<String> findGroup(String regex,String content){
-		Pattern wp = Pattern.compile(regex); 
-		Matcher m = wp.matcher(content);
+		if(regex==null||content==null){ return Lists.emptyStringList;}
+		Matcher m = Pattern.compile(regex).matcher(content);
 		List<String> list=new ArrayList<String>();
 		while(m.find()){
 			list.add(m.group());
@@ -33,15 +36,17 @@ public class Regexs {
 		return list.get(0);
 	}
 	public static List<String> findGroup(String regex,String content,int groupIndex){
-		Pattern wp = Pattern.compile(regex); 
-		Matcher m = wp.matcher(content);
+		if(regex==null||content==null){ return Lists.emptyStringList;}
 		List<String> list=new ArrayList<String>();
+		Matcher m = Pattern.compile(regex).matcher(content);
 		while(m.find()){
 			list.add(m.group(groupIndex));
 		}
 		return list;
 	}
+
 	public static List<String> findGroupAll(String regex,String content){
+		if(regex==null||content==null){ return Lists.emptyStringList;}
 		Pattern wp = Pattern.compile(regex,Pattern.CASE_INSENSITIVE | Pattern.DOTALL); 
 		Matcher m = wp.matcher(content);
 		List<String> list=new ArrayList<String>();
@@ -50,7 +55,12 @@ public class Regexs {
 		}
 		return list;
 	}
-	
+	//对应src
+	public static final String SRC = "src\\s*=\\s*\"?(.*?)(\"|>|\\s+)";
+	// 获取img标签正则
+	public static final String IMGURL_REG = "<img.*src=(.*?)[^>]*?>";
+	// 获取src路径的正则
+//	private static final String IMGSRC_REG = "http:\"?(.*?)(\"|>|\\s+)";
 	/**
 	 * 常用正则表达式：匹配非负整数（正整数 + 0）
 	 */

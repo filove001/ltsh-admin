@@ -1,9 +1,6 @@
 package com.ltsh.admin.mvc.controller;
 
-import com.fjz.util.Dates;
-import com.fjz.util.Requests;
-import com.fjz.util.Responses;
-import com.fjz.util.Systems;
+import com.fjz.util.*;
 import com.fjz.util.log.Logs;
 import com.ltsh.admin.util.SpringContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +36,39 @@ public class FileController {
     public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
         return "greeting";
+    }
+
+
+    //文件上传相关代码  WangEditor编辑器上传代码
+    @RequestMapping(value = "uploadWangEditor")
+    @ResponseBody
+    public WangEditroUpload uploadWangEditor(MultipartFile file) throws IOException {
+        LayMsg layMsg = uploadLayMsg(file);
+        return WangEditroUpload.success(layMsg);
+    }
+    public static class WangEditroUpload{
+        private int errno=-1;
+        private List<String> data;
+        public int getErrno() {
+            return errno;
+        }
+        public void setErrno(int errno) {
+            this.errno = errno;
+        }
+        public List<String> getData() {
+            return data;
+        }
+        public void setData(List<String> data) {
+            this.data = data;
+        }
+        public static WangEditroUpload success(LayMsg layMsg){
+            WangEditroUpload wangEditroUpload = new WangEditroUpload();
+            if(layMsg.isTrue()){
+                wangEditroUpload.setErrno(0);
+                wangEditroUpload.setData(Lists.as(layMsg.getData().getSrc()));
+            }
+            return wangEditroUpload;
+        }
     }
     //文件上传相关代码
     @RequestMapping(value = "upload")
@@ -190,10 +220,12 @@ public class FileController {
     }
     //lay ui的图片上传
     static class LayMsg{
-        private int code=-1;
+        private int code=-1;//0是成功的
         private String msg;
         private LayData data;
-
+        public boolean isTrue(){
+            return 0==code;
+        }
         public int getCode() {
             return code;
         }

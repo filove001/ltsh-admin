@@ -7,6 +7,56 @@ function  enterClickById(id,fn){
 	}
 	});
 }
+/**Form表单转封装JSON**/
+$.fn.toJSON = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        var name = this.name;
+        var value = this.value;
+        var paths = this.name.split(".");
+        var len = paths.length;
+        var obj = o;
+        $.each(paths,function(i,e){
+            if(i == len-1){
+                if (obj[e]) {
+                    if (!obj[e].push) {
+                        obj[e] = [obj[e]];
+                    }
+                    obj[e].push(value || '');
+                } else {
+                    obj[e] = value || '';
+                }
+            }else{
+                if(!obj[e]){
+                    obj[e] = {};
+                }
+            }
+            obj = o[e];
+        });
+    });
+    return o;
+};
+//实例化 laydate 带有laydatetime laydate样式日期控件
+function dateInit(){
+    //实例化日期对象
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        lay('.laydatetime').each(function(){
+            laydate.render({
+                elem: this
+                ,type: 'datetime'
+                ,trigger: 'click'
+            });
+        });
+        lay('.laydate').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+            });
+        });
+    });
+}
 /**回车点击事件**/
 $.fn.enterClick = function (fn) {
     $(this).on('keypress',function(event){
@@ -15,6 +65,7 @@ $.fn.enterClick = function (fn) {
         }
     });
 }
+
 /**只能输入数字**/
 $.fn.onlyNum = function () {
     $(this).keypress(function (event) {

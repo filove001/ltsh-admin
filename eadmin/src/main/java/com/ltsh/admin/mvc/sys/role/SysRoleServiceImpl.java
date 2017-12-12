@@ -1,14 +1,13 @@
 package com.ltsh.admin.mvc.sys.role;
 
+import com.ltsh.admin.mvc.base.BaseDaoMapper;
+import com.ltsh.admin.mvc.base.BaseServiceImpl;
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilege;
 import com.ltsh.admin.mvc.sys.privilege.SysPrivilegeDao;
 import org.beetl.sql.core.engine.PageQuery;
-import org.beetl.sql.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ltsh.admin.mvc.base.BaseServiceImpl;
 /**
  * 角色 service
  */
@@ -18,10 +17,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRole> implements SysR
 	private SysRoleDao sysRoleDao;
 	@Autowired
 	private SysPrivilegeDao sysPrivilegeDao;
-	@Override
-	public BaseMapper<SysRole> getDao(){
-		return sysRoleDao;
-	}
 	@Override
 	public PageQuery<SysRole> page(PageQuery<SysRole> query) {
 		sysRoleDao.page(query);

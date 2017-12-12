@@ -29,7 +29,7 @@ public class TbColumn {
 	public String defaultValue;		// 默认值
 	public String remarks;			// 字段备注
 	public Integer length ; // 列最大长度
-	
+	public String[] enumValues;//mysql枚举的值
 	public String getGridColumnHide() {
 		return GenBaseConfig.gridColumnHide.get(dbTableName+"."+name)==null?"":",hide:true";
 	}
@@ -109,6 +109,12 @@ public class TbColumn {
 	public void setLength(Integer length) {
 		this.length = length;
 	}
-	
-	
+
+	public String[] getEnumValues() {
+		return enumValues;
+	}
+
+	public void setEnumValues(String[] enumValues) {
+		this.enumValues = enumValues;
+	}
 }

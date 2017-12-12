@@ -1,68 +1,85 @@
 <html>
 <head>
-<meta charset="utf-8">
-<title>权限连接</title>
-<link rel="stylesheet" href="${ui}/css/layui.css">
-<link rel="stylesheet" href="${ctx}/css/content.css">
+	<meta charset="utf-8">
+	<title>权限连接</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<%include("/base/css.html"){} %>
+	<link rel="stylesheet" href="${ctx}/css/content2.css">
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
 	<form class="layui-form layui-form-pane" id="search-form">
-			<div class="layui-form-item">
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">编号:</label>
-					<input type="text" value="" name="id" placeholder="编号" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">主体:</label>
-					<input type="text" value="" name="master" placeholder="主体" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">控制值:</label>
-					<input type="text" value="" name="masterValue" placeholder="控制值" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">领域 :</label>
-					<input type="text" value="" name="access" placeholder="领域 " class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">领域值:</label>
-					<input type="text" value="" name="accessValue" placeholder="领域值" class="layui-input">
-				</div>
-			   	<div class="layui-input-inline">
-			   	<label class="layui-form-label">权限:</label>
-					<input type="text" value="" name="operation" placeholder="权限" class="layui-input">
-				</div>
-				<a class="layui-btn" href="javascript:search(1);">查询</a>
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<label class="layui-form-label">编号:</label>
+				<input type="text" value="" name="id" placeholder="编号" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">主体:</label>
+				<input type="text" value="" name="master" placeholder="主体" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">控制值:</label>
+				<input type="text" value="" name="masterValue" placeholder="控制值" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">领域 :</label>
+				<input type="text" value="" name="access" placeholder="领域 " class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">领域值:</label>
+				<input type="text" value="" name="accessValue" placeholder="领域值" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">权限:</label>
+				<input type="text" value="" name="operation" placeholder="权限" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<a class="layui-btn" href="javascript:search();">查询</a><span></span>
 				<a class="layui-btn" href="add.html">新增</a>
 			</div>
-		</form>
-		<div class="layui-form">
-		  <table class="layui-table">
-		    <thead>
-		      <tr>
-		        <th>序号</th>
-			   	<th entity-name="id">编号</th>
-			   	<th entity-name="master">主体</th>
-			   	<th entity-name="masterValue">控制值</th>
-			   	<th entity-name="access">领域 </th>
-			   	<th entity-name="accessValue">领域值</th>
-			   	<th entity-name="operation">权限</th>
-<th>操作</th>		      </tr>
-		    </thead>
-		    <tbody id="tb-td">
-		    </tbody>
-		  </table>
 		</div>
-</div>
-<div class="grid-page">
-	<div id="grid-page"></div>
+	</form>
+	<div class="layui-form">
+		<table id="layui-table" lay-filter="grid"></table>
+	</div>
 </div>
 <div id="LAY_democodejs">
-<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
-<script src="${ctx}/js/common.js" charset="utf-8"></script>
-<script src="${ctx}/js/content.js" charset="utf-8"></script>
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
+	<script type="text/html" id="gridBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+        var tableIns=null;
+        layui.use('table', function(){
+            var table = layui.table;
+            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            //第一个实例
+            tableIns=table.render({
+                elem: '#layui-table'
+                ,height: 'full-'+height
+                ,url: '/sys/privilege/list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {field: 'id', title: '编号' ,width:80},
+                {field: 'master', title: '主体' ,width:80},
+                {field: 'masterValue', title: '控制值' ,width:80},
+                {field: 'access', title: '领域 ' ,width:80},
+                {field: 'accessValue', title: '领域值' ,width:80},
+                {field: 'operation', title: '权限' },
+                 {fixed: 'right', width:100, align:'center', toolbar: '#gridBar'} //这里的toolbar值是模板元素的选择器
+                ]]
+            	,request: tableRequest
+				,response: tableResponse
+            });
+        });
+	</script>
 </div>
 </body>
 </html>

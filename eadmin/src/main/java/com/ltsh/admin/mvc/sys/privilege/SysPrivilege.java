@@ -1,16 +1,16 @@
 package com.ltsh.admin.mvc.sys.privilege;
-
+import com.fjz.util.Dates;
 /**
- *  sys_privilege 角色 
+ *  sys_privilege 权限连接 
  * @author fjz
  */
 public class SysPrivilege{
 	public static final String tableName="sys_privilege";
-	public static final String tableRemarks="角色";
+	public static final String tableRemarks="权限连接";
 	private java.lang.Integer id;//编号 
 	private java.lang.String master;//主体 
 	private java.lang.String masterValue;//控制值 
-	private java.lang.String access;//领域
+	private java.lang.String access;//领域  
 	private java.lang.String accessValue;//领域值 
 	private java.lang.String operation;//权限 
 	public void setId(java.lang.Integer id){
@@ -23,7 +23,7 @@ public class SysPrivilege{
 	public void setMaster(java.lang.String master){
 		this.master=master;
 	}
-	/** master VARCHAR(100)：主体 **/
+	/** master VARCHAR(255)：主体 **/
 	public java.lang.String getMaster() {
 		return master;
 	}
@@ -37,7 +37,7 @@ public class SysPrivilege{
 	public void setAccess(java.lang.String access){
 		this.access=access;
 	}
-	/** access INT(10)：领域  **/
+	/** access VARCHAR(255)：领域  **/
 	public java.lang.String getAccess() {
 		return access;
 	}

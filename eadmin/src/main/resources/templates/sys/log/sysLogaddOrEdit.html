@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>${title}</title>
-<link rel="stylesheet" href="${ui}/css/layui.css">
+<%include("/base/css.html"){} %>
 <link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
       	</div>
 		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
 	        <label class="layui-form-label">创建时间</label>
-	        <div class="layui-input-block">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <div class="layui-input-block">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(remoteAddrDisplayNone)){%> style="display:none"<%}%>>
@@ -93,7 +93,7 @@
 </section>
 <div id="LAY_democodejs">
 <script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
+<%include("/base/js.html"){} %>
 <script src="${ctx}/js/common.js" charset="utf-8"></script>
 <script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
 </div>

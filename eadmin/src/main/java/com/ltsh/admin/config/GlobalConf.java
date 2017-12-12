@@ -9,6 +9,7 @@ import java.util.Map;
 public class GlobalConf {
     /**是否是测试模式*/
     public final static boolean debug=true;
+    public final static int pageSize=20;//默认grid每页记录数
     public final static String NOT_INTERCEPT = "/ztree/**,/css/**,/js/**,/layui/**,/layui2/**,/favicon.ico,/**.js.map,/count/**,/zj/**,/file/**,/book/**,/test/**";
 
     public final static String errCodeBase="01";

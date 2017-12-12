@@ -33,27 +33,27 @@ public class CacheController extends BaseController {
 //	@Autowired
 //	private CacheManager cacheManager;
 //	private  net.sf.ehcache.CacheManager c;
-	@RequestMapping("/all")
-	@ResponseBody
-	public Object all(HttpServletRequest request,HttpServletResponse response,SysUser queryEntity,PageQuery<SysUser> query) {
-		return Caches.getAll();
-	}
-	@RequestMapping("/key")
-	@ResponseBody
-	public Object key(String cacheName,String key) {
-		cacheName=cacheName==null?"userCache":cacheName;
-		return Caches.get(cacheName, key);
-	}
-	@RequestMapping("/clear")
-	@ResponseBody
-	public Object clear(HttpServletRequest request,HttpServletResponse response,String cacheName) {
-		if(Empty.is(cacheName)){
-			Caches.removeAll();
-		}else{
-			Caches.removeAll(cacheName);
-		}
-		return true;
-	}
+//	@RequestMapping("/all")
+//	@ResponseBody
+//	public Object all(HttpServletRequest request,HttpServletResponse response,SysUser queryEntity,PageQuery<SysUser> query) {
+//		return Caches.getAll();
+//	}
+//	@RequestMapping("/key")
+//	@ResponseBody
+//	public Object key(String cacheName,String key) {
+//		cacheName=cacheName==null?"userCache":cacheName;
+//		return Caches.get(cacheName, key);
+//	}
+//	@RequestMapping("/clear")
+//	@ResponseBody
+//	public Object clear(HttpServletRequest request,HttpServletResponse response,String cacheName) {
+//		if(Empty.is(cacheName)){
+//			Caches.removeAll();
+//		}else{
+//			Caches.removeAll(cacheName);
+//		}
+//		return true;
+//	}
 
 	@RequestMapping("/dbKey")
 	@ResponseBody

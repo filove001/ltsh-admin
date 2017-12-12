@@ -20,7 +20,7 @@ body{
 /*分页框的样式*/
 .grid-page{
 	position:fixed;bottom:-4px;left:0px;background-color:#fff;width:100%;margin:0px;text-align: center;
-	border:1px solid #e2e2e2; 
+	border:1px solid #e2e2e2;
 }
 .layui-laypage{
 	margin:0px;
