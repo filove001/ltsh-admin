@@ -40,7 +40,7 @@
 </div>
 <div id="LAY_democodejs">
 	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<%include("/base/js.html"){} %>
 	<script src="${ctx}/js/common.js" charset="utf-8"></script>
 	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
 	<script type="text/html" id="gridBar">
@@ -51,7 +51,7 @@
         var tableIns=null;
         layui.use('table', function(){
             var table = layui.table;
-            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            var height=getGridHeight();
             //第一个实例
             tableIns=table.render({
                 elem: '#layui-table'

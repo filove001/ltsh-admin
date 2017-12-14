@@ -10,7 +10,7 @@
 	</style>
 </head>
 <body>
-<section class="dx-info-default">
+<div class="dx-info-default">
 	<div class="dx-info-box type-add">
 		<form class="layui-form" action="">
 			<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
@@ -75,6 +75,21 @@
 	<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
 	<label class="layui-form-label">备注信息</label>
 	<div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(seoTitleDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">SEO标题</label>
+	<div class="layui-input-block">                <input <%if(has(seoTitleDisabled)){%>disabled<%}%> type="text" value="${obj.seoTitle!}" name="seoTitle"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(seoKeywordsDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">SEO关键字</label>
+	<div class="layui-input-block">                <input <%if(has(seoKeywordsDisabled)){%>disabled<%}%> type="text" value="${obj.seoKeywords!}" name="seoKeywords"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(seoDescriptionDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">SEO详情</label>
+	<div class="layui-input-block">                <input <%if(has(seoDescriptionDisabled)){%>disabled<%}%> type="text" value="${obj.seoDescription!}" name="seoDescription"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	</div>
 	</div>
 	<div class="layui-form-item" <%if(has(contentDisplayNone)){%> style="display:none"<%}%>>

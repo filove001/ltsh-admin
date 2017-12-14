@@ -17,14 +17,14 @@ public class CmsCategory extends BaseBean{
 	private java.lang.String path;//模板路径 
 	private java.lang.String content;//描述 
 	private java.lang.Integer sort;//排序 
-	private java.lang.Integer status;//状态//radio/0,隐藏,1,显示 
+	private java.lang.String status;//状态隐藏显示 
 	private java.lang.Integer type;//类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息 
 	private java.lang.String href;//跳转地址 
 	private java.lang.Integer materialType;//素材类型 
 	private java.lang.Integer siteId;//站点ID 
-	private java.lang.String seoTitle;//SEO title 
-	private java.lang.String seoKeywords;//SEO keywords 
-	private java.lang.String seoDescription;//SEO description 
+	private java.lang.String seoTitle;//SEO标题 
+	private java.lang.String seoKeywords;//SEO关键字 
+	private java.lang.String seoDescription;//SEO详情 
 	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date updateTime;//更新时间 
@@ -75,11 +75,11 @@ public class CmsCategory extends BaseBean{
 	public java.lang.Integer getSort() {
 		return sort;
 	}
-	public void setStatus(java.lang.Integer status){
+	public void setStatus(java.lang.String status){
 		this.status=status;
 	}
-	/** status INT(10)：状态//radio/0,隐藏,1,显示 **/
-	public java.lang.Integer getStatus() {
+	/** status ENUM(2)：状态隐藏显示 **/
+	public java.lang.String getStatus() {
 		return status;
 	}
 	public void setType(java.lang.Integer type){
@@ -113,21 +113,21 @@ public class CmsCategory extends BaseBean{
 	public void setSeoTitle(java.lang.String seoTitle){
 		this.seoTitle=seoTitle;
 	}
-	/** seo_title VARCHAR(200)：SEO title **/
+	/** seo_title VARCHAR(200)：SEO标题 **/
 	public java.lang.String getSeoTitle() {
 		return seoTitle;
 	}
 	public void setSeoKeywords(java.lang.String seoKeywords){
 		this.seoKeywords=seoKeywords;
 	}
-	/** seo_keywords VARCHAR(200)：SEO keywords **/
+	/** seo_keywords VARCHAR(200)：SEO关键字 **/
 	public java.lang.String getSeoKeywords() {
 		return seoKeywords;
 	}
 	public void setSeoDescription(java.lang.String seoDescription){
 		this.seoDescription=seoDescription;
 	}
-	/** seo_description VARCHAR(200)：SEO description **/
+	/** seo_description VARCHAR(200)：SEO详情 **/
 	public java.lang.String getSeoDescription() {
 		return seoDescription;
 	}

@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>${title}</title>
-<link rel="stylesheet" href="${ui2}/css/layui.css">
+<%include("/base/css.html"){} %>
 <link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 </head>
 <body>
@@ -40,8 +40,9 @@
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">状态//radio/0,隐藏,1,显示</label>
-	        <div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        <label class="layui-form-label">状态隐藏显示</label>
+	        <div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%>  type="radio" name="status" value="显示" title="显示" <%if(has(obj)&&obj.status=="显示"){%>checked=""<%}%> >
+                <input <%if(has(statusDisabled)){%>disabled<%}%>  type="radio" name="status" value="隐藏" title="隐藏" <%if(has(obj)&&obj.status=="隐藏"){%>checked=""<%}%> >
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(typeDisplayNone)){%> style="display:none"<%}%>>
@@ -65,17 +66,17 @@
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(seoTitleDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">SEO title</label>
+	        <label class="layui-form-label">SEO标题</label>
 	        <div class="layui-input-block">                <input <%if(has(seoTitleDisabled)){%>disabled<%}%> type="text" value="${obj.seoTitle!}" name="seoTitle"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(seoKeywordsDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">SEO keywords</label>
+	        <label class="layui-form-label">SEO关键字</label>
 	        <div class="layui-input-block">                <input <%if(has(seoKeywordsDisabled)){%>disabled<%}%> type="text" value="${obj.seoKeywords!}" name="seoKeywords"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
 		<div class="layui-form-item" <%if(has(seoDescriptionDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">SEO description</label>
+	        <label class="layui-form-label">SEO详情</label>
 	        <div class="layui-input-block">                <input <%if(has(seoDescriptionDisabled)){%>disabled<%}%> type="text" value="${obj.seoDescription!}" name="seoDescription"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
 	        </div>
       	</div>
@@ -113,7 +114,7 @@
 </section>
 <div id="LAY_democodejs">
 <script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+    <%include("/base/js.html"){} %>
 <script src="${ctx}/js/common.js" charset="utf-8"></script>
 <script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
 </div>

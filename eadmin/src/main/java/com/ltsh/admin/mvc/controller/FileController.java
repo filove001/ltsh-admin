@@ -104,7 +104,9 @@ public class FileController {
         }
         file.transferTo(dest);
         Logs.info("上传本地地址：{}",dest.getAbsoluteFile());
-        return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);
+//      return success(Requests.getBasePath(SpringContextHolder.getRequest())+"file/"+Dates.nowDate()+"/"+fileName, fileName);不用全路径
+        return success("/"+SpringContextHolder.getRequest().getContextPath()+"file/"+Dates.nowDate()+"/"+fileName, fileName);
+
     }
 
 
@@ -143,11 +145,11 @@ public class FileController {
                 response.addHeader("Content-Disposition",
                         "attachment;fileName=" + fileName);// 设置文件名
                 byte[] buffer = new byte[1024];
-                FileInputStream fis = null;
-                BufferedInputStream bis = null;
-                try {
-                    fis = new FileInputStream(file);
-                    bis = new BufferedInputStream(fis);
+//                FileInputStream fis = null;
+//                BufferedInputStream bis = null;
+                try(FileInputStream fis = new FileInputStream(file);BufferedInputStream bis = new BufferedInputStream(fis)){
+//                    fis = new FileInputStream(file);
+//                    bis = new BufferedInputStream(fis);
                     OutputStream os = response.getOutputStream();
                     int i = bis.read(buffer);
                     while (i != -1) {
@@ -157,22 +159,23 @@ public class FileController {
                     System.out.println("success");
                 } catch (Exception e) {
                     e.printStackTrace();
-                } finally {
-                    if (bis != null) {
-                        try {
-                            bis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (fis != null) {
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
                 }
+//                finally {
+//                    if (bis != null) {
+//                        try {
+//                            bis.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    if (fis != null) {
+//                        try {
+//                            fis.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
             }
         }
         return null;

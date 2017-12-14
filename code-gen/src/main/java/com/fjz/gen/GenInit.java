@@ -66,7 +66,7 @@ public class GenInit {
 //		g.gen("sys_user");
 //		g.gen("sys_dict");
 //		g.gen("cms_article","cms_category","cms_article_data");
-		g.gen("cms_article");
+		g.gen("cms_category");
 		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot);
 
 //        g.delete("Service");

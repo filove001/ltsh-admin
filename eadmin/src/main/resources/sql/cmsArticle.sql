@@ -6,7 +6,7 @@ select @pageTag(){
 	from cms_article where #use("like")#
 cols
 ===
-	id,category_id,title,content,count_view,count_comment,status,is_comment,is_recommend,sort,href,image_url,file_url,file_name,approve_status,start_time,end_time,update_by,update_time,create_time,create_by,remarks
+	id,category_id,title,content,count_view,count_comment,status,is_comment,is_recommend,site_id,seo_title,seo_keywords,seo_description,sort,href,image_url,file_url,file_name,approve_status,start_time,end_time,update_by,update_time,create_time,create_by,remarks
 condition
 ===
 	1 = 1 
@@ -36,6 +36,18 @@ condition
 	@}
 	@if(!isEmpty(isRecommend)){
 	 and is_recommend=#isRecommend#
+	@}
+	@if(!isEmpty(siteId)){
+	 and site_id=#siteId#
+	@}
+	@if(!isEmpty(seoTitle)){
+	 and seo_title=#seoTitle#
+	@}
+	@if(!isEmpty(seoKeywords)){
+	 and seo_keywords=#seoKeywords#
+	@}
+	@if(!isEmpty(seoDescription)){
+	 and seo_description=#seoDescription#
 	@}
 	@if(!isEmpty(sort)){
 	 and sort=#sort#
@@ -102,10 +114,22 @@ like
 	 and status like #'%'+status+'%'#
 	@}
 	@if(!isEmpty(isComment)){
-	 and is_comment=#isComment#
+	 and is_comment like #'%'+isComment+'%'#
 	@}
 	@if(!isEmpty(isRecommend)){
-	 and is_recommend=#isRecommend#
+	 and is_recommend like #'%'+isRecommend+'%'#
+	@}
+	@if(!isEmpty(siteId)){
+	 and site_id=#siteId#
+	@}
+	@if(!isEmpty(seoTitle)){
+	 and seo_title like #'%'+seoTitle+'%'#
+	@}
+	@if(!isEmpty(seoKeywords)){
+	 and seo_keywords like #'%'+seoKeywords+'%'#
+	@}
+	@if(!isEmpty(seoDescription)){
+	 and seo_description like #'%'+seoDescription+'%'#
 	@}
 	@if(!isEmpty(sort)){
 	 and sort=#sort#
@@ -132,7 +156,7 @@ like
 	 and end_time=#endTime#
 	@}
 	@if(!isEmpty(updateBy)){
-	 and update_by like #'%'+updateBy+'%'#
+	 and update_by=#updateBy#
 	@}
 	@if(!isEmpty(updateTime)){
 	 and update_time=#updateTime#

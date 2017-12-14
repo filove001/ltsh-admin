@@ -19,7 +19,13 @@ public class CmsArticleDaoTest extends BaseDaoTest{
 		entity.setContent(name+i);
 		entity.setCountView(1);
 		entity.setCountComment(1);
-		entity.setStatus(name+i);
+		entity.setStatus("显示");
+		entity.setIsComment("是");
+		entity.setIsRecommend("是");
+		entity.setSiteId(1);
+		entity.setSeoTitle(name+i);
+		entity.setSeoKeywords(name+i);
+		entity.setSeoDescription(name+i);
 		entity.setSort(1);
 		entity.setHref(name+i);
 		entity.setImageUrl(name+i);
@@ -28,7 +34,7 @@ public class CmsArticleDaoTest extends BaseDaoTest{
 		entity.setApproveStatus(1);
 		entity.setStartTime(new java.util.Date());
 		entity.setEndTime(new java.util.Date());
-		entity.setUpdateBy(name+i);
+		entity.setUpdateBy(1);
 		entity.setUpdateTime(new java.util.Date());
 		entity.setCreateTime(new java.util.Date());
 		entity.setCreateBy(1);

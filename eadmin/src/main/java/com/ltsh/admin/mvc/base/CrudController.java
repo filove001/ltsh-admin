@@ -33,10 +33,10 @@ public class CrudController<T> extends BaseController{
 	 **/
 	@RequestMapping("/list")
 	@ResponseBody
-	public PageQuery<T> list(HttpServletRequest request, HttpServletResponse response, T queryEntity, PageQuery<T> query) {
+	public PageQuery<T> list(HttpServletRequest request, HttpServletResponse response, T queryEntity, BasePageQuery<T> query) {
 		query.setParas(queryEntity);
-		query=service.page(query);
-		query = BasePageQuery.setSuccess(query);
+		service.page(query);
+//		query = BasePageQuery.setSuccess(query);
 		return query;
 	}
 	@RequestMapping("/save")

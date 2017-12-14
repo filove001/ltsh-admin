@@ -3,13 +3,12 @@ $(function(){
 	 //监听提交
 	  layui.form.on('submit(info)', function(data){
 		var obj=data.field;
-		debugger;
 		log("提交",obj);
 		var url=(obj.id==null||obj.id=='')?"save":"update";
           // layer.alert(JSON.stringify(data.field), {
           //     title: '最终的提交信息'
           // })
-		deleteEmptyString(obj,true);//删除空白的属性
+		// deleteEmptyString(obj,true);//删除空白的属性
           log("提交",obj);
           beforeSubmit(obj);
 		$.ajax({

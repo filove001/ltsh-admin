@@ -9,7 +9,7 @@ import org.beetl.sql.core.engine.PageQuery;
 public class BasePageQuery<T> extends PageQuery<T> {
     private String msg="";//
     private String code="-1";//成功的状态码，默认：0 数据总数的字段
-
+    public BasePageQuery(){code="0";}
     public String getMsg() {
         return msg;
     }

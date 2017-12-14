@@ -37,8 +37,8 @@
 				<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
-				<label class="layui-form-label">状态//radio/0,隐藏,1,显示:</label>
-				<input type="text" value="" name="status" placeholder="状态//radio/0,隐藏,1,显示" class="layui-input">
+				<label class="layui-form-label">状态隐藏显示:</label>
+				<input type="text" value="" name="status" placeholder="状态隐藏显示" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
 				<label class="layui-form-label">类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息:</label>
@@ -57,16 +57,16 @@
 				<input type="text" value="" name="siteId" placeholder="站点ID" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
-				<label class="layui-form-label">SEO title:</label>
-				<input type="text" value="" name="seoTitle" placeholder="SEO title" class="layui-input">
+				<label class="layui-form-label">SEO标题:</label>
+				<input type="text" value="" name="seoTitle" placeholder="SEO标题" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
-				<label class="layui-form-label">SEO keywords:</label>
-				<input type="text" value="" name="seoKeywords" placeholder="SEO keywords" class="layui-input">
+				<label class="layui-form-label">SEO关键字:</label>
+				<input type="text" value="" name="seoKeywords" placeholder="SEO关键字" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
-				<label class="layui-form-label">SEO description:</label>
-				<input type="text" value="" name="seoDescription" placeholder="SEO description" class="layui-input">
+				<label class="layui-form-label">SEO详情:</label>
+				<input type="text" value="" name="seoDescription" placeholder="SEO详情" class="layui-input">
 			</div>
 			<div class="layui-input-inline">
 				<label class="layui-form-label">更新时间:</label>
@@ -96,7 +96,7 @@
 </div>
 <div id="LAY_democodejs">
 	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<%include("/base/js.html"){} %>
 	<script src="${ctx}/js/common.js" charset="utf-8"></script>
 	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
 	<script type="text/html" id="gridBar">
@@ -107,7 +107,7 @@
         var tableIns=null;
         layui.use('table', function(){
             var table = layui.table;
-            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            var height=getGridHeight();
             //第一个实例
             tableIns=table.render({
                 elem: '#layui-table'
@@ -121,14 +121,14 @@
                 {field: 'path', title: '模板路径' ,width:80},
                 {field: 'content', title: '描述' ,width:80},
                 {field: 'sort', title: '排序' ,width:80},
-                {field: 'status', title: '状态//radio/0,隐藏,1,显示' ,width:80},
+                {field: 'status', title: '状态隐藏显示' ,width:80},
                 {field: 'type', title: '类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息' ,width:80},
                 {field: 'href', title: '跳转地址' ,width:80},
                 {field: 'materialType', title: '素材类型' ,width:80},
                 {field: 'siteId', title: '站点ID' ,width:80},
-                {field: 'seoTitle', title: 'SEO title' ,width:80},
-                {field: 'seoKeywords', title: 'SEO keywords' ,width:80},
-                {field: 'seoDescription', title: 'SEO description' ,width:80},
+                {field: 'seoTitle', title: 'SEO标题' ,width:80},
+                {field: 'seoKeywords', title: 'SEO关键字' ,width:80},
+                {field: 'seoDescription', title: 'SEO详情' ,width:80},
                 {field: 'updateTime', title: '更新时间' ,width:80},
                 {field: 'updateBy', title: '更新人' ,width:80},
                 {field: 'createTime', title: '创建时间' ,width:80},

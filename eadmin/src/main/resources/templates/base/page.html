@@ -1,0 +1,27 @@
+<!--pageNumber=1&pageSize=10-->
+<%
+    var pageNumber=page.pageNumber;
+    var size=5,begin=1,end=page.totalPage;
+    if(page.totalPage>size){
+        var temp=parseInt(size/2);
+        begin=pageNumber-temp;
+        begin=begin<0?-begin:begin==0?1:begin;
+        end=begin+size;
+        if(end>page.totalPage){
+            begin=page.totalPage-end>0?begin:page.totalPage-end+begin;
+            end=page.totalPage;
+        }
+    };
+%>
+<div class="page">
+    <ul>
+        <%if(pageNumber==1){%><li><span class="gray">首页</span></li><%}else{%><li><a href="${listHref}/1/${pageSize}.html">首页</a></li><%}%>
+        <%if(pageNumber==1){%><li><span class="gray">上一页</span><%}else{%><li><a href="${listHref}/${pageNumber-1}/${pageSize}.html">上一页</a></li><%}%>
+        <%for(var i=begin;i<=end;i++){%>
+            <%if(pageNumber==i){%><li><span class="current">${i}</span></li><%}else{%><li><a href="${listHref}/${i}/${pageSize}.html">${i}</a></li><%}%>
+        <%}%>
+        <%if(pageNumber==page.totalPage){%><li><span class="gray">下一页</span></li><%}else{%><li><a href="${listHref}/${pageNumber+1}/${pageSize}.html">下一页</a></li><%}%>
+        <%if(pageNumber==page.totalPage){%><li><span class="gray">尾页</span></li><%}else{%><li><a href="${listHref}/${page.totalPage}/${pageSize}.html">尾页</a></li><%}%>
+        <li><span class="pageinfo">共<strong>${page.totalPage}</strong>页<strong>${page.totalRow}</strong>条</span></li>
+    </ul>
+</div>

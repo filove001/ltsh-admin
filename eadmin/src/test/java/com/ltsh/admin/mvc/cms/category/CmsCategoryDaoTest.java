@@ -19,7 +19,7 @@ public class CmsCategoryDaoTest extends BaseDaoTest{
 		entity.setPath(name+i);
 		entity.setContent(name+i);
 		entity.setSort(1);
-		entity.setStatus(1);
+		entity.setStatus("显示");
 		entity.setType(1);
 		entity.setHref(name+i);
 		entity.setMaterialType(1);

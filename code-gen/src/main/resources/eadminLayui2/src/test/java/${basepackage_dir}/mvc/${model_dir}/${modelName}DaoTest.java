@@ -16,6 +16,8 @@ public class ${table.modelName}DaoTest extends BaseDaoTest{
 		<%for(colunm in table.columns){%>
 			<%if(colunm.javaType=='java.util.Date'){%>
 		entity.set${colunm.attrNameUpperCaseFirstOne}(new java.util.Date());
+			<%}else if(strutil.startWith(colunm.type,'ENUM')){%>
+		entity.set${colunm.attrNameUpperCaseFirstOne}("${colunm.enumValues[0]}");
 			<%}else if(colunm.javaType=='java.lang.String'){%>
 		entity.set${colunm.attrNameUpperCaseFirstOne}(name+i);
 			<%}else if(colunm.javaType=='java.lang.Integer'){%>

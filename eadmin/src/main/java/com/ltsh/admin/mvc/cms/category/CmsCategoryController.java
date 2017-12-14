@@ -41,14 +41,14 @@ public class CmsCategoryController extends CrudController<CmsCategory> {
 	   	request.setAttribute("pathDisplayNone", true);//模板路径
 	   	request.setAttribute("contentDisplayNone", true);//描述
 	   	request.setAttribute("sortDisplayNone", true);//排序
-	   	request.setAttribute("statusDisplayNone", true);//状态//radio/0,隐藏,1,显示
+	   	request.setAttribute("statusDisplayNone", true);//状态隐藏显示
 	   	request.setAttribute("typeDisplayNone", true);//类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息
 	   	request.setAttribute("hrefDisplayNone", true);//跳转地址
 	   	request.setAttribute("materialTypeDisplayNone", true);//素材类型
 	   	request.setAttribute("siteIdDisplayNone", true);//站点ID
-	   	request.setAttribute("seoTitleDisplayNone", true);//SEO title
-	   	request.setAttribute("seoKeywordsDisplayNone", true);//SEO keywords
-	   	request.setAttribute("seoDescriptionDisplayNone", true);//SEO description
+	   	request.setAttribute("seoTitleDisplayNone", true);//SEO标题
+	   	request.setAttribute("seoKeywordsDisplayNone", true);//SEO关键字
+	   	request.setAttribute("seoDescriptionDisplayNone", true);//SEO详情
 	   	request.setAttribute("updateTimeDisplayNone", true);//更新时间
 	   	request.setAttribute("updateByDisplayNone", true);//更新人
 	   	request.setAttribute("createTimeDisplayNone", true);//创建时间
@@ -60,14 +60,14 @@ public class CmsCategoryController extends CrudController<CmsCategory> {
 	   	request.setAttribute("pathDisabled", true);//模板路径
 	   	request.setAttribute("contentDisabled", true);//描述
 	   	request.setAttribute("sortDisabled", true);//排序
-	   	request.setAttribute("statusDisabled", true);//状态//radio/0,隐藏,1,显示
+	   	request.setAttribute("statusDisabled", true);//状态隐藏显示
 	   	request.setAttribute("typeDisabled", true);//类型 1 普通目录 2 a标签 3 a标签_blank 4 直接加载url信息
 	   	request.setAttribute("hrefDisabled", true);//跳转地址
 	   	request.setAttribute("materialTypeDisabled", true);//素材类型
 	   	request.setAttribute("siteIdDisabled", true);//站点ID
-	   	request.setAttribute("seoTitleDisabled", true);//SEO title
-	   	request.setAttribute("seoKeywordsDisabled", true);//SEO keywords
-	   	request.setAttribute("seoDescriptionDisabled", true);//SEO description
+	   	request.setAttribute("seoTitleDisabled", true);//SEO标题
+	   	request.setAttribute("seoKeywordsDisabled", true);//SEO关键字
+	   	request.setAttribute("seoDescriptionDisabled", true);//SEO详情
 	   	request.setAttribute("updateTimeDisabled", true);//更新时间
 	   	request.setAttribute("updateByDisabled", true);//更新人
 	   	request.setAttribute("createTimeDisabled", true);//创建时间

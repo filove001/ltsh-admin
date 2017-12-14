@@ -87,7 +87,7 @@ like
 	 and sort=#sort#
 	@}
 	@if(!isEmpty(status)){
-	 and status=#status#
+	 and status like #'%'+status+'%'#
 	@}
 	@if(!isEmpty(type)){
 	 and type=#type#

@@ -25,45 +25,20 @@
         <ul>
           <%for(obj in list){%>
           <li class="clearfix">
-            <!--<a href="/news/201706/227524.html" target="_blank" title="五代宋初画家巨然山水画作品欣赏" class="pic"><img src="/templets/images/gray.gif" data-original="/uploads/allimg/2017/0608/blu14osktq1-219-lp.jpg" alt="五代宋初画家巨然山水画作品欣赏" onload="PicAuto(this)" class="lazy" /></a>-->
+            <a href="/news/201706/227524.html" target="_blank" title="${obj.title}" class="pic"><img src="${obj.imageUrl}" alt="${obj.title}" onload="PicAuto(this)" class="lazy" /></a>
             <div class="text">
               <h3 class="title">[<a href="/news/appreciate/">${obj.title}</a>]&nbsp;<a href="/news/201706/227524.html" target="_blank" title="${obj.title}">${obj.title}</a></h3>
-              <p class="publish"><span class="time">时间：${obj.createTime}</span><span class="click ml">阅读：147</span></p>
+              <p class="publish"><span class="time">时间：${obj.createTime,'yyyy-MM-dd HH:mm:ss'}</span><span class="click ml">阅读：${obj.countView}</span></p>
               <p class="desc">${obj.content}</p>
             </div>
           </li>
           <%}%>
-          <li class="clearfix">
-          <a href="/news/201706/227524.html" target="_blank" title="五代宋初画家巨然山水画作品欣赏" class="pic"><img src="/templets/images/gray.gif" data-original="/uploads/allimg/2017/0608/blu14osktq1-219-lp.jpg" alt="五代宋初画家巨然山水画作品欣赏" onload="PicAuto(this)" class="lazy" /></a>
-          <div class="text">
-            <h3 class="title">[<a href="/news/appreciate/">书画鉴赏</a>]&nbsp;<a href="/news/201706/227524.html" target="_blank" title="五代宋初画家巨然山水画作品欣赏">五代宋初画家巨然山水画作品欣赏</a></h3>
-            <p class="publish"><span class="time">时间：2017-06-10</span><span class="click ml">阅读：147</span></p>
-            <p class="desc">巨然，江宁（今南京）人。生卒不详，五代宋初画家。南唐亡，至开封为开元寺僧。善画山水，深得佳趣，知名于时。笔法师董源，早年着力刻划形象，用长披麻皴画山，山顶金画矾头，晚年逐渐趋于淡泊，追慕自然。与董源并称“董巨”，为江南山水画派重要一支。并与五代荆浩、...</p>
-          </div>
-        </li>
-          <li class="clearfix">
-          <a href="/news/201706/227523.html" target="_blank" title="明代画家林良《孔雀图》高清大图赏析" class="pic"><img src="/templets/images/gray.gif" data-original="/uploads/allimg/2017/0608/ae2pskw5pmt-21-lp.jpg" alt="明代画家林良《孔雀图》高清大图赏析" onload="PicAuto(this)" class="lazy" /></a>
-          <div class="text">
-            <h3 class="title">[<a href="/news/appreciate/">书画鉴赏</a>]&nbsp;<a href="/news/201706/227523.html" target="_blank" title="明代画家林良《孔雀图》高清大图赏析">明代画家林良《孔雀图》高清大图赏析</a></h3>
-            <p class="publish"><span class="time">时间：2017-06-10</span><span class="click ml">阅读：113</span></p>
-            <p class="desc">明 林良 《孔雀图》 轴，绢本，墨笔，纵155.3cm横78cm。 副标题 明 林良 《孔雀图》 局部大图 《孔雀图》轴，是明代画家林良所作的一幅花鸟画，也是孔雀题材国画的经典范例，现藏于北京故宫博物院。 款署：林良。 图绘雌雄孔雀一双，立于石上，旁有修竹数竿。 孔雀是自...</p>
-          </div>
-        </li><li class="clearfix">
-          <a href="/news/201706/227522.html" target="_blank" title="李渔《隶书联》" class="pic"><img src="/templets/images/gray.gif" data-original="/uploads/allimg/2017/0608/fy4qvv3smzp-253-lp.jpg" alt="李渔《隶书联》" onload="PicAuto(this)" class="lazy" /></a>
-          <div class="text">
-            <h3 class="title">[<a href="/news/appreciate/">书画鉴赏</a>]&nbsp;<a href="/news/201706/227522.html" target="_blank" title="李渔《隶书联》">李渔《隶书联》</a></h3>
-            <p class="publish"><span class="time">时间：2017-06-10</span><span class="click ml">阅读：105</span></p>
-            <p class="desc">李渔《隶书联》，81×21cm×2，南京代辛私人藏。刊于《新华日报》新华艺坛2010年5月14日。 释文：江湖归白发，诗画醉红颜。湖上笠翁李渔。 钤印：上联盖二章：“老桂山房”，“系结陇西”；下联钤二印：“湖上老渔”，“笠翁”；下联下端有两章，为“廷俊心赏”、“两餐...</p>
-          </div>
-        </li>
         </ul>
       </div>
 
       <div class="list_left_hz2"><script type="text/javascript" src="/plus/w1x8i0v6t.php?aid=13"></script></div>
 
-      <div class="page">
-        <ul><li><span class="gray">首页</span></li><li><span class="gray">上一页</span></li><li><span class="current">1</span></li><li><a href="list_2.html">2</a></li><li><a href="list_3.html">3</a></li><li><a href="list_4.html">4</a></li><li><a href="list_5.html">5</a></li><li><a href="list_2.html">下一页</a></li><li><a href="list_119.html">尾页</a></li><li><span class="pageinfo">共<strong>119</strong>页<strong>3556</strong>条</span></li></ul>
-      </div>
+      <%include("/base/page.html"){} %>
     </div>
   </div>
   <div class="mainright">
