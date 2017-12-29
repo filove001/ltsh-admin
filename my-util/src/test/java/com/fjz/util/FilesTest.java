@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class FilesTest {
     @Test
+    public void unicode() throws ParseException {
+        String file = "E:\\ltsh-admin\\eadmin\\src\\main\\resources\\application.properties";
+        String temp=Files.read(file);
+        System.out.println(temp);
+    }
+    @Test
     public void test() throws ParseException {
         String file="C:\\Users\\fengjianzhong\\Documents\\WeChat Files\\xiaoyao409099585\\Files\\haima.access-2017-12-09.log";
         List<String> list = Files.readLines(new File(file), "UTF-8");

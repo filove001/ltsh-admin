@@ -55,6 +55,8 @@ public class Regexs {
 		}
 		return list;
 	}
+	//对应href
+	public static final String HREF = "href\\s*=\\s*\"?(.*?)(\"|>|\\s+)";
 	//对应src
 	public static final String SRC = "src\\s*=\\s*\"?(.*?)(\"|>|\\s+)";
 	// 获取img标签正则

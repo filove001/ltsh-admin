@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/code-gen/code-gen.iml" filepath="$PROJECT_DIR$/code-gen/code-gen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eadmin/eadmin.iml" filepath="$PROJECT_DIR$/eadmin/eadmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ltsh-admin.iml" filepath="$PROJECT_DIR$/.idea/ltsh-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-util/my-util.iml" filepath="$PROJECT_DIR$/my-util/my-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study/study.iml" filepath="$PROJECT_DIR$/study/study.iml" />
+    </modules>
+  </component>
+</project>

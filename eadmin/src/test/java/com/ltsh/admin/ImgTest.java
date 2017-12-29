@@ -1,12 +1,17 @@
 package com.ltsh.admin;
 
 import com.fjz.util.Jsons;
+import com.ltsh.admin.mvc.base.BaseService;
 import com.ltsh.admin.mvc.cms.article.CmsArticle;
 import com.ltsh.admin.mvc.cms.article.CmsArticleDao;
+import com.ltsh.admin.mvc.cms.article.CmsArticleServiceImpl;
+import org.beetl.sql.core.engine.PageQuery;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.util.HtmlUtils;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,20 +26,20 @@ public class ImgTest extends BaseDaoTest {
     private static final String IMGURL_REG = "<img.*src=(.*?)[^>]*?>";
     // 获取src路径的正则
     private static final String IMGSRC_REG = "http:\"?(.*?)(\"|>|\\s+)";
-
+    protected Class getPageType(Type type, Class defaultClass) {
+        if(type instanceof Class) {
+            return defaultClass;
+        } else {
+            Type t = ((ParameterizedType)type).getActualTypeArguments()[0];
+            return t instanceof ParameterizedType?null:(Class)t;
+        }
+    }
     @Test
-    public void img1() {//获取文章前几位图片
-//        String temp="<p><img src=2017-12-10/709e699b-fa86-48e6-afec-a77ed62c996a.png /><img src=\"file/2017-12-10/709e699b-fa86-48e6-afec-a77ed62c996a.png\"><img src=\"http://192.168.1.104:8080/file/2017-12-10/709e699b-fa86-48e6-afec-a77ed62c996a.png\" style=\"line-height: 1.5; max-width: 30%;\"><span style=\"line-height: normal;\">111是飞洒</span></p><p><br></p>";
-//        List<String> imgSrc = new ArrayList<>();
-//        //获取图片标签
-//        List<String> imgUrl = getImageUrl(temp);
-//        imgSrc.addAll(getImageSrc(imgUrl));
-//        System.out.println(Jsons.toString(imgSrc));
-        System.out.println(Pattern.compile("").matcher(null));
-//        List<String> imgSrc = new ArrayList<>();
-//        List<String> imgSrc1 = new ArrayList<>();
-//        imgSrc.addAll(imgSrc);
-//        System.out.println(imgSrc.size());
+    public void img1() throws NoSuchMethodException {//
+        BaseService<CmsArticle> service = new CmsArticleServiceImpl();
+        PageQuery<CmsArticle> p=new PageQuery();
+
+        System.out.println(getPageType(service.getClass().getMethod("page",PageQuery.class).getGenericParameterTypes()[0],CmsArticle.class));
     }
     @Test
     public void img(){//获取文章前几位图片
