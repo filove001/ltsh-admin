@@ -137,7 +137,6 @@ public class Dates {
 		return add(date, Calendar.DATE, day);
 	}
 	/**
-	 *
 	 * @param date
 	 * @param CalendarType
 	 * @param CalendarTypeNumber
