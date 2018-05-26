@@ -11,6 +11,7 @@ import javafx.scene.web.WebEngine;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -67,21 +68,21 @@ public class BaiduSearch {
 
     public static void main(String[] args) throws InterruptedException {
         BaiduSearch baidu=new BaiduSearch("海马的功效与作用");
-        baidu.doc.queryAll("h3 a[data-click]").get(0).click();
-        List<Element> tagEs=null;
-        for (Element e : baidu.doc.getBody().getChildren()) {
-            List<Element> ee = e.queryAll("p");
-            if(tagEs==null||tagEs.size()<ee.size()){
-                tagEs=ee;
-            }
-        }
-        for (Element e:tagEs
-             ) {
-            System.out.println(e.getInnerHTML());
-        }
+//        baidu.doc.queryAll("h3 a[data-click]").get(0).click();
+//        List<Element> tagEs=null;
+//        for (Element e : baidu.doc.getBody().getChildren()) {
+//            List<Element> ee = e.queryAll("p");
+//            if(tagEs==null||tagEs.size()<ee.size()){
+//                tagEs=ee;
+//            }
+//        }
+//        for (Element e:tagEs
+//             ) {
+//            System.out.println(e.getInnerHTML());
+//        }
+        baidu.page.show();
 //        System.out.println();
 //        ((WebEngine)baidu.page.getEngine()).getLoadWorker().stateProperty().addListener();
-
 
 //                this.engine.getEngine().getLoadWorker().stateProperty().addListener(loadListener);
 //        System.out.println(baidu.doc.getBody());
