@@ -79,7 +79,7 @@ public class MyPooledObjectFactoryExample implements PooledObjectFactory<StringB
             p = new DefaultPooledObject<StringBuffer>(new StringBuffer());
     }
     /**
-     * //对话StringBuffer对象，这里是个空实现
+     * //对话StringBuffer对象，这里是个空实现  /当对象被归还到池中之前执行
      */
     @Override
     public void passivateObject(PooledObject<StringBuffer> p) throws Exception {
