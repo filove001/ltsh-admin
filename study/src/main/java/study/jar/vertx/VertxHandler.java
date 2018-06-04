@@ -3,6 +3,7 @@ package study.jar.vertx;
 
 import io.vertx.core.Handler;
 import io.vertx.ext.web.RoutingContext;
+import org.apache.commons.lang3.ThreadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +23,23 @@ public class VertxHandler implements Handler<RoutingContext> {
         String method= routingContext.request().getParam("method");
         String parameterTypesString= routingContext.request().getParam("parameterTypesString");
         String parameter= routingContext.request().getParam("parameter");
-
+        long start = System.nanoTime();
+        //        routingContext.vertx().executeBlocking(future->{
+        //
+        //        },res->{
+        //
+        //        });
+        routingContext.vertx().executeBlocking(future->{
+            try {
+                Thread.sleep(2000);
+                future.complete();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        },res->{
+            routingContext.request().response().end((System.nanoTime()-start)/1000000+"");
+        });
+//        routingContext.request().response().end("ok");
     }
 
 }

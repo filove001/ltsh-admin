@@ -32,7 +32,7 @@ public class VertxTest extends AbstractVerticle {
         System.out.println("端口："+port);
         router.route().handler(BodyHandler.create());
         // router.get("/hello")表示所监听URL路径
-        router.post("/").handler(new VertxHandler());
+        router.get("/").handler(new VertxHandler());
         // 传递方法引用，监听端口
         vertx.createHttpServer().requestHandler(new Handler<HttpServerRequest>() {
             public void handle(HttpServerRequest event) {
