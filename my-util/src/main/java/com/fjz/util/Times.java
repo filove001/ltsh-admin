@@ -4,24 +4,27 @@ package com.fjz.util;
 import com.fjz.util.log.Logs;
 
 public class Times {
-	public static long timer(Action action,String msg){
-		long time=System.currentTimeMillis();
-		action.action();
-		time=System.currentTimeMillis()-time;
-//		System.out.println(msg+"用时："+time);
-		Logs.info(msg+"用时："+time);
-		return time;
-	}
-	public static long timer(Action action){
-		return timer(action, Systems.getCodeLocation(3));
-	}
-	public static void main(String[] args){
-		timer(() -> {
-			return null;
-		});
 
+
+
+	private long startTimes;
+
+	public Times() {
+		reStartTimes();
 	}
-	public interface Action{
-		public Object action();
-	};
+
+	public void reStartTimes() {
+		this.startTimes = System.nanoTime();
+	}
+
+	public long getTimeDifference() {
+		return (System.nanoTime() - startTimes)/1000/1000;
+	}
+	public long getTimeDifferenceNanoTime(){return System.nanoTime() - startTimes;}
+
+	public void time(Runnable runnable) {
+		this.reStartTimes();
+		runnable.run();
+		System.out.println("用时:"+getTimeDifference());
+	}
 }
