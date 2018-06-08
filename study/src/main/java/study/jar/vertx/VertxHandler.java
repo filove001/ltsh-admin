@@ -4,6 +4,7 @@ package study.jar.vertx;
 import com.google.common.util.concurrent.*;
 import io.vertx.core.Handler;
 import io.vertx.ext.web.RoutingContext;
+import org.apache.commons.lang3.ThreadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +45,23 @@ public class VertxHandler implements Handler<RoutingContext> {
             public void onFailure(Throwable t) {
             }
         },service);
+        long start = System.nanoTime();
+        //        routingContext.vertx().executeBlocking(future->{
+        //
+        //        },res->{
+        //
+        //        });
+        routingContext.vertx().executeBlocking(future->{
+            try {
+                Thread.sleep(2000);
+                future.complete();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        },res->{
+            routingContext.request().response().end((System.nanoTime()-start)/1000000+"");
+        });
+//        routingContext.request().response().end("ok");
     }
 
 }
