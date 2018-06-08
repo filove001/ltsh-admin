@@ -29,7 +29,7 @@ public class VertxHandler implements Handler<RoutingContext> {
         ListenableFuture<Boolean> booleanTask = service.submit(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
                 return true;
             }
         });
