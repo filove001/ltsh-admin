@@ -22,9 +22,14 @@ public class Times {
 	}
 	public long getTimeDifferenceNanoTime(){return System.nanoTime() - startTimes;}
 
-	public void time(Runnable runnable) {
+	public void longTime(Runnable runnable) {
 		this.reStartTimes();
 		runnable.run();
-		System.out.println("用时:"+getTimeDifference());
+		Logs.info("用时:"+getTimeDifference()+"ms");
+	}
+	public void longTime(RunableForEach runnable) {
+		this.reStartTimes();
+		runnable.action();
+		Logs.info(runnable.getName()+"用时:"+getTimeDifference()+"ms");
 	}
 }

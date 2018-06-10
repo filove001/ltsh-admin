@@ -3,6 +3,7 @@ package com.fjz.util.log;
 import com.fjz.util.Systems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.NOPLogger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -18,6 +19,7 @@ import java.io.StringWriter;
  */
 public class Logs {
 	public static Logger log = LoggerFactory.getLogger(Logs.class);
+
     public static void warn(String msg,Object... value) {
         log.warn(getCodeLocationMsg(msg),value);
     }
