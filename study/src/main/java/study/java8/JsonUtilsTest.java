@@ -10,6 +10,7 @@ import io.netty.buffer.PooledByteBufAllocator;
 import net.minidev.json.JSONValue;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -141,7 +142,18 @@ public class JsonUtilsTest {
             writer.println();
         }
     }
-    public static void writeObject(RpcInvocation inv, PrintWriter writer) throws IOException {
+    public static void writeObject(Object obj, PrintWriter writer) throws IOException {
+        SerializeWriter out = new SerializeWriter();
+        JSONSerializer serializer = new JSONSerializer(out);
+        serializer.config(SerializerFeature.WriteEnumUsingToString, true);
+        serializer.write(obj);
+        out.writeTo(writer);
+        out.close(); // for reuse SerializeWriter buf
+        writer.println();
+        writer.flush();
+//        writer.close();
+    }
+    public static void writeObject(RpcInvocation inv, Writer writer) throws IOException {
         SerializeWriter out = new SerializeWriter();
         JSONSerializer serializer = new JSONSerializer(out);
         serializer.config(SerializerFeature.WriteEnumUsingToString, true);
@@ -155,30 +167,15 @@ public class JsonUtilsTest {
         serializer.println();
         serializer.write(inv.getParameterTypes());
         serializer.println();
-        out.writeTo(writer);
-        out.close();
-        writer.print(new String(inv.getArguments()));
-        writer.flush();
-        out = new SerializeWriter();
-        serializer = new JSONSerializer(out);
-        serializer.config(SerializerFeature.WriteEnumUsingToString, true);
-        serializer.write(inv.getAttachments());
+        serializer.write(new String(inv.getArguments()));
+        serializer.println();
+        serializer.write(new HashMap<>());
         serializer.println();
         out.writeTo(writer);
-        out.close(); // for reuse SerializeWriter buf
+        out.close();
         writer.flush();
     }
-    public static void writeObject(Object obj, PrintWriter writer) throws IOException {
-        SerializeWriter out = new SerializeWriter();
-        JSONSerializer serializer = new JSONSerializer(out);
-        serializer.config(SerializerFeature.WriteEnumUsingToString, true);
-        serializer.write(obj);
-        out.writeTo(writer);
-        out.close(); // for reuse SerializeWriter buf
-        writer.println();
-        writer.flush();
-//        writer.close();
-    }
+
 
     public static void writeBytes(byte[] b, PrintWriter writer) {
         writer.print(new String(b));

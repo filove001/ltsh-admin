@@ -90,7 +90,7 @@ public class SerializeWriterAndPrintWriterTest {
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
 //                PrintWriter writer = new PrintWriter(new OutputStreamWriter(os));
                 try {
-                    JsonUtilsTest.writeObject(inv, writer);
+                    JsonUtilsTest.writeObject(inv, writer,true);
                     out.reset();
 //                    System.out.println(Arrays.toString(out.toByteArray()));
                 } catch (IOException e) {
