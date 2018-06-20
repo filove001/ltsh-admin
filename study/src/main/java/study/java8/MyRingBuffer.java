@@ -1,38 +1,60 @@
-//package study.java8;
-//
-//import java.io.Serializable;
-//import java.lang.reflect.Array;
-//import java.util.concurrent.atomic.AtomicInteger;
-//import java.util.concurrent.atomic.AtomicLong;
-//
-///**
-// * 并发生产者和消费者数不能多于queue的length，默认是2^16
-// * 简易版 无锁并发框架，基于一个环数组作为缓冲
-// */
-//public class MyRingBuffer<T> implements Serializable {
-//    private Object[] ringBuffer = null;
-//    private Object[] ringBuffer = null;
-//    private AtomicInteger offerSeq = new AtomicInteger(-1);
-//    private AtomicInteger takeSeq = new AtomicInteger(-1);
-//    private int size;
-//    private int mask;
-//
-//    public OptimisticQueue(int sizePower) {
-//        this.size = 1 &lt;&lt; sizePower;
-//        this.ringBuffer = new Object[size];
-//        for (int i = 0; i &lt; size; i++) {
-//            ringBuffer[i] = new Entry(i + 1);
-//        }
-//        this.mask = 0x7FFFFFFF >> (31 - sizePower);
-//    }
-//
-//    @SuppressWarnings("unchecked")
-//    private Entry nextOffer() {
-//        return (Entry) ringBuffer[offerSeq.incrementAndGet() & mask];
-//    }
-//
-//    @SuppressWarnings("unchecked")
-//    private Entry nextTake() {
-//        return (Entry) ringBuffer[takeSeq.incrementAndGet() & mask];
-//    }
-//}
+package study.java8;
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+
+/**
+ */
+public class MyRingBuffer<T> implements Serializable {
+    private final static int bufferSize = 1024;
+    private String[] buffer = new String[bufferSize];
+    private int head = 0;
+    private int tail = 0;
+
+    private Boolean empty() {
+        return head == tail;
+    }
+    private Boolean full() {
+        return (tail + 1) % bufferSize == head;
+    }
+    public Boolean put(String v) {
+        if (full()) {
+            return false;
+        }
+        buffer[tail] = v;
+        tail = (tail + 1) % bufferSize;
+        return true;
+    }
+    public String get() {
+        if (empty()) {
+            return null;
+        }
+        String result = buffer[head];
+        head = (head + 1) % bufferSize;
+        return result;
+    }
+    public String[] getAll() {
+        if (empty()) {
+            return new String[0];
+        }
+        int copyTail = tail;
+        int cnt = head < copyTail ? copyTail - head : bufferSize - head + copyTail;
+        String[] result = new String[cnt];
+        if (head < copyTail) {
+            for (int i = head; i < copyTail; i++) {
+                result[i - head] = buffer[i];
+            }
+        } else {
+            for (int i = head; i < bufferSize; i++) {
+                result[i - head] = buffer[i];
+            }
+            for (int i = 0; i < copyTail; i++) {
+                result[bufferSize - head + i] = buffer[i];
+            }
+        }
+        head = copyTail;
+        return result;
+    }
+}
