@@ -49,7 +49,6 @@ public class RingBuffer<T> implements Serializable {
         while(this.queue[this.getHead(chead)] == EMPTY); // 自旋
         t = this.queue[this.getHead(chead)];
 
-        System.out.println(this.getHead(chead));
         this.queue[this.getHead(chead)] = EMPTY;
         return t;
     }
