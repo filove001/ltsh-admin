@@ -3,7 +3,6 @@ package com.fjz.util.log;
 import com.fjz.util.Systems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.helpers.NOPLogger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
