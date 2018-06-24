@@ -14,7 +14,7 @@ public class BlockingQueueTest{
     public static AtomicInteger index = new AtomicInteger(0);
     private static int count=10000;
     private static int threadNum=200;
-    private static int size=100000;
+    private static int size=1000000;
     public static ArrayBlockingQueue queue=new ArrayBlockingQueue(size);
     static int tCount = 10; // thread count
     public static void main(String[] args){
@@ -57,11 +57,11 @@ public class BlockingQueueTest{
         for(int i=0; i<tCount; i++){
             new Thread(cr).start();
         }
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         for(int i=0; i<tCount; i++){
             new Thread(pr).start();
         }

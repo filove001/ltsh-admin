@@ -34,6 +34,12 @@ public class RingArray<T> {
         tail = (tail + 1) % bufferSize;
         return true;
     }
+    public T getLoop() {
+        T result = buffer[head];
+        buffer[head]=null;
+        head = (head + 1) % bufferSize;
+        return result;
+    }
     public T get() {
         //buffer[head]==null 说明是空的还没有put值，循环不获取
         while (buffer[head]==null);

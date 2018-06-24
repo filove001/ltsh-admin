@@ -34,6 +34,7 @@ public class SerializeWriterAndPrintWriterTest {
             public void action()  {
 //                PrintWriter writer = new PrintWriter();
 //                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                System.out.println(Thread.currentThread().getId());
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
                 try {
                     JsonUtilsTest.writeObject(inv,writer);
