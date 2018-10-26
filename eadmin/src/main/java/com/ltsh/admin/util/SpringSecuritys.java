@@ -43,7 +43,7 @@ public class SpringSecuritys {
         }
         return (T) principal;
     }
-    private static SysMenuService sysMenuService=SpringContextHolder.getBean(SysMenuService.class);
+    private static SysMenuService sysMenuService = SpringContextHolder.getBean(SysMenuService.class);
     /**
      * 取得当前用户的权限菜单树
      */
