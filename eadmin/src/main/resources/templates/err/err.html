@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${status} ${msg}</title>
+    <%include("/base/css.html"){} %>
+    <link rel="stylesheet" href="${ctx}/css/login.css">
+</head>
+<body class="body">
+
+<div class="my-page-box">
+    <h3>${status}</h3>
+    <!--<p class="msg">Page Not Found</p>-->
+    <p class="text">${msg}</p>
+    <div class="my-btn-box">
+        <a class="layui-btn layui-btn-small" href="/">返回首页</a>
+        <a class="layui-btn layui-btn-danger layui-btn-small " href="javascript:window.history.go(-1);">返回上页</a>
+    </div>
+</div>
+
+
+<%include("/base/js.html"){} %>
+<script type="text/javascript">
+    // you code ...
+</script>
+</body>
+</html>

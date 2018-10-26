@@ -2,14 +2,7 @@ package com.fjz.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.joda.time.DateTime;
+import java.util.*;
 
 /**
  * 时间工具类
@@ -22,10 +15,13 @@ public class Dates {
 	public static final String YYYY_MM_DD_HH_MM_SS="yyyy-MM-dd HH:mm:ss";
 	public static final String YYYY_MM_DD="yyyy-MM-dd";
 	public static final String HH_MM_SS="HH:mm:ss";
+	public static final String hh_mm_ss_SSS="hh:mm:ss.SSS";
 	public static final String HH_MM="HH:mm";
 	public static final String HHMMSS="HHmmss";
 	public static final String YYYYMMDDHHMISS="yyyyMMddHHmmss";
 	public static final String YYYYMMDD="yyyyMMdd";
+	static int[] weeks={-1,7,1,2,3,4,5,6};
+	static String template="第%s周%s 至  %s";
 	/** 锁对象 */
     private static final Object lockObj = new Object();
     /** 存放不同的日期模板格式的sdf的Map */
@@ -115,90 +111,152 @@ public class Dates {
         return null;
     }
 
-	static int[] weeks={-1,7,1,2,3,4,5,6};
-	static String template="第%s周%s 至  %s";
-	public static String nextWeekStr(String date,int weekNex){
-		DateTime dateTime=new DateTime(toDate(date));
-		dateTime=dateTime.plusWeeks(weekNex);
-		return dateTime.toString(YYYY_MM_DD);
-	}
+
+
 	/**
-	 * 取得这周和下几周的日期
-	 * @param date
-	 * @param weekNext
+	 * hh:mm:ss.SSS
+	 * long计算时分秒
+	 * @param longTime
 	 * @return
 	 */
-	public static List<Item<String, String>> getWeekNext(Date date,int weekNext){
-		DateTime dateTime=new DateTime(date);
-		int yearOfWeek=dateTime.getWeekOfWeekyear();
-		dateTime=dateTime.minusDays(dateTime.getDayOfWeek()-1);
-		String startDate="";
-		String endDate="";
-		List<Item<String, String>> list=new ArrayList<Item<String, String>>();
-		for (int i = 0; i < weekNext; i++) {
-			startDate=dateTime.toString(YYYY_MM_DD);
-			endDate=dateTime.plusDays(6).toString(YYYY_MM_DD);
-			list.add(new Item<String, String>(startDate+","+endDate,String.format(template,yearOfWeek+i,startDate,endDate)));
-			dateTime=dateTime.plusWeeks(1);
+	public static String getTakeTime(long longTime){
+		StringBuilder sb = new StringBuilder();
+		long h=longTime/(1000*3600);
+		long m=longTime/(1000*60)%60;
+		long s=longTime/1000%60;
+		long ss=longTime%1000;
+		return sb.append(add0(h)).append(":").append(add0(m)).append(":").append(add0(s)).append(".").append(add0(ss)).toString();
+	}
+	public static Date addMinutes(Date date,int minutes){
+		return add(date, Calendar.MINUTE, minutes);
+	}
+	public static Date addDay(Date date,int day){
+		Calendar  cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DATE, day);
+		return add(date, Calendar.DATE, day);
+	}
+	/**
+	 * @param date
+	 * @param CalendarType
+	 * @param CalendarTypeNumber
+	 * @return
+	 */
+	public static Date add(Date date,int CalendarType,int CalendarTypeNumber){
+		Calendar  cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(CalendarType, CalendarTypeNumber);
+		return cal.getTime();
+	}
+	/**
+	 * 少于10前加零
+	 * @param time
+	 * @return
+	 */
+	private static String add0(long time){
+		return time<=9?"0"+time:time+"";
+	}
+	/**
+	 * 出生日期计算年龄
+	 * @param birthday
+	 * @return
+	 */
+	public static int getAgeByBirth(String birthday) {
+		return getAgeByBirth(toDateYYYYMMDD(birthday));
+	}
+	/**
+	 * 出生日期计算年龄
+	 * @param birthday
+	 * @return
+	 */
+	public static int getAgeByBirth(Date birthday) {
+		int age = 0;
+		try {
+			Calendar now = Calendar.getInstance();
+			now.setTime(new Date());// 当前时间
+			Calendar birth = Calendar.getInstance();
+			birth.setTime(birthday);
+			if (birth.after(now)) {//如果传入的时间，在当前时间的后面，返回0岁
+				age = 0;
+			} else {
+				age = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+				int monthNow = now.get(Calendar.MONTH);
+				int dayOfMonthNow = now.get(Calendar.DAY_OF_MONTH);
+				int monthBirth = birth.get(Calendar.MONTH);
+				int dayOfMonthBirth = birth.get(Calendar.DAY_OF_MONTH);
+				if (monthNow <= monthBirth) {
+					if (monthNow == monthBirth) {
+						if (dayOfMonthNow < dayOfMonthBirth) age--;
+					}else{
+						age--;
+					}
+				}
+			}
+			return age;
+		} catch (Exception e) {//兼容性更强,异常后返回数据
+			return 0;
 		}
-		return list;
 	}
-	/**
-	 * 取得时间的周的第一天
-	 * @return
-	 */
-	public static Date getWeekFirstDay(Date date){
-		DateTime dateTime=new DateTime(date);
-		dateTime=dateTime.minusDays(dateTime.getDayOfWeek()-1);
-		return dateTime.toDate();
-	}
-	/**
-	 * 取得时间的周的最后一天
-	 * @return
-	 */
-	public static Date getWeekLastDay(Date date){
-		DateTime dateTime=new DateTime(date);
-		dateTime=dateTime.plusDays(7-dateTime.getDayOfWeek());
-		return dateTime.toDate();
-	}
-	public static int getYearByWeek(String dateStr){//计算当前时间是第几周
-		DateTime dateTime=new DateTime(toDate(dateStr));
-		return dateTime.getWeekOfWeekyear();
-	}
-	/**
-	 * 一年的第几周，周一为起点，而不是周日
-	 * @param date
-	 * @return
-	 * @throws ParseException
-	 */
-	public static int getYearByWeek(Date date){//计算当前时间是第几周
-		DateTime dateTime=new DateTime(date);
-		return dateTime.getWeekOfWeekyear();
-		
-//		//一年中的第几周，按星期一是第一天开始算
-//		//把一年有多少个周算出来
-//        Calendar calendar = new GregorianCalendar();
-//        calendar.setTime(parse(format(date,"yyyy"),"yyyy"));
-//        Calendar calendarNow = new GregorianCalendar();//现在的时间
-//        calendarNow.setTime(date);
-//        int count=0;
-//        Calendar next= new GregorianCalendar();//下一年
-//        next.add(Calendar.YEAR, 1);
-//        next.setTime(date);
-//        int seven=7;
-//        int weekday=0;
-//        while (calendar.compareTo(next)==-1) {
-//        	weekday= weeks[calendar.get(Calendar.DAY_OF_WEEK)];//星期天为第一天转星期天为最后一天
-//        	//如果不是从一月一日算第一周 算法
-//        	calendar.add(Calendar.DATE, -(weekday-1));//周的第一天
-//        	if(calendarNow.compareTo(calendar)==-1){
-//        		return count;
-//        	}
-//    		calendar.add(Calendar.DATE, seven);// 下一周
-//    		++count;
+
+//
+//	public static String nextWeekStr(String date,int weekNex){
+//		DateTime dateTime=new DateTime(toDate(date));
+//		dateTime=dateTime.plusWeeks(weekNex);
+//		return dateTime.toString(YYYY_MM_DD);
+//	}
+//	/**
+//	 * 取得这周和下几周的日期
+//	 * @param date
+//	 * @param weekNext
+//	 * @return
+//	 */
+//	public static List<Item<String, String>> getWeekNext(Date date,int weekNext){
+//		DateTime dateTime=new DateTime(date);
+//		int yearOfWeek=dateTime.getWeekOfWeekyear();
+//		dateTime=dateTime.minusDays(dateTime.getDayOfWeek()-1);
+//		String startDate="";
+//		String endDate="";
+//		List<Item<String, String>> list=new ArrayList<Item<String, String>>();
+//		for (int i = 0; i < weekNext; i++) {
+//			startDate=dateTime.toString(YYYY_MM_DD);
+//			endDate=dateTime.plusDays(6).toString(YYYY_MM_DD);
+//			list.add(new Item<String, String>(startDate+","+endDate,String.format(template,yearOfWeek+i,startDate,endDate)));
+//			dateTime=dateTime.plusWeeks(1);
 //		}
-//        return count;
-	}
+//		return list;
+//	}
+//	/**
+//	 * 取得时间的周的第一天
+//	 * @return
+//	 */
+//	public static Date getWeekFirstDay(Date date){
+//		DateTime dateTime=new DateTime(date);
+//		dateTime=dateTime.minusDays(dateTime.getDayOfWeek()-1);
+//		return dateTime.toDate();
+//	}
+//	/**
+//	 * 取得时间的周的最后一天
+//	 * @return
+//	 */
+//	public static Date getWeekLastDay(Date date){
+//		DateTime dateTime=new DateTime(date);
+//		dateTime=dateTime.plusDays(7-dateTime.getDayOfWeek());
+//		return dateTime.toDate();
+//	}
+//	public static int getYearByWeek(String dateStr){//计算当前时间是第几周
+//		DateTime dateTime=new DateTime(toDate(dateStr));
+//		return dateTime.getWeekOfWeekyear();
+//	}
+//	/**
+//	 * 一年的第几周，周一为起点，而不是周日
+//	 * @param date
+//	 * @return
+//	 * @throws ParseException
+//	 */
+//	public static int getYearByWeek(Date date){//计算当前时间是第几周
+//		DateTime dateTime=new DateTime(date);
+//		return dateTime.getWeekOfWeekyear();
+//	}
 	/**
 	 * 获取某年第一天日期
 	 * @param year 年份
@@ -213,8 +271,7 @@ public class Dates {
 	}
 	 /** 
      * 获取当年的第一天 
-     * @param year 
-     * @return 
+     * @return
      */  
     public static Date getCurrYearFirst(){  
         Calendar currCal=Calendar.getInstance();    

@@ -1,17 +1,35 @@
 package com.fjz.util;
 
+
 import com.fjz.util.log.Logs;
 
 public class Times {
-	public static long timer(Action action,String msg){
-		long time=System.currentTimeMillis();
-		action.action();
-		time=System.currentTimeMillis()-time;
-		Logs.info(msg+"用时："+time);
-		return time;
+
+
+
+	private long startTimes;
+
+	public Times() {
+		reStartTimes();
 	}
-	
-	public interface Action{
-		public Object action();
-	};
+
+	public void reStartTimes() {
+		this.startTimes = System.nanoTime();
+	}
+
+	public long getTimeDifference() {
+		return (System.nanoTime() - startTimes)/1000/1000;
+	}
+	public long getTimeDifferenceNanoTime(){return System.nanoTime() - startTimes;}
+
+	public void longTime(Runnable runnable) {
+		this.reStartTimes();
+		runnable.run();
+		Logs.info("用时:"+getTimeDifference()+"ms");
+	}
+	public void longTime(RunableForEach runnable) {
+		this.reStartTimes();
+		runnable.action();
+		Logs.info(runnable.getName()+"用时:"+getTimeDifference()+"ms");
+	}
 }

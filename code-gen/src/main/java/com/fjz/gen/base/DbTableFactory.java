@@ -1,17 +1,12 @@
 package com.fjz.gen.base;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.sql.*;
+import java.util.*;
 
 import com.fjz.util.Empty;
+import com.fjz.util.Jsons;
 import com.fjz.util.Lists;
+import com.jfinal.json.Json;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.dialect.Dialect;
@@ -36,7 +31,10 @@ public class DbTableFactory {
 		}
 		return list;
 	}
-	
+	public static void main(String[] args) throws SQLException {
+		List<DbTable> list=getDbTables(MyConnection.geConnection(),"tbltest");
+		System.out.println(list.get(0).getColumns().get(1).getType());
+	}
 	public static List<DbTable> getDbTables(Connection conn,String... tableNames){
 		List<DbTable> list=getDbTables(conn);
 		Map<String,DbTable> map=Lists.listToMap("name", list);
@@ -84,9 +82,21 @@ public class DbTableFactory {
 		String schemaPattern = dialect instanceof OracleDialect ? dbMeta.getUserName() : null;
 		ResultSet rs = dbMeta.getColumns(conn.getCatalog(), schemaPattern, table.name, null);
 //		ResultSetMetaData rsmd = rs.getMetaData();
+//		int colCount=rsmd.getColumnCount();
+//		List<String> colNameList=new ArrayList<String>();
+//		for(int i=0;i<colCount;i++){
+//			colNameList.add(rsmd.getColumnName(i+1));
+//		}
 		while (rs.next()) {
+//			for(int i=0;i<colCount;i++) {
+//				Map map = new HashMap<String, Object>();
+//				String key = colNameList.get(i);
+//				Object value = rs.getString(colNameList.get(i));
+//				System.out.println(key+"  "+value);
+//			}
 			TbColumn columnMeta = new TbColumn();
 			columnMeta.dbTableName=table.name;
+
 			columnMeta.name = buildName(rs.getString("COLUMN_NAME"));//oracle变小写			// 名称
 			columnMeta.attrName = buildAttrName(columnMeta.name);	
 			columnMeta.type = rs.getString("TYPE_NAME");			// 类型
@@ -132,6 +142,8 @@ public class DbTableFactory {
 				}else if(columnSize<=19){//如果小于19位
 					columnMeta.javaType=java.lang.Long.class.getName();
 				}
+			}else if(columnMeta.type.indexOf("ENUM")!=-1){//mysql枚举类型
+				mysqlEnum(columnMeta);//mysql枚举类型
 			}
 			
 			
@@ -147,6 +159,25 @@ public class DbTableFactory {
 		}
 		rs.close();
 	}
+	//mysql枚举类型
+	private void mysqlEnum(TbColumn columnMeta) throws SQLException {
+		Statement statement=conn.createStatement();
+		System.out.println("SHOW COLUMNS FROM "+columnMeta.dbTableName+" LIKE '"+columnMeta.name+"'");
+		ResultSet r = statement.executeQuery("SHOW COLUMNS FROM "+columnMeta.dbTableName+" LIKE '"+columnMeta.name+"'");
+		r.next();
+		String enums = r.getString("Type");
+		String[] availableEnums = new String[enums.split(",").length];
+		int position = 0, count = 0;
+		while ((position = enums.indexOf("'", position)) > 0) {
+            int secondPosition = enums.indexOf("'", position + 1);
+            availableEnums[count++] = enums.substring(position + 1,
+                    secondPosition);
+            position = secondPosition + 1;
+        }
+		columnMeta.enumValues=availableEnums;
+//		System.out.println(Jsons.toString(availableEnums));
+	}
+
 	private String buildName(String name) {
 		if (dialect instanceof OracleDialect) {
 			name = name.toLowerCase();

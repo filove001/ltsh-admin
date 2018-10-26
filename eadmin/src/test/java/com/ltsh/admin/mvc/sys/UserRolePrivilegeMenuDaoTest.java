@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,9 +40,10 @@ public class UserRolePrivilegeMenuDaoTest {
 	SQLManager sqlManager;
 	@Test
 	public void testInsertT() {
-		List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
+        List<Map> mapList=sqlManager.execute("show table status",Map.class,null);
         SysMenu sysMenu= createMenu(0,"系统管理","#",1,1);
         sqlManager.insert(sysMenu,true);
+        inisertCache(sysMenu.getId());
         for (Map m: mapList) {//为所有的表添加一个对应的菜单和增删改菜单
             String name = m.get("name").toString();
             String comment = m.get("comment").toString().replace("表","");
@@ -51,9 +53,9 @@ public class UserRolePrivilegeMenuDaoTest {
                 inisertMenu(sqlManager,sysMenu.getId(),comment,"/"+name.replace("_","/"));
             }
         }
-        String name="管理员";
+        String name="admin";
         SysRole sysRole = insertSysRole();//增加一个管理员的角色
-        SysUser sysUser=insertSysUser(name,1);//增加一个管理员用户
+        SysUser sysUser=sysUserDao.unique(1L);//insertSysUser(name,1);//增加一个管理员用户
         SysUserRole s=new SysUserRole();
         s.setRoleId(sysRole.getId());
         s.setUserId(sysUser.getId());
@@ -69,7 +71,16 @@ public class UserRolePrivilegeMenuDaoTest {
         }
 
     }
-
+    public void inisertCache(int pid){
+	    String href="/cache";
+        SysMenu sysMenu= createMenu(0,"缓存",href+"/index",1,2);
+        sqlManager.insert(sysMenu,true);
+        System.out.println(sysMenu.getId());
+        Map<String,Object> map= Maps.newMap(new String[]{"all","key","clear","dbKey","dbAll","dbClear"}, new Object[]{"all","key","clear","dbKey","dbAll","dbClear"});
+        for (Map.Entry<String,Object> e: map.entrySet()) {
+            sqlManager.insert(createMenu(sysMenu.getId(),e.getValue().toString(),href+"/"+e.getKey(),2,3));
+        }
+    }
     private SysRole insertSysRole() {
         SysRole sysRole=new SysRole();
         sysRole.setName("全部");
@@ -108,8 +119,8 @@ public class UserRolePrivilegeMenuDaoTest {
 	public SysUser insertSysUser(String name,int i){
 		SysUser entity=new SysUser();
 		entity.setId(1);
-		entity.setLoginName(name+i);
-		entity.setPassword(name+i);
+		entity.setLoginName(name);
+		entity.setPassword(name);
 		entity.setName(name+i);
 		entity.setTel(name+i);
 		entity.setPhone(name+i);

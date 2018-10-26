@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<%include("/base/css.html"){} %>
+<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+</head>
+<body>
+<section class="dx-info-default">
+  <div class="dx-info-box type-add">
+    <form class="layui-form" action="">
+		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">编号</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(parentIdDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">父级编号</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(parentIdDisabled)){%>disabled<%}%> type="text" value="${obj.parentId!}" name="parentId"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(parentIdsDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">所有父级编号</label>
+	        <div class="layui-input-block">                <input <%if(has(parentIdsDisabled)){%>disabled<%}%> type="text" value="${obj.parentIds!}" name="parentIds"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(levelDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">菜单级别</label>
+	        <div class="layui-input-block">                <input <%if(has(levelDisabled)){%>disabled<%}%> type="text" value="${obj.level!}" name="level"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(typeDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">菜单类型</label>
+	        <div class="layui-input-block">                <input <%if(has(typeDisabled)){%>disabled<%}%> type="text" value="${obj.type!}" name="type"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(nameDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">名称</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(nameDisabled)){%>disabled<%}%> type="text" value="${obj.name!}" name="name"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(sortDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">排序</label>
+	        <div class="layui-input-block">                <input <%if(has(sortDisabled)){%>disabled<%}%> type="text" value="${obj.sort!}" name="sort"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(hrefDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">链接</label>
+	        <div class="layui-input-block">                <input <%if(has(hrefDisabled)){%>disabled<%}%> type="text" value="${obj.href!}" name="href"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(targetDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">目标</label>
+	        <div class="layui-input-block">                <input <%if(has(targetDisabled)){%>disabled<%}%> type="text" value="${obj.target!}" name="target"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(iconDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">图标</label>
+	        <div class="layui-input-block">                <input <%if(has(iconDisabled)){%>disabled<%}%> type="text" value="${obj.icon!}" name="icon"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(permissionDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">权限标识</label>
+	        <div class="layui-input-block">                <input <%if(has(permissionDisabled)){%>disabled<%}%> type="text" value="${obj.permission!}" name="permission"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">状态</label>
+	        <div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">创建者</label>
+	        <div class="layui-input-block">                <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">创建时间</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">更新者</label>
+	        <div class="layui-input-block">                <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(updateDateDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">更新时间</label>
+	        <div class="layui-input-block">                <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!,'yyyy-MM-dd HH:mm:ss'}" name="updateDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">备注信息</label>
+	        <div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+      <br>
+
+      <div class="layui-form-item form-btn-box">
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<%include("/base/js.html"){} %>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+</div>
+</body>
+</html>

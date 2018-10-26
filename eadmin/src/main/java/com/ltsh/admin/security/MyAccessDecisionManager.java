@@ -3,12 +3,13 @@ package com.ltsh.admin.security;
 /**
  * Created by Random on 2017/4/24.
  */
+
 import com.ltsh.admin.mvc.sys.menu.SysMenu;
-import com.ltsh.admin.util.SysCache;
+import com.ltsh.admin.mvc.sys.menu.SysMenuService;
+import com.ltsh.admin.util.SpringContextHolder;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,9 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,7 +26,6 @@ import java.util.List;
  */
 @Service
 public class MyAccessDecisionManager implements AccessDecisionManager {
-
     // decide 方法是判定是否拥有权限的决策方法，
     //authentication 是释CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
     //object 包含客户端发起的请求的requset信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
@@ -45,23 +43,20 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             FilterInvocation object1 = (FilterInvocation) object;
             url = object1.getRequestUrl();
         }
-        if(url.startsWith("/login") || url.startsWith("/layout")) {
+        if(url.startsWith("/login") || url.startsWith("/layout") || url.equals("/")) {
             return;
         }
-        for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext(); ) {
-            c = iter.next();
-            needRole = c.getAttribute();
 
-            SecurityContext securityContext = SecurityContextHolder.getContext();
-            Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
 
-            List<SysMenu> menus = SysCache.getMenu(authorities);
-            for (SysMenu menu: menus) {
-                if(url.contains(menu.getHref())) {
-                    return;
-                }
+        List<SysMenu> menus = SpringContextHolder.getBean(SysMenuService.class).getMenu(authorities);
+        for (SysMenu menu: menus) {
+            if(url.contains(menu.getHref())) {
+                return;
             }
         }
+
         throw new AccessDeniedException("Insufficient permissions");
     }
 

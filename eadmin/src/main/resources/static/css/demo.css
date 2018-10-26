@@ -50,7 +50,6 @@
 .footer{padding: 30px 0; line-height: 30px; text-align: center; background-color: #eee; color: #666; font-weight: 300;}
 body .layui-layout-admin .footer-demo{height: 26px; padding: 0px 0; line-height: 26px;}
 .footer a{padding: 0 5px;}
-
 /* 首页banner部分 */
 .site-banner{position: relative; height: 600px; text-align: center; overflow: hidden; background-color: #393D49;}
 .site-banner-bg
@@ -236,7 +235,7 @@ body .site-demo-nav .layui-nav-item{line-height: 40px}
 .site-demo-fengjie{-webkit-animation-name: demo-fengjie; animation-name: demo-fengjie; -webkit-animation-duration: 5s; animation-duration: 5s;}
 
 
-.layui-layout-admin .site-demo-body{top: 106px;}
+.layui-layout-admin .site-demo-body{top: 106px;overflow:hidden;overflow-x:hidden;}
 .site-demo-title{position: fixed; left: 200px; right: 0; top: 60px;}
 .site-demo-code{position: absolute; left: 0; top: 0; width: 100%; height: 100%; border: none; padding: 10px; resize: none; font-size: 12px; background-color: #F7FBFF; color: #881280; font-family: Courier New;}
 

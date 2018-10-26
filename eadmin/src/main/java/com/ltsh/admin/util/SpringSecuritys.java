@@ -1,10 +1,17 @@
 package com.ltsh.admin.util;
 
+import com.fjz.util.Empty;
 import com.fjz.util.log.Logs;
+import com.ltsh.admin.mvc.sys.menu.SysMenu;
+import com.ltsh.admin.mvc.sys.menu.SysMenuBo;
+import com.ltsh.admin.mvc.sys.menu.SysMenuDao;
+import com.ltsh.admin.mvc.sys.menu.SysMenuService;
+import com.ltsh.admin.mvc.sys.role.SysRole;
 import com.ltsh.admin.mvc.sys.user.SysUser;
 import com.ltsh.admin.security.UserDetailsImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +19,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by fengjianzhong on 2017/6/1.
@@ -29,12 +38,20 @@ public class SpringSecuritys {
             return null;
         }
         Object principal = authentication.getPrincipal();
-//        if (!(principal instanceof UserDetailsImpl)) {
-//            return null;
-//        }
+        if (!(principal instanceof UserDetailsImpl)) {//如果没有登录使用这个方法，并且没有进入SpringSecurity拦截，返回不是这个类型
+            return null;
+        }
         return (T) principal;
     }
-
+    private static SysMenuService sysMenuService=SpringContextHolder.getBean(SysMenuService.class);
+    /**
+     * 取得当前用户的权限菜单树
+     */
+    public static List<SysMenuBo> getSysMenuBos() {
+        Collection<? extends GrantedAuthority> authorities = SpringSecuritys.getAuthentication().getAuthorities();
+        List<SysMenu> menus = sysMenuService.getMenu(authorities);
+        return sysMenuService.getSysMenuBoTree(menus);
+    }
     /**
      * 取得当前用户的登录名, 如果当前用户未登录则返回空字符串.
      */
@@ -119,11 +136,26 @@ public class SpringSecuritys {
     /**
      * 取得Authentication, 如当前SecurityContext为空时返回null.
      */
-    private static Authentication getAuthentication() {
+    public static Authentication getAuthentication() {
         SecurityContext context = SecurityContextHolder.getContext();
         if (context == null) {
             return null;
         }
         return context.getAuthentication();
+    }
+
+    /**
+     * 通过角色组装对应的权限列表
+     * @param roles
+     * @return
+     */
+    public static List<GrantedAuthority> getGrantedAuthoritys(List<SysRole> roles){
+        List<GrantedAuthority> as=new ArrayList<GrantedAuthority>();
+        if(Empty.not(roles)){
+            for (SysRole role : roles) {
+                as.add(new SimpleGrantedAuthority(role.getCode()));
+            }
+        }
+        return as;
     }
 }

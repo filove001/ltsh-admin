@@ -2,10 +2,12 @@ package com.ltsh.admin.mvc.base;
 
 import java.util.List;
 
+import com.ltsh.admin.mvc.book.Book;
 import org.beetl.sql.core.db.KeyHolder;
+import org.beetl.sql.core.engine.PageQuery;
 
 public interface BaseService<T> {
-
+	PageQuery<T> page(PageQuery<T> query);
 	/* insert */
 	void insert(T entity);
 	void insert(T entity,boolean assignKey);

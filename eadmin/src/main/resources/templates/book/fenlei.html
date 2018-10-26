@@ -1,0 +1,48 @@
+<%layout("bookIndex.html",{fenleiClass:'class="current"'}){ %>
+<div class="container">
+	<section class="module_user unlogin" id="user-module">
+		<div class="hd" id="user-module-inner">
+			<div class="mod_left" id="loginPart">
+				<a href="/login.htm" class="line">登录</a>
+				<a href="/zhuce.htm">注册</a>
+			</div>
+			<div class="mod_right">
+				<a href="/u/">书架&gt;</a>
+			</div>
+		</div>
+		<!--div class="bd" id="message-box">
+            <div class="message-remind"></div>
+        </div-->
+	</section>
+	<section class="mod_cate">
+		<div class="hd"><h3 class="tit">小说分类</h3></div>
+		<div class="bd">
+			<ul class="cate_list clearfix">
+				<li><a href="/qihuan/">奇幻</a></li>
+				<li><a href="/xianxia/">仙侠</a></li>
+				<li><a href="/xuanhuan/">玄幻</a></li>
+				<li><a href="/dushi/">都市</a></li>
+				<li><a href="/youxi/">游戏</a></li>
+				<li><a href="/lishi/">历史</a></li>
+				<li><a href="/junshi/">军事</a></li>
+				<li><a href="/kehuan/">科幻</a></li>
+				<li><a href="/jingji/">竞技</a></li>
+				<li><a href="/wuxia/">武侠</a></li>
+				<li><a href="/lingyi/">灵异</a></li>
+				<li><a href="/yanqing/">言情</a></li>
+				<li><a href="/nvxing/">女性</a></li>
+				<li><a href="/qita/">其他</a></li>
+			</ul>
+		</div>
+	</section>
+	<section class="mod_cate">
+		<div class="hd"><h3 class="tit color4">热门</h3></div>
+		<div class="bd">
+			<ul class="cate_list clearfix">
+				<li><a href="/last1.htm">最新更新</a></li>
+				<li><a href="/new/">最新入库</a></li>
+			</ul>
+		</div>
+	</section>
+</div>
+<% } %>

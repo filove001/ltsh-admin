@@ -1,85 +1,156 @@
 <html>
 <head>
-<meta charset="utf-8">
-<title>${title}</title>
-<link rel="stylesheet" href="${ui}/css/layui.css">
-<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+	<meta charset="utf-8">
+	<title>${title}</title>
+	<link rel="stylesheet" href="${ctx}/ztree/css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" href="${ui2}/css/layui.css">
+	<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
 </head>
 <body>
 <section class="dx-info-default">
-  <div class="dx-info-box type-add">
-    <form class="layui-form" action="">
-		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">编号</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(nameDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">角色名称</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(nameDisabled)){%>disabled<%}%> type="text" value="${obj.name!}" name="name"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(codeDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">角色编码</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(codeDisabled)){%>disabled<%}%> type="text" value="${obj.code!}" name="code"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">状态</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">创建者</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">创建时间</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!}" name="createDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">更新者</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(updateDateDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">更新时间</label>
-	        <div class="layui-input-block dx-input-required">	        
-	          <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!}" name="updateDate"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
-	        <label class="layui-form-label">备注信息</label>
-	        <div class="layui-input-block">	        
-	          <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
-	        </div>
-      	</div>
-      <br>
+	<div class="dx-info-box type-add">
+		<form class="layui-form" action="">
+			<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+			<label class="layui-form-label">编号</label>
+			<div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+			</div>
+	</div>
+	<div class="layui-form-item" <%if(has(nameDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">角色名称</label>
+	<div class="layui-input-block dx-input-required">                <input <%if(has(nameDisabled)){%>disabled<%}%> type="text" value="${obj.name!}" name="name"  lay-verify="required"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(codeDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">角色编码</label>
+	<div class="layui-input-block">                <input <%if(has(codeDisabled)){%>disabled<%}%> type="text" value="${obj.code!}" name="code"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(statusDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">状态</label>
+	<div class="layui-input-block">                <input <%if(has(statusDisabled)){%>disabled<%}%> type="text" value="${obj.status!}" name="status"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(createByDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">创建者</label>
+	<div class="layui-input-block">                <input <%if(has(createByDisabled)){%>disabled<%}%> type="text" value="${obj.createBy!}" name="createBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">创建时间</label>
+	<div class="layui-input-block">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"   autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(updateByDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">更新者</label>
+	<div class="layui-input-block">                <input <%if(has(updateByDisabled)){%>disabled<%}%> type="text" value="${obj.updateBy!}" name="updateBy"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(updateDateDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">更新时间</label>
+	<div class="layui-input-block">                <input <%if(has(updateDateDisabled)){%>disabled<%}%> type="text" value="${obj.updateDate!,'yyyy-MM-dd HH:mm:ss'}" name="updateDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
+	<label class="layui-form-label">备注信息</label>
+	<div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	</div>
+	</div>
+	<div class="layui-form-item" >
+		<div class="zTreeDemoBackground">
+			<ul class="list">
+				<label class="layui-form-label">菜单权限</label>
+				<div class="layui-input-block">
+					<input id="sysRoleMenu" type="text" value="" name="sysRoleMenu"  autocomplete="off" placeholder="" class="layui-input layui-form-danger"  onclick="showMenu();">
+				</div>
+			</ul>
+		</div>
+	</div>
+	<br>
 
-      <div class="layui-form-item form-btn-box">
-        <div class="layui-input-block">
-          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
-          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
-          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
-        </div>
-      </div>
-    </form>
-  </div>
+	<div class="layui-form-item form-btn-box">
+		<div class="layui-input-block">
+			<button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+			<button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+			<button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+		</div>
+	</div>
+	</form>
+	</div>
+	<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+		<ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+	</div>
 </section>
 <div id="LAY_democodejs">
-<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
-<script src="${ui}/lay/dest/layui.all.js" charset="utf-8"></script>
-<script src="${ctx}/js/common.js" charset="utf-8"></script>
-<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+	<script src="${ctx}/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<SCRIPT type="text/javascript">
+        <!--
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: {"Y" : "ps", "N" : "ps"}
+            },
+            view: {
+                dblClickExpand: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeClick: beforeClick,
+                onCheck: onCheck
+            }
+        };
+
+        var zNodes =${ztree};
+
+        function beforeClick(treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.checkNode(treeNode, !treeNode.checked, null, true);
+            return false;
+        }
+
+        function onCheck(e, treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getCheckedNodes(true),
+                v = "";
+            for (var i=0, l=nodes.length; i<l; i++) {
+                v += nodes[i].id + ",";
+            }
+            if (v.length > 0 ) v = v.substring(0, v.length-1);
+            var cityObj = $("#sysRoleMenu");
+            cityObj.attr("value", v);
+        }
+
+        function showMenu() {
+            var cityObj = $("#sysRoleMenu");
+            var cityOffset = $("#sysRoleMenu").offset();
+            $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+            $("body").bind("mousedown", onBodyDown);
+        }
+        function hideMenu() {
+            $("#menuContent").fadeOut("fast");
+            $("body").unbind("mousedown", onBodyDown);
+        }
+        function onBodyDown(event) {
+            if (!(event.target.id == "menuBtn" || event.target.id == "sysRoleMenu" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+                hideMenu();
+            }
+        }
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            onCheck();
+        });
+        //-->
+	</SCRIPT>
 </div>
 </body>
 </html>

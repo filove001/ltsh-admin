@@ -1,7 +1,6 @@
 package com.ltsh.admin.mvc.sys.menu;
-
 import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fjz.util.Dates;
 /**
  *  sys_menu 菜单 
@@ -11,23 +10,23 @@ public class SysMenu{
 	public static final String tableName="sys_menu";
 	public static final String tableRemarks="菜单";
 	private java.lang.Integer id;//编号 
-	private java.lang.Integer parentId;//父级编号
+	private java.lang.Integer parentId;//父级编号 
 	private java.lang.String parentIds;//所有父级编号 
 	private java.lang.Integer level;//菜单级别 
 	private java.lang.Integer type;//菜单类型 
 	private java.lang.String name;//名称 
-	private java.lang.Integer sort;//排序
+	private java.lang.Integer sort;//排序 
 	private java.lang.String href;//链接 
 	private java.lang.String target;//目标 
 	private java.lang.String icon;//图标 
 	private java.lang.String permission;//权限标识 
 	private java.lang.Integer status;//状态 
 	private java.lang.String createBy;//创建者 
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date createDate;//创建时间 
 	private java.lang.String updateBy;//更新者 
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date updateDate;//更新时间 
 	private java.lang.String remarks;//备注信息 
@@ -41,7 +40,7 @@ public class SysMenu{
 	public void setParentId(java.lang.Integer parentId){
 		this.parentId=parentId;
 	}
-	/** parent_id VARCHAR(64)：父级编号 **/
+	/** parent_id INT(10)：父级编号 **/
 	public java.lang.Integer getParentId() {
 		return parentId;
 	}
@@ -76,7 +75,7 @@ public class SysMenu{
 	public void setSort(java.lang.Integer sort){
 		this.sort=sort;
 	}
-	/** sort DECIMAL(10)：排序 **/
+	/** sort INT(10)：排序 **/
 	public java.lang.Integer getSort() {
 		return sort;
 	}

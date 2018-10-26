@@ -9,6 +9,6 @@ body{
 
 .dx-info-default .layui-form-item{display:inline-block;margin-right:10px;margin-bottom:25px}
 
-
+.layui-form-item .layui-input-block{width:225px;}
 .layui-input, .layui-select, .layui-textarea{width:220px;}
 

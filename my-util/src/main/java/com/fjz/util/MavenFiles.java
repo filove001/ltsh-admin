@@ -2,6 +2,7 @@ package com.fjz.util;
 
 
 public class MavenFiles {
+	public static final String classesPath="target/classes/";
 	/**
 	 * maven的源码所在的文件的路径
 	 * @param cs
@@ -9,7 +10,7 @@ public class MavenFiles {
 	 */
 	public static String getMavenJavaSrcFile(Class<?> cs){
 		String path=getMavenClassPath(cs);
-		path=path.replace("target/classes/", "src/main/java/");
+		path=path.replace(classesPath, "src/main/java/");
 		path+=cs.getSimpleName()+".java";
 		return path;
 	}
@@ -20,22 +21,22 @@ public class MavenFiles {
 	 */
 	public static String getMavenJavaSrcPath(Class<?> cs){
 		String path=getMavenClassPath(cs);
-		path=path.replace("target/classes/", "src/main/java/");
+		path=path.replace(classesPath, "src/main/java/");
 		return path;
 	}
 	public static String getMavenSrcPath(){
 		String path=MavenFiles.class.getResource("/").getFile();
-		path=path.replace("target/classes/", "src/");
+		path=path.replace(classesPath, "src/");
 		return path;
 	}
 	public static String getMavenJavaSrcPath(){
 		String path=getMavenClassPath();
-		path=path.replace("target/classes/", "src/main/java/");
+		path=path.replace(classesPath, "src/main/java/");
 		return path;
 	}
 	public static String getMavenWebSrcPath(){
 		String path=getMavenClassPath();
-		path=path.replace("target/classes/", "src/main/webapp/");
+		path=path.replace(classesPath, "src/main/webapp/");
 		return path;
 	}
 	public static String getMavenClassPath(){

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="mobile-agent" content="format=html5; url=https://mp.weixin.qq.com/s/95nwQ0MdjOOITVgjR9Z6RQ" />
+  <title>湛江</title>
+  <meta name="keywords" content="湛江" />
+  <meta name="description" content="湛江" />
+  <link rel="stylesheet" type="text/css" href="${ctx}/css/zj/index.css" />
+  <style type="text/css">
+    .mainleft{
+      width:100%;
+    }
+    .thum_article_list .pic{
+      width:450px;
+      height:300px;
+    }
+  </style>
+</head>
+<body>
+<%include("header.html"){} %>
+<div class="auto clearfix main">
+  <div class="mainleft">
+    <div class="layout list_bd">
+      <div class="layout_hd">
+        <h2>${cmsCategory.name}</h2>
+      </div>
+      <div class="list_left_hz1"><script type="text/javascript" src="/plus/w1x8i0v6t.php?aid=21"></script></div>
+
+      <div class="thum_article_list">
+        <ul>
+          <%for(obj in list){%>
+          <li class="clearfix">
+            <a href="#" target="_blank" title="${obj.title}" class="pic"><img src="${obj.imageUrl}" data-original="${obj.imageUrl}" alt="${obj.title}" onload="PicAuto(this)" class="lazy" /></a>
+            <div class="text">
+              <h3 class="title">[<a href="/news/appreciate/">${obj.title}</a>]&nbsp;<a href="/news/201706/227524.html" target="_blank" title="${obj.title}">${obj.title}</a></h3>
+              <p class="publish"><span class="time">时间：${obj.createTime}</span><span class="click ml">阅读：147</span></p>
+              <p class="desc">${obj.content}</p>
+            </div>
+          </li>
+          <%}%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%include("footer.html"){} %>
+</body>
+</html>

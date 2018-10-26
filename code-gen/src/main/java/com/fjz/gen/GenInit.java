@@ -1,18 +1,17 @@
 package com.fjz.gen;
 
+import com.fjz.gen.base.DbTable;
+import com.fjz.gen.base.DbTableFactory;
+import com.fjz.gen.base.MyConnection;
+import com.fjz.util.*;
+import com.jfinal.kit.PropKit;
+import org.beetl.core.BeetlKit;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import com.fjz.util.*;
-import org.beetl.core.BeetlKit;
-
-import com.fjz.gen.base.DbTable;
-import com.fjz.gen.base.DbTableFactory;
-import com.fjz.gen.base.MyConnection;
-import com.jfinal.kit.PropKit;
 
 /**
  * 初始化
@@ -38,6 +37,8 @@ public class GenInit {
 	public String model_dir;
 	public GenInit() {
 		BeetlKit.gt.registerFunction("string", new StrFn());
+		System.out.println(GenInit.class.getResource("gen.properties")
+				.getFile());
 		PropKit.use(new File(GenInit.class.getResource("gen.properties")
 				.getFile()));
 		basepackage = PropKit.get("basepackage");
@@ -48,7 +49,7 @@ public class GenInit {
 		if (Empty.is(templateRoot)) {
 //			templateRoot = MavenFiles.getMavenSrcPath()+"main/resources/eadmin";
 			//windows
-			templateRoot = (MavenFiles.getMavenSrcPath()+"main/resources/eadmin").replace("/","\\").substring(1);
+			templateRoot = (MavenFiles.getMavenSrcPath()+"main/resources/eadminLayui2").replace("/","\\").substring(1);
 //					new File(GenInit.class.getResource("/").getFile()
 //					+ "eadmin").getAbsolutePath();
 		}
@@ -60,12 +61,29 @@ public class GenInit {
 	public static void main(String[] args) throws SQLException, IOException {
 		GenInit g = new GenInit();
 //		g.gen("SYS_APP","SYS_ROLE_APP");
-		g.gen("sys_user_role","sys_menu","sys_privilege");
+//		g.gen("book","book_book_type","book_type","book_shelf","book_source","search","book_content");
+//		g.gen("book");
+//		g.gen("sys_user");
+//		g.gen("sys_dict");
+//		g.gen("cms_article","cms_category","cms_article_data");
+		g.gen("cms_category");
 		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot);
+
+//        g.delete("Service");
+//        g.delete("Dao");
+//        g.delete("Controller");
 ////		Runtime.getRuntime().exec("cmd.exe /c start "+g.outRoot+"\\src\\main\\resources\\templates\\sys\\user");
 ////		Runtime.getRuntime().exec("cmd.exe /c start E:\\java\\spring\\xky\\multi-tenant"+"");
 	}
-
+	public void delete(String name){
+        List<FileModel> models = FileSearch.findModels(outRoot, null);
+        for (FileModel model:models) {
+            if(model.fileName.contains(name)){
+                System.out.println(model.file+" delete:"+model.file.delete());
+            }
+        }
+//        System.out.println(Jsons.toString(models));
+    }
 	public void gen(String... tableNames) throws SQLException {
 		List<DbTable> tables = DbTableFactory.getDbTables(MyConnection
 				.geConnection(),tableNames);

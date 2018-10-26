@@ -1,16 +1,13 @@
 package com.ltsh.admin.security;
 
 import com.ltsh.admin.config.GlobalConf;
+import com.ltsh.admin.mvc.controller.IndexController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -22,8 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    }
     @Autowired
     private LoginAuthenticationManager loginAuthenticationManager;
-    @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+//    @Autowired
+//    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(customUserService);
@@ -34,6 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
+        // 设置不拦截规则
+//        web.ignoring().antMatchers("/static/**", "/**/*.jsp")
         web.ignoring().antMatchers(GlobalConf.NOT_INTERCEPT.split(","));
 //        FilterSecurityInterceptor filterSecurityInterceptor = new FilterSecurityInterceptor();
 //        filterSecurityInterceptor.setSecurityMetadataSource(new InvocationSecurityMetadataSourceService());
@@ -46,20 +45,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        "/resources/static/staticFile/**", "/resources/static/staticFile/bootstrap-3.3.7/**", "/staticFile/*", "/staticFile/**"
-
         http
             .authorizeRequests()
-            .antMatchers(GlobalConf.NOT_INTERCEPT.split(",")).permitAll()
+//            .antMatchers(GlobalConf.NOT_INTERCEPT.split(",")).permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/login")
-            .permitAll()
+            .loginPage(IndexController.loginUrl)
+            .permitAll().defaultSuccessUrl(IndexController.indexUrl,true)//登录成功跳转地址
             .and()
             .logout()
             .permitAll();
-        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
-                .csrf().disable().headers().frameOptions().sameOrigin();
+//        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        http.csrf().disable().headers().frameOptions().sameOrigin();
 //        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 

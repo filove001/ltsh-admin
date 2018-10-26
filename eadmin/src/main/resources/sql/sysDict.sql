@@ -6,18 +6,18 @@ select @pageTag(){
 	from sys_dict where #use("like")#
 cols
 ===
-	id,value,label,type,description,sort,parent_id,create_by,create_date,update_by,update_date,remarks
+	id,dict_value,dict_key,type,description,sort,parent_id,remarks
 condition
 ===
 	1 = 1 
 	@if(!isEmpty(id)){
 	 and id=#id#
 	@}
-	@if(!isEmpty(value)){
-	 and value=#value#
+	@if(!isEmpty(dictValue)){
+	 and dict_value=#dictValue#
 	@}
-	@if(!isEmpty(label)){
-	 and label=#label#
+	@if(!isEmpty(dictKey)){
+	 and dict_key=#dictKey#
 	@}
 	@if(!isEmpty(type)){
 	 and type=#type#
@@ -31,18 +31,6 @@ condition
 	@if(!isEmpty(parentId)){
 	 and parent_id=#parentId#
 	@}
-	@if(!isEmpty(createBy)){
-	 and create_by=#createBy#
-	@}
-	@if(!isEmpty(createDate)){
-	 and create_date=#createDate#
-	@}
-	@if(!isEmpty(updateBy)){
-	 and update_by=#updateBy#
-	@}
-	@if(!isEmpty(updateDate)){
-	 and update_date=#updateDate#
-	@}
 	@if(!isEmpty(remarks)){
 	 and remarks=#remarks#
 	@}
@@ -51,16 +39,16 @@ like
 ===
 	1=1
 	@if(!isEmpty(id)){
-	 and id like #'%'+id+'%'#
+	 and id=#id#
 	@}
-	@if(!isEmpty(value)){
-	 and value like #'%'+value+'%'#
+	@if(!isEmpty(dictValue)){
+	 and dict_value like #'%'+dictValue+'%'#
 	@}
-	@if(!isEmpty(label)){
-	 and label like #'%'+label+'%'#
+	@if(!isEmpty(dictKey)){
+	 and dict_key like #'%'+dictKey+'%'#
 	@}
 	@if(!isEmpty(type)){
-	 and type like #'%'+type+'%'#
+	 and type=#type#
 	@}
 	@if(!isEmpty(description)){
 	 and description like #'%'+description+'%'#
@@ -69,19 +57,7 @@ like
 	 and sort=#sort#
 	@}
 	@if(!isEmpty(parentId)){
-	 and parent_id like #'%'+parentId+'%'#
-	@}
-	@if(!isEmpty(createBy)){
-	 and create_by like #'%'+createBy+'%'#
-	@}
-	@if(!isEmpty(createDate)){
-	 and create_date=#createDate#
-	@}
-	@if(!isEmpty(updateBy)){
-	 and update_by like #'%'+updateBy+'%'#
-	@}
-	@if(!isEmpty(updateDate)){
-	 and update_date=#updateDate#
+	 and parent_id=#parentId#
 	@}
 	@if(!isEmpty(remarks)){
 	 and remarks like #'%'+remarks+'%'#

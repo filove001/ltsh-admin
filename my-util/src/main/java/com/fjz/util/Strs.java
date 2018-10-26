@@ -58,7 +58,20 @@ public class Strs {
 		}
 		return str;
 	}
+
+	/**
+	 * 获取左右两端中间的值，不包括左右两端
+	 * @param text 内容
+	 * @param left	内容里面左端
+	 * @param right 内容里面右端端  右端从左端开始
+	 * @return
+	 */
+	public static String subString(String text,String left,String right){
+		StringBuilder sb = new StringBuilder(text.substring(text.indexOf(left)+left.length()));
+		return sb.substring(0,sb.indexOf(right));
+	}
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		txt2Map("C:\\Users\\fengjianzhong\\Desktop\\field1.txt");
+//		txt2Map("C:\\Users\\fengjianzhong\\Desktop\\field1.txt");
+		System.out.println(Strs.subString("医院名称：深圳市康宁医院测试医院名称：深圳市康宁医院测试", "医院名称：深圳市", "："));
 	}
 }

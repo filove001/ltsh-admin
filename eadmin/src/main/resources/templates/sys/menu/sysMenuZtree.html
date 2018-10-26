@@ -1,0 +1,293 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜单</title>
+	<link rel="stylesheet" href="${ctx}/css/content.css">
+	<link rel="stylesheet" href="${ctx}/ztree/css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" href="${ui2}/css/layui.css">
+	<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+	<style>
+		.ztreeLeft {
+			width:15%;
+			float: left;
+			padding:20px 0;
+		}
+		.ztreeRight {
+			width:85%;
+			position:fixed;
+			left: 180px;
+			top:20px;
+		}
+		.layui-input{
+			width:auto;
+		}
+		.ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+	</style>
+</head>
+<body>
+	<button id="expandAllBtn" style="position:fixed;left: 208px;" class="layui-btn">展开</button><button id="collapseAllBtn" style="position:fixed;left: 270px;" class="layui-btn">折叠</button>
+	<div class="ztreeLeft">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+	<div class="ztreeRight">
+		<section class="dx-info-default">
+			<div class="dx-info-box type-add">
+				<form class="layui-form" action="${ctx}/sys/menu/update">
+					<input type="hidden" name="id" value=""/> <br/>
+					<input type="hidden" name="tId" value=""/> <br/>
+					<div class="layui-form-item">
+						<label class="layui-form-label">菜单名称</label>
+						<div class="layui-input-block dx-input-required">
+							<input type="text" value="" name="name"  autocomplete="off" placeholder="" class="layui-input layui-form-danger" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">菜单链接</label>
+						<div class="layui-input-block dx-input-required">
+							<input type="text" value="" name="href"  autocomplete="off" placeholder="" class="layui-input layui-form-danger" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">父菜单</label>
+						<div class="layui-input-block dx-input-required">
+							<input type="text" value="" name="parentName"  autocomplete="off" placeholder="" class="layui-input layui-form-danger" />
+							<input type="hidden" value="" name="parentId" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">状态</label>
+						<div class="layui-input-block">
+							<select name="status" lay-filter="aihao">
+								<option value="0">禁用</option>
+								<option value="1" selected="">启用</option>
+							</select>
+						</div>
+					</div>
+					<br>
+
+					<div class="layui-form-item form-btn-box">
+						<div class="layui-input-block">
+							<button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+							<button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+							<button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+
+	</div>
+<div id="LAY_democodejs">
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/ztree/js/jquery.ztree.all.min.js"></script>
+	<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+	<SCRIPT type="text/javascript">
+		/**提交按钮后的操作**/
+		<!--
+		var setting = {
+            view: {
+                addHoverDom: addHoverDom,
+                removeHoverDom: removeHoverDom,
+                selectedMulti: false
+            },
+            edit: {
+                enable: true,
+                editNameSelectAll: true,
+                showRemoveBtn: true,
+                showRenameBtn: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+			callback: {
+                beforeDrag: beforeDrag,
+                beforeEditName: beforeEditName,
+                beforeRemove: beforeRemove,
+                beforeRename: beforeRename,
+                onRemove: onRemove,
+                onRename: onRename,
+                onClick: zTreeOnClick
+            }
+		};
+        function zTreeOnClick(event, treeId, treeNode) {
+            $("*[name='id']").val(treeNode.id);
+            $("*[name='name']").val(treeNode.name);
+            $("*[name='href']").val(treeNode.href);
+            $("*[name='level']").val(treeNode.level);
+            $("*[name='tId']").val(treeNode.tId);
+            var opts = $("*[name='status']").find('option');
+            $.each(opts, function(){
+                if(treeNode.status == $(this).val()){
+                    $(this).attr('selected', "");
+				} else {
+                    $(this).removeAttr("selected");
+				}
+			});
+            layui.form().render("select");
+			if(treeNode.getParentNode() != null) {
+                var parentNode = treeNode.getParentNode();
+                $("*[name='parentName']").val(parentNode.name);
+                $("*[name='parentId']").val(parentNode.id);
+			} else {
+                $("*[name='parentName']").val('');
+                $("*[name='parentId']").val(0);
+			}
+
+
+        };
+        var log, className = "dark";
+        function beforeDrag(treeId, treeNodes) {
+            return false;
+        }
+        function beforeEditName(treeId, treeNode) {
+            className = (className === "dark" ? "":"dark");
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.selectNode(treeNode);
+            setTimeout(function() {
+                if (confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？")) {
+                    setTimeout(function() {
+                        zTree.editName(treeNode);
+                    }, 0);
+                }
+            }, 0);
+            return false;
+        }
+        function beforeRemove(treeId, treeNode) {
+            className = (className === "dark" ? "":"dark");
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.selectNode(treeNode);
+            return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+        }
+        function onRemove(e, treeId, treeNode) {
+            $.post('${ctx}/sys/menu/delete',{ids:treeNode.id});
+        }
+        function beforeRename(treeId, treeNode, newName, isCancel) {
+            className = (className === "dark" ? "":"dark");
+            if (newName.length == 0) {
+                setTimeout(function() {
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    zTree.cancelEditName();
+                    alert("节点名称不能为空.");
+                }, 0);
+                return false;
+            }
+            return true;
+        }
+        function onRename(e, treeId, treeNode, isCancel) {
+        }
+        function showRemoveBtn(treeId, treeNode) {
+            return !treeNode.isFirstNode;
+        }
+        function showRenameBtn(treeId, treeNode) {
+            return !treeNode.isLastNode;
+        }
+
+        function getTime() {
+            var now= new Date(),
+                h=now.getHours(),
+                m=now.getMinutes(),
+                s=now.getSeconds(),
+                ms=now.getMilliseconds();
+            return (h+":"+m+":"+s+ " " +ms);
+        }
+
+        var newCount = 1;
+        function addHoverDom(treeId, treeNode) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='add node' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_"+treeNode.tId);
+            if (btn) btn.bind("click", function(){
+                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                var postParams = {
+                    parentId:treeNode.id,
+                    name:"new node" + (newCount++),
+                    href:"#",
+                    status:1,
+                    type:1
+                };
+                var id = null;
+                $.post('${ctx}/sys/menu/save',postParams, function(_data){
+                    _data = eval('(' + _data + ')');
+                    zTree.addNodes(treeNode, {id:_data.data, pId:treeNode.id, name:postParams.name});
+                    var newNode = treeNode.children[treeNode.children.length - 1];
+                    zTree.selectNode(newNode);
+                    zTreeOnClick(null, newNode.id, newNode);
+                });
+
+
+                return false;
+            });
+        };
+        function removeHoverDom(treeId, treeNode) {
+            $("#addBtn_"+treeNode.tId).unbind().remove();
+
+        };
+        function selectAll() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+        }
+		var zNodes = JSON.parse('${ztree}');
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			expandNode({data:{type:"expandAll"}});
+//            $("#toggleBtn").bind("click", {type:"toggle"}, expandNode);
+            $("#expandAllBtn").bind("click", {type:"expandAll"}, expandNode);
+            $("#collapseAllBtn").bind("click", {type:"collapseAll"}, expandNode);
+
+		})
+        /**
+		 * 展开折叠
+         * @param e
+         */
+        function expandNode(e) {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                type = e.data.type,
+                nodes = zTree.getSelectedNodes();
+            if (type.indexOf("All")<0 && nodes.length == 0) {
+                alert("请先选择一个父节点");
+            }
+
+            if (type == "expandAll") {
+                zTree.expandAll(true);
+            } else if (type == "collapseAll") {
+                zTree.expandAll(false);
+            } else {
+                var callbackFlag = $("#callbackTrigger").attr("checked");
+                for (var i=0, l=nodes.length; i<l; i++) {
+                    zTree.setting.view.fontCss = {};
+                    if (type == "expand") {
+                        zTree.expandNode(nodes[i], true, null, null, callbackFlag);
+                    } else if (type == "collapse") {
+                        zTree.expandNode(nodes[i], false, null, null, callbackFlag);
+                    } else if (type == "toggle") {
+                        zTree.expandNode(nodes[i], null, null, null, callbackFlag);
+                    } else if (type == "expandSon") {
+                        zTree.expandNode(nodes[i], true, true, null, callbackFlag);
+                    } else if (type == "collapseSon") {
+                        zTree.expandNode(nodes[i], false, true, null, callbackFlag);
+                    }
+                }
+            }
+        }
+        function subCallback(msg){
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            var node = treeObj.getNodeByTId($("*[name='tId']").val());
+            node["name"] = $("*[name='name']").val();
+            treeObj.updateNode(node);
+            layer.msg('操作成功!', {time:1000});
+//            layer.alert('提交成功',{title:'操作成功！'});
+        }
+
+		//-->
+	</SCRIPT>
+</div>
+</body>
+</html>

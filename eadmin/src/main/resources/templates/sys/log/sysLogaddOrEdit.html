@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<%include("/base/css.html"){} %>
+<link rel="stylesheet" href="${ctx}/css/addOrEdit.css">
+</head>
+<body>
+<section class="dx-info-default">
+  <div class="dx-info-box type-add">
+    <form class="layui-form" action="">
+		<div class="layui-form-item" <%if(has(idDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">编号</label>
+	        <div class="layui-input-block dx-input-required">                <input <%if(has(idDisabled)){%>disabled<%}%> type="text" value="${obj.id!}" name="id"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(typeDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">日志类型</label>
+	        <div class="layui-input-block">                <input <%if(has(typeDisabled)){%>disabled<%}%> type="text" value="${obj.type!}" name="type"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(titleDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">日志标题</label>
+	        <div class="layui-input-block">                <input <%if(has(titleDisabled)){%>disabled<%}%> type="text" value="${obj.title!}" name="title"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(userNameDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">用户名者</label>
+	        <div class="layui-input-block">                <input <%if(has(userNameDisabled)){%>disabled<%}%> type="text" value="${obj.userName!}" name="userName"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(userIdDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">用户id</label>
+	        <div class="layui-input-block">                <input <%if(has(userIdDisabled)){%>disabled<%}%> type="text" value="${obj.userId!}" name="userId"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(createDateDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">创建时间</label>
+	        <div class="layui-input-block">                <input <%if(has(createDateDisabled)){%>disabled<%}%> type="text" value="${obj.createDate!,'yyyy-MM-dd HH:mm:ss'}" name="createDate"  autocomplete="off" placeholder="" class="layui-input layui-form-danger laydatetime">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(remoteAddrDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">操作IP地址</label>
+	        <div class="layui-input-block">                <input <%if(has(remoteAddrDisabled)){%>disabled<%}%> type="text" value="${obj.remoteAddr!}" name="remoteAddr"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(userAgentDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">用户代理</label>
+	        <div class="layui-input-block">                <input <%if(has(userAgentDisabled)){%>disabled<%}%> type="text" value="${obj.userAgent!}" name="userAgent"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(requestUriDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">请求URI</label>
+	        <div class="layui-input-block">                <input <%if(has(requestUriDisabled)){%>disabled<%}%> type="text" value="${obj.requestUri!}" name="requestUri"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(methodDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">操作方式</label>
+	        <div class="layui-input-block">                <input <%if(has(methodDisabled)){%>disabled<%}%> type="text" value="${obj.method!}" name="method"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(paramsDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">提交数据</label>
+	        <div class="layui-input-block">                <input <%if(has(paramsDisabled)){%>disabled<%}%> type="text" value="${obj.params!}" name="params"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(performDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">工作性能</label>
+	        <div class="layui-input-block">                <input <%if(has(performDisabled)){%>disabled<%}%> type="text" value="${obj.perform!}" name="perform"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(longTimeDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">请求耗时</label>
+	        <div class="layui-input-block">                <input <%if(has(longTimeDisabled)){%>disabled<%}%> type="text" value="${obj.longTime!}" name="longTime"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+		<div class="layui-form-item" <%if(has(remarksDisplayNone)){%> style="display:none"<%}%>>
+	        <label class="layui-form-label">详细信息</label>
+	        <div class="layui-input-block">                <input <%if(has(remarksDisabled)){%>disabled<%}%> type="text" value="${obj.remarks!}" name="remarks"  autocomplete="off" placeholder="" class="layui-input layui-form-danger">
+	        </div>
+      	</div>
+      <br>
+
+      <div class="layui-form-item form-btn-box">
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn layui-btn-primary btn-simple-blue add-hide" onclick="window.history.go(-1);">取消</button>
+          <button type="reset" class="layui-btn layui-btn-primary btn-simple-blue update-hide">重置</button>
+          <button class="layui-btn" lay-submit="" lay-filter="info">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<div id="LAY_democodejs">
+<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+<%include("/base/js.html"){} %>
+<script src="${ctx}/js/common.js" charset="utf-8"></script>
+<script src="${ctx}/js/addOrEdit.js" charset="utf-8"></script>
+</div>
+</body>
+</html>

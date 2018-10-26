@@ -1,0 +1,125 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日志</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<%include("/base/css.html"){} %>
+	<link rel="stylesheet" href="${ctx}/css/content2.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<label class="layui-form-label">编号:</label>
+				<input type="text" value="" name="id" placeholder="编号" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">日志类型:</label>
+				<input type="text" value="" name="type" placeholder="日志类型" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">日志标题:</label>
+				<input type="text" value="" name="title" placeholder="日志标题" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">用户名者:</label>
+				<input type="text" value="" name="userName" placeholder="用户名者" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">用户id:</label>
+				<input type="text" value="" name="userId" placeholder="用户id" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">创建时间:</label>
+				<input type="text" value="" name="createDate" placeholder="创建时间" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">操作IP地址:</label>
+				<input type="text" value="" name="remoteAddr" placeholder="操作IP地址" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">用户代理:</label>
+				<input type="text" value="" name="userAgent" placeholder="用户代理" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">请求URI:</label>
+				<input type="text" value="" name="requestUri" placeholder="请求URI" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">操作方式:</label>
+				<input type="text" value="" name="method" placeholder="操作方式" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">提交数据:</label>
+				<input type="text" value="" name="params" placeholder="提交数据" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">工作性能:</label>
+				<input type="text" value="" name="perform" placeholder="工作性能" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">请求耗时:</label>
+				<input type="text" value="" name="longTime" placeholder="请求耗时" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">详细信息:</label>
+				<input type="text" value="" name="remarks" placeholder="详细信息" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<a class="layui-btn" href="javascript:search();">查询</a><span></span>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</div>
+	</form>
+	<div class="layui-form">
+		<table id="layui-table" lay-filter="grid"></table>
+	</div>
+</div>
+<div id="LAY_democodejs">
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
+	<script type="text/html" id="gridBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+        var tableIns=null;
+        layui.use('table', function(){
+            var table = layui.table;
+            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            //第一个实例
+            tableIns=table.render({
+                elem: '#layui-table'
+                ,height: 'full-'+height
+                ,url: '/sys/log/list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {field: 'id', title: '编号' ,width:80},
+                {field: 'type', title: '日志类型' ,width:80},
+                {field: 'title', title: '日志标题' ,width:80},
+                {field: 'userName', title: '用户名者' ,width:80},
+                {field: 'userId', title: '用户id' ,width:80},
+                {field: 'createDate', title: '创建时间' ,width:80},
+                {field: 'remoteAddr', title: '操作IP地址' ,width:80},
+                {field: 'userAgent', title: '用户代理' ,width:80},
+                {field: 'requestUri', title: '请求URI' ,width:80},
+                {field: 'method', title: '操作方式' ,width:80},
+                {field: 'params', title: '提交数据' ,width:80},
+                {field: 'perform', title: '工作性能' ,width:80},
+                {field: 'longTime', title: '请求耗时' ,width:80},
+                {field: 'remarks', title: '详细信息',width:80 },
+                 {fixed: 'right', width:100, align:'center', toolbar: '#gridBar'} //这里的toolbar值是模板元素的选择器
+                ]]
+            	,request: tableRequest
+				,response: tableResponse
+            });
+        });
+	</script>
+</div>
+</body>
+</html>

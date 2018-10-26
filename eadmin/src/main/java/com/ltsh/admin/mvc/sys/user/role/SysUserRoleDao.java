@@ -5,5 +5,4 @@ import org.beetl.sql.core.engine.PageQuery;
 
 import com.ltsh.admin.mvc.base.BaseDaoMapper;
 public interface SysUserRoleDao extends BaseDaoMapper<SysUserRole>{
-	public void page(PageQuery<SysUserRole> query);
 }

@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Lists {
+	public final static List<String> emptyStringList=new ArrayList<>(0);
 	public static <T>List<T> newList(){
-		return new ArrayList<T>();
+		return new ArrayList<>();
 	}
 	@SafeVarargs
 	public static <T>List<T> as(T... t){

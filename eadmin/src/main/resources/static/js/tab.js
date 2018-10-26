@@ -37,7 +37,7 @@ function Tab(mainId) {
 	
 	var This = this;
 	layui.use('element', function(){
-		var element = layui.element();
+		var element =layui.element();
 		element.on('tab('+mainId+')', function(data) {
 			
 			if(This.tabShowCallBack) {
@@ -52,7 +52,6 @@ function Tab(mainId) {
 		});
 	});
 }
-
 /**
  * 容器id
  */

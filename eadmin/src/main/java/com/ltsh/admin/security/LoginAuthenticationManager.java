@@ -1,18 +1,16 @@
 package com.ltsh.admin.security;
 
 
+import com.ltsh.admin.mvc.sys.log.SysLogService;
+import com.ltsh.admin.util.SpringContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Random on 2017/4/20.
@@ -28,9 +26,9 @@ public class LoginAuthenticationManager extends DaoAuthenticationProvider {
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication)
             throws AuthenticationException {
         Object salt = null;
-        if (getSaltSource() != null) {
-            salt = getSaltSource().getSalt(userDetails);
-        }
+//        if (getSaltSource() != null) {
+//            salt = getSaltSource().getSalt(userDetails);
+//        }
         if (authentication.getPrincipal() == null
                 || "".equals(authentication.getPrincipal())) {
             logger.debug("-----用户名不能为空！-----");
@@ -45,11 +43,12 @@ public class LoginAuthenticationManager extends DaoAuthenticationProvider {
 
         String presentedPassword = authentication.getCredentials().toString();
         //密码校验
-        boolean validResult = !getPasswordEncoder().isPasswordValid(userDetails.getPassword(), presentedPassword, salt);
+        boolean validResult = !userDetails.getPassword().equals(presentedPassword);//getPasswordEncoder().matches(userDetails.getPassword(), presentedPassword);//!getPasswordEncoder().isPasswordValid(userDetails.getPassword(), presentedPassword, salt);
         if (validResult) {
             logger.debug("---- 用户名或密码错误！-----");
             throw new BadCredentialsException("-----用户名或密码错误！-----");
         }
+        SpringContextHolder.getBean(SysLogService.class).insert(SpringContextHolder.getRequest());//记录日志
 //        UserInfo userInfo = userInfoMapper.selectByLoginName(authentication.getPrincipal().toString());
 //        List<Role> roles = roleMapper.selectByUserId(userInfo.getId());
 //        Set<Menu> menu = SysCache.getMenu(roles);

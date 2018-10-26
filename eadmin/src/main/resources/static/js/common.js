@@ -7,6 +7,56 @@ function  enterClickById(id,fn){
 	}
 	});
 }
+/**Form表单转封装JSON**/
+$.fn.toJSON = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        var name = this.name;
+        var value = this.value;
+        var paths = this.name.split(".");
+        var len = paths.length;
+        var obj = o;
+        $.each(paths,function(i,e){
+            if(i == len-1){
+                if (obj[e]) {
+                    if (!obj[e].push) {
+                        obj[e] = [obj[e]];
+                    }
+                    obj[e].push(value || '');
+                } else {
+                    obj[e] = value || '';
+                }
+            }else{
+                if(!obj[e]){
+                    obj[e] = {};
+                }
+            }
+            obj = o[e];
+        });
+    });
+    return o;
+};
+//实例化 laydate 带有laydatetime laydate样式日期控件
+function dateInit(){
+    //实例化日期对象
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        lay('.laydatetime').each(function(){
+            laydate.render({
+                elem: this
+                ,type: 'datetime'
+                ,trigger: 'click'
+            });
+        });
+        lay('.laydate').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+            });
+        });
+    });
+}
 /**回车点击事件**/
 $.fn.enterClick = function (fn) {
     $(this).on('keypress',function(event){
@@ -15,6 +65,7 @@ $.fn.enterClick = function (fn) {
         }
     });
 }
+
 /**只能输入数字**/
 $.fn.onlyNum = function () {
     $(this).keypress(function (event) {
@@ -58,11 +109,12 @@ var constant={
         	return console.log(e);
 	}
 }*/
-function Log(str,obj){
+function log(str,obj){
     if(constant.debug){
         var browser=checkBrowser();
         if (browser.firefox||browser.chrome){
         	if(arguments.length==1){
+        		console.log(arguments.callee.caller.name+"  调用：");
         		return console.log(arguments[0]);
         	}
             return console.log("%s : %o",str,obj);
@@ -111,6 +163,13 @@ function getNewDate(){
 function zero(num){
 	return num<10?'0'+num:num;
 }
+function ajaxSuccess(param){
+	// if(param.success){
+	// 	if(param.data.)
+	// }else{
+     //    param.success();
+	// }
+}
 /**
  * ajax
  */
@@ -137,8 +196,8 @@ function ajax(param){
 //	}
 	if(param.error==null){
 		param.error=function (XMLHttpRequest, textStatus, errorThrown) {
-			Log("系统错误",XMLHttpRequest);
-			Log("系统错误",errorThrown);
+			log("系统错误",XMLHttpRequest);
+			log("系统错误",errorThrown);
 			alert('系统错误请检查！');
 		    // 通常 textStatus 和 errorThrown 之中
 		    // 只有一个会包含信息

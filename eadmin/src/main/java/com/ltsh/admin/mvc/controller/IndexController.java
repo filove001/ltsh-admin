@@ -25,19 +25,25 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController extends BaseController {
 	protected final static String ADD_TITLE = "添加用户信息";
-	protected final static String UPDATE_TITLE = "编辑用户信息";
+	public final static String loginUrl="/login";//登录页地址
+	public final static String indexUrl="/layout";//首页地址,登录后默认地址
+	public static String index="layui2/index";//首页文件地址
+	public static String login="layui2/login";//登录文件地址
 	@Autowired
 	public SysUserService sysUserService;
-	@RequestMapping("/login")
+	@RequestMapping(loginUrl)
 	public String login(HttpServletRequest request,HttpServletResponse response) {
-		return "layout/login";
+		//判断是否登录登录后不要在登录页
+		if(SpringSecuritys.getCurrentUser()!=null){
+			return "redirect:"+indexUrl;
+		}
+		return login;
 	}
-	@RequestMapping({"/layout","/"})
+	@RequestMapping({indexUrl})
 	public String layout(HttpServletRequest request,HttpServletResponse response) {
-		Logs.info(SpringSecuritys.getCurrentUserName());
-		Logs.info(SpringSecuritys.getCurrentUser());
 		request.setAttribute("me", SpringSecuritys.getCurrentUser());
-		return "layout/index";
+		request.setAttribute("sysMenuBos", SpringSecuritys.getSysMenuBos());
+		return index;
 	}
 }
 

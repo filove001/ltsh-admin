@@ -1,7 +1,6 @@
 package com.ltsh.admin.mvc.sys.role;
-
 import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fjz.util.Dates;
 /**
  *  sys_role 角色 
@@ -15,11 +14,11 @@ public class SysRole{
 	private java.lang.String code;//角色编码 
 	private java.lang.Integer status;//状态 
 	private java.lang.String createBy;//创建者 
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date createDate;//创建时间 
 	private java.lang.String updateBy;//更新者 
-	@JsonFormat(pattern = Dates.YYYY_MM_DD_HH_MM_SS)
+	@JSONField(format = Dates.YYYY_MM_DD_HH_MM_SS)
 	@DateTimeFormat(pattern=Dates.YYYY_MM_DD_HH_MM_SS)
 	private java.util.Date updateDate;//更新时间 
 	private java.lang.String remarks;//备注信息 

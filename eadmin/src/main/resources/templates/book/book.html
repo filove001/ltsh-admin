@@ -1,0 +1,141 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>书本详情</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<%include("/base/css.html"){} %>
+	<link rel="stylesheet" href="${ctx}/css/content2.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<label class="layui-form-label">id:</label>
+				<input type="text" value="" name="id" placeholder="id" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">来源:</label>
+				<input type="text" value="" name="source" placeholder="来源" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">书本名字:</label>
+				<input type="text" value="" name="name" placeholder="书本名字" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">详情:</label>
+				<input type="text" value="" name="intro" placeholder="详情" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">作者:</label>
+				<input type="text" value="" name="writer" placeholder="作者" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">作者点击:</label>
+				<input type="text" value="" name="writerClick" placeholder="作者点击" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">状态 完本连载停更:</label>
+				<input type="text" value="" name="status" placeholder="状态 完本连载停更" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">标签:</label>
+				<input type="text" value="" name="lable" placeholder="标签" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">字数:</label>
+				<input type="text" value="" name="wordCount" placeholder="字数" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">开始更新日期:</label>
+				<input type="text" value="" name="beginDate" placeholder="开始更新日期" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">最近更新:</label>
+				<input type="text" value="" name="lastUpdate" placeholder="最近更新" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">喜欢人数:</label>
+				<input type="text" value="" name="love" placeholder="喜欢人数" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">书架添加数:</label>
+				<input type="text" value="" name="shelf" placeholder="书架添加数" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">是否显示:</label>
+				<input type="text" value="" name="show" placeholder="是否显示" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">排序:</label>
+				<input type="text" value="" name="sort" placeholder="排序" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">点击:</label>
+				<input type="text" value="" name="click" placeholder="点击" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">搜索:</label>
+				<input type="text" value="" name="searchKey" placeholder="搜索" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<a class="layui-btn" href="javascript:search();">查询</a><span></span>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</div>
+	</form>
+	<div class="layui-form">
+		<table id="layui-table" lay-filter="grid"></table>
+	</div>
+</div>
+<div id="LAY_democodejs">
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<script src="${ui2}/layui.all.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
+	<script type="text/html" id="gridBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+        var tableIns=null;
+        layui.use('table', function(){
+            var table = layui.table;
+            var height=$('#search-form').height()+$('.layui-footer', parent.document).height()+10;
+            //第一个实例
+            tableIns=table.render({
+                elem: '#layui-table'
+                ,height: 'full-'+height
+                ,url: '/book/list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {field: 'id', title: 'id', width:80},
+                {field: 'source', title: '来源', width:80},
+                {field: 'name', title: '书本名字', width:80},
+                {field: 'intro', title: '详情', width:80},
+                {field: 'writer', title: '作者', width:80},
+                {field: 'writerClick', title: '作者点击', width:80},
+                {field: 'status', title: '状态 完本连载停更', width:80},
+                {field: 'lable', title: '标签', width:80},
+                {field: 'wordCount', title: '字数', width:80},
+                {field: 'beginDate', title: '开始更新日期', width:80},
+                {field: 'lastUpdate', title: '最近更新', width:80},
+                {field: 'love', title: '喜欢人数', width:80},
+                {field: 'shelf', title: '书架添加数', width:80},
+                {field: 'show', title: '是否显示', width:80},
+                {field: 'sort', title: '排序', width:80},
+                {field: 'click', title: '点击', width:80},
+                {field: 'searchKey', title: '搜索', width:80},
+                 {fixed: 'right', width:100, align:'center', toolbar: '#gridBar'} //这里的toolbar值是模板元素的选择器
+                ]]
+            	,request: tableRequest
+				,response: tableResponse
+            });
+        });
+
+	</script>
+</div>
+</body>
+</html>

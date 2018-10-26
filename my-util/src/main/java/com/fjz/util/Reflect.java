@@ -122,7 +122,7 @@ public class Reflect {
         this.isClass = true;
     }
 
-    private Reflect(Object object) {
+    public Reflect(Object object) {
         this.object = object;
         this.isClass = false;
     }

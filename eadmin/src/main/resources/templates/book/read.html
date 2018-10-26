@@ -1,0 +1,16 @@
+<%layout("bookIndex.html",{readClass:'class="current"'}){ %>
+<div class="cate-hd"><h1>最近看过的书，最多50本</h1></div>
+<div class="container">
+	<section class="mod_book">
+		<ul class="book_textList2">
+			<li><input type="checkbox" name="selecedNovel" value="175749"/>　<a href="http://m.22ff.com/xs/175749/">我就是好莱坞</a> /　贾思特杜　<span class="time">2017-08-27</span><br/><a href="http://m.22ff.com/xs/175749/38080596/">第1193章 首周票房</a></li>
+		</ul>
+	</section>
+	<div class="novel-desc">
+		<div class="btn_op">
+			<a class="btn_b" href="javascript:upSelected('selecedNovel');">加入书架</a>
+			<a class="btn_c" href="javascript:removeSelected('selecedNovel');">移除</a>
+		</div>
+	</div>
+</div>
+<% } %>

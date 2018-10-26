@@ -1,0 +1,75 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文章详</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<%include("/base/css.html"){} %>
+	<link rel="stylesheet" href="${ctx}/css/content2.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+	<form class="layui-form layui-form-pane" id="search-form">
+		<div class="layui-form-item">
+			<div class="layui-input-inline">
+				<label class="layui-form-label">id=cms_article.id:</label>
+				<input type="text" value="" name="id" placeholder="id=cms_article.id" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文章内容:</label>
+				<input type="text" value="" name="content" placeholder="文章内容" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">文章来源:</label>
+				<input type="text" value="" name="copyfrom" placeholder="文章来源" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<label class="layui-form-label">相关文章:</label>
+				<input type="text" value="" name="relation" placeholder="相关文章" class="layui-input">
+			</div>
+			<div class="layui-input-inline">
+				<a class="layui-btn" href="javascript:search();">查询</a><span></span>
+				<a class="layui-btn" href="add.html">新增</a>
+			</div>
+		</div>
+	</form>
+	<div class="layui-form">
+		<table id="layui-table" lay-filter="grid"></table>
+	</div>
+</div>
+<div id="LAY_democodejs">
+	<script src="${ctx}/js/jquery.min.js" charset="utf-8"></script>
+	<%include("/base/js.html"){} %>
+	<script src="${ctx}/js/common.js" charset="utf-8"></script>
+	<script src="${ctx}/js/content2.js" charset="utf-8"></script>
+	<script type="text/html" id="gridBar">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+        var tableIns=null;
+        layui.use('table', function(){
+            var table = layui.table;
+            var height=getGridHeight();
+            //第一个实例
+            tableIns=table.render({
+                elem: '#layui-table'
+                ,height: 'full-'+height
+                ,url: '/cms/article/data/list' //数据接口
+                ,page: true //开启分页
+                ,cols: [[ //表头
+                {field: 'id', title: 'id=cms_article.id' ,width:80},
+                {field: 'content', title: '文章内容' ,width:80},
+                {field: 'copyfrom', title: '文章来源' ,width:80},
+                {field: 'relation', title: '相关文章' },
+                 {fixed: 'right', width:100, align:'center', toolbar: '#gridBar'} //这里的toolbar值是模板元素的选择器
+                ]]
+            	,request: tableRequest
+				,response: tableResponse
+            });
+        });
+	</script>
+</div>
+</body>
+</html>
