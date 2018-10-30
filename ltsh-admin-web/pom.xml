@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.ltsh.admin</groupId>
+		<artifactId>ltsh-admin-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../ltsh-admin-parent</relativePath>
+	</parent>
+	<artifactId>ltsh-admin-web</artifactId>
+	<packaging>jar</packaging>
+
+	<name>ltsh-admin-web</name>
+	<description>ltsh-admin-web</description>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+    	<dependency>
+			<groupId>com.fengjianzhong</groupId>
+	    	<artifactId>my-util</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+    	<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		<!--网络请求-->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
+		<!-- 缓存 -->
+		<!--<dependency>-->
+		    <!--<groupId>net.sf.ehcache</groupId>-->
+		    <!--<artifactId>ehcache</artifactId>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>log4j-api</artifactId>
+					<groupId>org.apache.logging.log4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-security</artifactId>-->
+		<!--</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>HikariCP</artifactId>
+					<groupId>com.zaxxer</groupId>
+				</exclusion>
+			</exclusions>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-core</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-datatype-jdk8</artifactId>
+					<groupId>com.fasterxml.jackson.datatype</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-annotations</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-datatype-jsr310</artifactId>
+					<groupId>com.fasterxml.jackson.datatype</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-module-parameter-names</artifactId>
+					<groupId>com.fasterxml.jackson.module</groupId>
+				</exclusion>
+			</exclusions>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>beetlsql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>beetl</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+				</configuration>
+				<!--<dependencies>-->
+					<!--&lt;!&ndash; spring热部署&ndash;&gt;-->
+					<!--<dependency>-->
+						<!--<groupId>org.springframework</groupId>-->
+						<!--<artifactId>springloaded</artifactId>-->
+						<!--<version>1.2.6.RELEASE</version>-->
+					<!--</dependency>-->
+				<!--</dependencies>-->
+			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-surefire-plugin</artifactId>
+		        <configuration>
+		        <skip>true</skip>
+		        </configuration>
+		     </plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+</project>
